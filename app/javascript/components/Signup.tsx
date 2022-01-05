@@ -7,7 +7,7 @@ import { LoadingButton } from '@mui/lab';
 import { useNavigate } from 'react-router-dom';
 import Wrapper from './Wrapper';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import '../../assets/stylesheets/katex.min.css';
+import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
 const Textareawrapper = styled.div`

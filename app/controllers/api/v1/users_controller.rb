@@ -1,6 +1,5 @@
 
 class Api::V1::UsersController < ApplicationController
-  include Rails.application.routes.url_helpers
   skip_before_action :verify_authenticity_token
 
 
@@ -78,7 +77,7 @@ class Api::V1::UsersController < ApplicationController
   def logged_in
     iflog = logged_in? ? true : false
     current_id = iflog ? current_user.id : -1
-    user_image = iflog ? url_for(current_user.image) : ''
+    user_image = iflog ? current_user.image.url : ''
     user_name = iflog ? current_user.name : ''
     render json: {bool: iflog, id: current_id, image: user_image,name: user_name}
   end
