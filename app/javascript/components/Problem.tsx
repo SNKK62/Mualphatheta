@@ -15,7 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@mui/material/Button';
 import Comments from './Comments'
-import 'katex/dist/katex.min.css';
+import '../../assets/stylesheets/katex.min.css';
 import Latex from 'react-latex-next';
 import Modal from './Modal'
 import FavoriteIcon from '@material-ui/icons/Favorite';
