@@ -119,7 +119,7 @@ function Appbar(props: Props) {
                                 </IconButton>
                             </Box>
                         </> : <>
-                            <Box sx={{ flexGrow: 1, display: 'flex' }}  >
+                            <Box sx={{ flexGrow: 1, display: 'flex',position: 'absolute',left:'15px' }}  >
                             <IconButton
                                 size="medium"
                                 aria-label="account of current user"
