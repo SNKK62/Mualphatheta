@@ -6,7 +6,7 @@ import React,{ useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { url } from './url';
 import Wrapper from './Wrapper';
-require('katex/dist/katex.min.css')
+import 'katex/dist/katex.min.css'
 import Latex from 'react-latex-next';
 
 const Text = styled(TextField)`
