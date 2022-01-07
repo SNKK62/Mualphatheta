@@ -13,4 +13,6 @@
  *= require_tree .
  *= require_self
  */
- @import 'katex/dist/katex.min'
+ @import 'katex/dist/katex.min';
+ @import 'slick-carousel/slick/slick-theme';
+ @import 'slick-carousel/slick/slick';
