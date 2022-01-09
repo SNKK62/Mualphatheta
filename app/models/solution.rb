@@ -1,5 +1,5 @@
 class Solution < ApplicationRecord
-    include Rails.application.routes.url_helpers
+    # include Rails.application.routes.url_helpers
 
     has_one_attached :image1
     has_one_attached :image2
@@ -20,14 +20,14 @@ class Solution < ApplicationRecord
     end
     def image2s_url
         # 紐づいている画像のURLを取得する
-        image2.attached? ? url_for(image2) : ''
+        image2.attached? ? image2.url : ''
     end
     def image3s_url
         # 紐づいている画像のURLを取得する
-        image3.attached? ? url_for(image3) : ''
+        image3.attached? ? image3.url : ''
     end
     def user_image
-        user.image.attached? ? url_for(user.image) : ''
+        user.image.attached? ? user.image.url : ''
         # user.image.url
     end
     def user_name
