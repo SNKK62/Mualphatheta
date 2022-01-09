@@ -6,7 +6,7 @@ class Comment < ApplicationRecord
     validates :user_id, presence: true
     
     def user_image
-        user.image.attached? ? user.image : ''
+        user.image.attached? ? user.image.url : ''
         # user.image.url
     end
     def user_name
