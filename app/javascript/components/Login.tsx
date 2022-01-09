@@ -6,7 +6,6 @@ import React,{ useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { url } from './url';
 import Wrapper from './Wrapper';
-import 'katex/dist/katex.min.css'
 import Latex from 'react-latex-next';
 import '../../assets/stylesheets/index.css';
 

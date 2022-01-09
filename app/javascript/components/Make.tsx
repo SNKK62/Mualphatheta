@@ -12,7 +12,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 import TextField from '@mui/material/TextField';
 import '../../assets/stylesheets/index.css';

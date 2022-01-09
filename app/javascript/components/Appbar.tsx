@@ -18,7 +18,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import InputBase from '@mui/material/InputBase';
 import MediaQuery from 'react-responsive';
-import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
 const SearchInput = styled(InputBase)`

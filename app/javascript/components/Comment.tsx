@@ -12,7 +12,6 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@mui/material/Button';
-import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 import Modal from './Modal';
 import '../../assets/stylesheets/index.css';

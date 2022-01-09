@@ -6,7 +6,7 @@ import React,{useRef,  useState, useEffect } from 'react';
 import { useNavigate, useParams, useMatch } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import 'katex/dist/katex.min.css';
+import 'katex/dist/katex';
 import Latex from 'react-latex-next';
 import '../../assets/stylesheets/index.css';
 

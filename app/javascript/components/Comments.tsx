@@ -12,7 +12,6 @@ import Avatar from '@mui/material/Avatar'
 import ListItemButton from '@mui/material/ListItemButton';
 import styled from 'styled-components';
 import {useParams, useNavigate} from 'react-router-dom'
-import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
 

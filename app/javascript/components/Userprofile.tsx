@@ -10,7 +10,6 @@ import { LoadingButton } from '@mui/lab';
 import Userproblems from './Userproblems'
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@mui/material/IconButton';
-import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 import '../../assets/stylesheets/index.css';
 
