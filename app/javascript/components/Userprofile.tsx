@@ -12,6 +12,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@mui/material/IconButton';
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
+import '../../assets/stylesheets/index.css';
+
 
 const Userwrapper = styled.div`
     display: grid;
@@ -71,7 +73,9 @@ const Followbutton = styled.div`
 `
 const Allwrapper = styled.div`
 width: 100%;
-min-height: 100vh;
+height: calc(100vh - 64px);
+overflow-y: auto;
+overflow-x: hidden;
 scrollbar-width: none;
 
     @media(min-width: 600px){
@@ -118,22 +122,26 @@ const Userprofile:React.VFC<Props> = (props: Props) => {
     const [follow, setFollow] = useState(false)
     const [dataState, dispatch] = useReducer(dataFetch, initialState);
     useEffect(() => {
-        dispatch({type: 'init', payload: ''})
-        window.scroll({top: 0, behavior: 'smooth'});
-        axios.get(user_url+id).then(resp => {
-            dispatch({ type: 'success', payload: resp.data })
-        }).catch(e => {
-            console.log(e);
-        })
-        if (props.logged_in.bool && props.logged_in.id !== Number(id)) {
-            axios.get(url + '/users/iffollow/' + id).then(resp => {
-                setFollow(resp.data.follow)
-                setLoad(false)
+        var mount = true
+        if (mount) {
+            dispatch({ type: 'init', payload: '' })
+            window.scroll({ top: 0, behavior: 'auto' });
+            axios.get(user_url + id).then(resp => {
+                dispatch({ type: 'success', payload: resp.data })
             }).catch(e => {
-                console.log(e)
-                setLoad(false)
+                console.log(e);
             })
+            if (props.logged_in.bool && props.logged_in.id !== Number(id)) {
+                axios.get(url + '/users/iffollow/' + id).then(resp => {
+                    setFollow(resp.data.follow)
+                    setLoad(false)
+                }).catch(e => {
+                    console.log(e)
+                    setLoad(false)
+                })
+            }
         }
+        return () => {mount=false}
     }, [id,user_url,props.logged_in.id,props.logged_in.bool])
     const handlefollow = (bool: boolean) => {
         setLoad(true)
@@ -175,7 +183,7 @@ const Userprofile:React.VFC<Props> = (props: Props) => {
                 {dataState.isLoading ?
                         <Loadingwrapper><Loading/></Loadingwrapper>
                     : <>
-            <Allwrapper>
+            <Allwrapper className='box'>
                 <Userwrapper>
                         <Imagewrapper>
                             <Image src={dataState.post.user.image_url} />

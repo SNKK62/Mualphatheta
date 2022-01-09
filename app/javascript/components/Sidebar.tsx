@@ -45,6 +45,10 @@ function Sidebar(props: Props) {
       navigate('/signup')
     } else if (s === 'ログイン') {
       navigate('/login')
+    }else if (s === 'ログアウト') {
+      props.handledelete()
+    } else if (s === 'トップ') {
+      navigate('/')
     }
   }
   const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -62,17 +66,17 @@ function Sidebar(props: Props) {
       <Divider /></>}
       {props.logged_in.bool ? <>
         <List>
-          {['プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿'].map((text, index) => (
+          {['トップ','プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿'].map((text, index) => (
             <ListItem button key={index} onClick={() => { toPage(text) }}  >
               <ListItemText primary={text} sx={{ marginLeft: '20px' }} />
             </ListItem>
           ))}
+           <Divider />
+              <ListItem button onClick={() => { toPage('ログアウト') }}>
+                <ListItemText primary={'ログアウト'}  sx={{marginLeft: '20px', color: 'red'}}/>
+              </ListItem> 
         </List>
-        <List sx={{ position: 'absolute',width: '100%', bottom: '10px', borderTop: '1px solid rgb(200,200,200)' }}>
-          <ListItem button key={'ログアウト'} onClick={props.handledelete}>
-            <ListItemText primary='ログアウト' sx={{ marginLeft: '20px', color: 'red' }} />
-          </ListItem>
-        </List></> :
+        </> :
         <List>
           {['ログイン', 'サインアップ'].map((text, index) => (<div key={index}>
             <ListItem button  onClick={() => { toPage(text) }}  >

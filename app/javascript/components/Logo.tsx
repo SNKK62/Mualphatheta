@@ -5,6 +5,8 @@ const Image = styled.img`
     object-fit: cover;
     width: 50vw;
     height: 50vw;
+    -webkit-filter: drop-shadow(0px 3px 10px rgba(0,0,0,.8));
+    filter: drop-shadow(0px 0px 10px rgba(0,0,0,.8));
     @media(min-width: 600px){
         height: 50vh;
         width: 50vh;

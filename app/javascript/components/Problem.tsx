@@ -21,6 +21,8 @@ import Modal from './Modal'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 // import { CircularProgress } from '@material-ui/core';
+import '../../assets/stylesheets/index.css';
+
 
 const Userwrapper = styled.div`
     display: grid;
@@ -131,7 +133,7 @@ const Buttonarea2 = styled.div`
 `
 const Allwrapper = styled.div`
     position: fixed;
-    z-index: 600;
+    z-index: 900;
     width: 100vw;
     height: 100vh;
     background-color: rgb(0,0,0,0.5);
@@ -146,6 +148,8 @@ const Wrapper = styled.div`
     width: 100%;
     min-height: 100vh;
     scrollbar-width: none;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     @media(min-width: 600px){
         width: 60vw;
@@ -222,13 +226,15 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
     const [loadlike, setLoadlike] = useState(true)
 
     useEffect(() => {
-        dispatch({ type: 'init', payload: '' })
-        window.scroll({top: 0, behavior: 'smooth'});
-        axios.get(problem_url).then(resp => {
-            props.ifproblem ? setCount(resp.data.problem.plike_count) : setCount(resp.data.problem.slike_count)
-            dispatch({ type: 'success', payload: resp.data })
-            // console.log(resp.data)
-                if (props.logged_in.bool && props.logged_in.id !== resp.data.problem.user_id){
+        var mount = true
+        if (mount) {
+            dispatch({ type: 'init', payload: '' })
+            window.scroll({ top: 0, behavior: 'auto' });
+            axios.get(problem_url).then(resp => {
+                props.ifproblem ? setCount(resp.data.problem.plike_count) : setCount(resp.data.problem.slike_count)
+                dispatch({ type: 'success', payload: resp.data })
+                // console.log(resp.data)
+                if (props.logged_in.bool && props.logged_in.id !== resp.data.problem.user_id) {
                     axios.get(problem_url + '/iflike').then(resp => {
                         setLike(resp.data.iflike)
                         setLoadlike(false)
@@ -238,9 +244,11 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
                 } else {
                     setLoadlike(false)
                 }
-        }).catch(e => {
-            console.log(e);
-        })
+            }).catch(e => {
+                console.log(e);
+            })
+        }
+        return () => {mount=false}
     }, [props.ifproblem,id, problem_url,props.logged_in.id,props.logged_in.bool])
     const toproblem = () => {
         dispatch({type: 'init', payload: ''})
@@ -299,7 +307,7 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
         }
         {dataState.isLoading ?
         <Loadingwrapper><Loading /></Loadingwrapper> : <>
-            <Wrapper>
+            <Wrapper className='box'>
                     <Title>{ dataState.post.problem.title}</Title>
             <Userwrapper>
                 <Imagewrapper>

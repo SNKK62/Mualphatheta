@@ -9,10 +9,13 @@ import Wrapper from './Wrapper';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
+import '../../assets/stylesheets/index.css';
+
 
 const Textareawrapper = styled.div`
     margin: 20px auto 30px auto;
-    width: 78%;
+    width: 79%;
+    max-width: 448px;
 `
 
 
@@ -46,6 +49,7 @@ const Preview = styled.img`
 const Inputwrapper = styled.div`
     width: 80%;
     margin: 30px auto 15px auto;
+    max-width: 450px;
 `
 const Message = styled.div`
     font-size: 30px;
@@ -114,7 +118,7 @@ const Signup: React.FC<Props> = (props) => {
         if (props.logged_in.bool) {
             navigate('/users/'+props.logged_in.id, { replace: true})
         }
-    })
+    },[])
     const handle = () => {
         setLoad(true);
         var error1 = false;
@@ -131,7 +135,7 @@ const Signup: React.FC<Props> = (props) => {
         if (!name || !name.childNodes[1].childNodes[0].value) {
             error1 = true;
             setNameerror('empty')
-        } else if (name.childNodes[1].childNodes[0].value.length >11) {
+        } else if (name.childNodes[1].childNodes[0].value.length >10) {
             setNameerror('long')
         }
         if (!pass || pass.childNodes[1].childNodes[0].value.length<6) {
@@ -187,7 +191,7 @@ const Signup: React.FC<Props> = (props) => {
     }
    
     return (
-        <Wrapper>
+        <Wrapper className='box'>
             <Message><Latex>$Sign$ $up$</Latex></Message>
             <Filewrapper2>
                 <Filewrapper htmlFor='fileinput'>
@@ -196,11 +200,11 @@ const Signup: React.FC<Props> = (props) => {
                 <Fileinput  id='fileinput' ref={Imageref} type='file' accept="image/*" onChange={(e)=>{imghandle(e)}}/>
             </Filewrapper2>
             <Defaultdiv onClick={defaulthandle} >デフォルト画像</Defaultdiv>
-            <Inputwrapper><Input ref={Nameref} error={nameerror ? true : false} label="ユーザー名" variant="outlined" placeholder='11文字以下' /></Inputwrapper>
+            <Inputwrapper><Input ref={Nameref} error={nameerror ? true : false} label="ユーザー名" variant="outlined" placeholder='10文字以下' /></Inputwrapper>
             {nameerror && <>
                 {nameerror === 'empty' && 'ユーザー名を入力してください'}
                 {nameerror === 'exist' && 'そのユーザー名は使えません'}
-                {nameerror === 'long' && '名前は11文字以下です'}</>}
+                {nameerror === 'long' && '名前は10文字以下です'}</>}
             <Textareawrapper>
                 <TextareaAutosize
                     aria-label="minimum height"

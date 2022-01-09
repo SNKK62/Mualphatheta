@@ -12,7 +12,11 @@ interface Props {
 const Default:React.VFC<Props> = (props: Props) => {
     const navigate = useNavigate()
     useEffect(() => {
-        navigate(props.logged_in.bool ? '/users/'+props.logged_in.id : '/login',{replace: true})
+        var mount = true
+        if (mount) {
+            navigate(props.logged_in.bool ? '/users/' + props.logged_in.id : '/login', { replace: true })
+        }
+        return () => {mount=false}
     },[navigate])
     return (
         <div>

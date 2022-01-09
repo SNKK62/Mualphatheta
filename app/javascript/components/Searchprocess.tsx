@@ -6,10 +6,14 @@ import { useNavigate } from 'react-router-dom';
 const Searchprocess:React.VFC = () => {
     const navigate = useNavigate();
     useEffect(() => {
-        if (window.innerWidth >= 1025) {
-            navigate('/users',{replace: true})
+        var mount = true
+        if (mount) {
+            if (window.innerWidth >= 1025) {
+                navigate('/users', { replace: true })
+            }
         }
-    })
+        return () => {mount=false}
+    },[])
     return (
         <Loadingwrapper>
             

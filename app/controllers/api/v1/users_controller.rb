@@ -1,6 +1,6 @@
 
 class Api::V1::UsersController < ApplicationController
-  # include Rails.application.routes.url_helpers
+  include Rails.application.routes.url_helpers
   skip_before_action :verify_authenticity_token
 
 
@@ -11,7 +11,7 @@ class Api::V1::UsersController < ApplicationController
   end
  
   def index 
-    users = User.all.order(updated_at: :DESC)
+    users = User.inclede(:id).order(updated_at: :DESC)
     render json: {users: users}, methods: [:follower_count,:following_count,:problem_count,:solution_count,:image_url]
   end
 
@@ -63,22 +63,22 @@ class Api::V1::UsersController < ApplicationController
   def search
     query = params[:name]
     times = params[:times].to_i
-    ifend = User.where('name LIKE ?', '%'+query+'%').length < 10*times+10
-    users = User.where('name LIKE ?', '%'+query+'%').order(updated_at: :DESC).limit(10).offset(10*times)
+    ifend = User.where('name LIKE ?', '%'+query+'%').length < 50*times+50
+    users = User.where('name LIKE ?', '%'+query+'%').order(updated_at: :DESC).limit(50).offset(50*times)
     render json: {user: users, ifend: ifend},methods: [:follower_count,:following_count,:problem_count,:solution_count,:image_url]
   end
 
   def search_none
     times = params[:times].to_i
-    users = User.order(updated_at: :DESC).limit(10).offset(10*times)
-    ifend = User.all.length < 10*times+10
+    users = User.order(updated_at: :DESC).limit(50).offset(50*times)
+    ifend = User.all.length < 50*times+50
     render json: {user: users, ifend: ifend}, methods: [:follower_count, :following_count,:problem_count, :solution_count,:image_url]
   end
 
   def logged_in
     iflog = logged_in? ? true : false
     current_id = iflog ? current_user.id : -1
-    user_image = iflog ? current_user.image.url : ''
+    user_image = iflog ? url_for(current_user.image) : ''
     user_name = iflog ? current_user.name : ''
     render json: {bool: iflog, id: current_id, image: user_image,name: user_name}
   end
@@ -97,15 +97,15 @@ class Api::V1::UsersController < ApplicationController
 
   def like_problems
     times = params[:times].to_i
-    problems = current_user.like_problem.order(updated_at: :DESC).limit(15).offset(15*times)
-    ifend = current_user.like_problem.count < 15*times+15
+    problems = current_user.like_problem.order(updated_at: :DESC).limit(50).offset(50*times)
+    ifend = current_user.like_problem.count < 50*times+50
     render json: {problem: problems, ifend: ifend}, methods: [:plike_count,:user_name,:user_image]
   end
 
   def like_solutions
     times = params[:times].to_i
-    solutions = current_user.like_solution.order(updated_at: :DESC).limit(15).offset(15*times)
-    ifend = current_user.like_solution.count < 15*times+15
+    solutions = current_user.like_solution.order(updated_at: :DESC).limit(50).offset(50*times)
+    ifend = current_user.like_solution.count < 50*times+50
     render json: {solution: solutions, ifend: ifend}, methods: [:category,:user_name,:slike_count, :user_image]
   end
 

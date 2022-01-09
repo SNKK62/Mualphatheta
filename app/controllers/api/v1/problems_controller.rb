@@ -88,28 +88,53 @@ skip_before_action :verify_authenticity_token
     def search
         query = params[:category]
         times = params[:times].to_i
-        ifend = Problem.where('category LIKE ?', '%'+query+'%').order(updated_at: :DESC).length < 10*times+10
-        problems = Problem.where('category LIKE ?', '%'+query+'%').limit(10).offset(10*times)
+        ifend = Problem.where('category LIKE ?', '%'+query+'%').order(updated_at: :DESC).length < 50*times+50
+        problems = Problem.where('category LIKE ?', '%'+query+'%').limit(50).offset(50*times)
         render json: {problem: problems, ifend: ifend},methods: [:user_image,:user_name,:plike_count]
     end
 
     def search_none
         times = params[:times].to_i
-        problems = Problem.limit(10).offset(10*times)
-        ifend = Problem.all.order(updated_at: :DESC).length < 10*times+10
+        problems = Problem.limit(50).offset(50*times)
+        ifend = Problem.all.order(updated_at: :DESC).length < 50*times+50
         render json: {problem: problems, ifend: ifend}, methods: [:user_image,:user_name,:plike_count]
     end
 
     def user_problem
         times = params[:times].to_i
         user = User.find(params[:id])
-        ifend = user.problems.length < 10*times+10
-        problems = user.problems.order(updated_at: :DESC).limit(10).offset(10*times)
+        ifend = user.problems.length < 50*times+50
+        problems = user.problems.order(updated_at: :DESC).limit(50).offset(50*times)
         render json: {problem: problems, ifend: ifend}, methods: [:user_name,:plike_count]
+    end
+
+    def rank_problem
+        times = params[:times].to_i
+        problems = Problem.all.sort{|a,b| b.likes.size <=> a.likes.size }
+        ifend = Problem.all.size < 50*times+50
+        render json: {problem: problems[50*times,50], ifend: ifend}, methods: [:user_image, :user_name, :plike_count]
+    end
+
+    def recommend_problem
+        times = params[:times].to_i
+        ifend = Problem.all.size < 50*times+50
+        followings_ids = current_user.followings.ids
+        problems = Problem.all.sort_by{|a| [id_of_following?(a.user_id,followings_ids),-a.updated_at.to_i]}
+        render json: {problem: problems[50*times,50], ifend: ifend}, methods: [:user_image, :user_name, :plike_count]
     end
 
     private
         def problem_params
             params.require(:problem).permit(:title, :image1, :image2, :image3, :description, :category)
+        end
+
+        def id_of_following?(id,ids)
+            if ids.include?(id)
+                return -1
+            elsif id == current_user.id
+                return 1
+            else
+                return 0
+            end
         end
 end

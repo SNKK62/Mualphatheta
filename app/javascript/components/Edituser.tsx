@@ -2,7 +2,7 @@ import axios from './axios';
 import styled from 'styled-components';
 import { TextField } from '@material-ui/core';
 import { LoadingButton } from '@mui/lab';
-import React,{useMemo, useState, useEffect, useReducer, useRef } from 'react';
+import React,{ useState, useEffect, useReducer, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { url } from './url';
 import Loading from './Loading';
@@ -12,6 +12,7 @@ import Wrapper from './Wrapper';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
+import '../../assets/stylesheets/index.css';
 
 
 const Textareawrapper = styled.div`
@@ -30,6 +31,7 @@ const Textinput = styled(TextField)`
 const Textwrapper = styled.div`
     width: 80%;
     margin: 40px auto 0 auto;
+    max-width: 450px;
 `
 
 const Button = styled(LoadingButton)`
@@ -115,21 +117,25 @@ const  Edituser:React.VFC<Props> =(props: Props) => {
     const [imgurl, setImgurl] = useState('');
     const [error, setError] = useState('')
     const [text, setText] = useState('')
-    const navigate = useMemo(() => { return useNavigate(); },[])
+    const navigate = useNavigate();
     
     useEffect(() => {
-        if (!props.logged_in.bool || props.logged_in.id !== Number(id)) {
-            navigate('/users/' + props.logged_in.id + '/edit',{replace: true})
-            return
+        var mount = true
+        if (mount) {
+            if (!props.logged_in.bool || props.logged_in.id !== Number(id)) {
+                navigate('/users/' + props.logged_in.id + '/edit', { replace: true })
+                return
+            }
+            axios.get(user_url).then(resp => {
+                setImgurl(resp.data.user.image_url);
+                setName(resp.data.user.name)
+                setText(resp.data.user.description)
+                dispatch({ type: 'success', payload: resp.data });
+            }).catch(e => {
+                console.log(e);
+            })
         }
-        axios.get(user_url).then(resp => {
-            setImgurl(resp.data.user.image_url);
-            setName(resp.data.user.name)
-            setText(resp.data.user.description)
-            dispatch({ type: 'success', payload: resp.data });
-        }).catch(e => {
-            console.log(e);
-        })
+        return () => {mount=false}
     }, [navigate,user_url,props.logged_in.bool,props.logged_in.id])
     const imghandle = (e:any) => {
         if (e.target.files[0]) {
@@ -147,7 +153,7 @@ const  Edituser:React.VFC<Props> =(props: Props) => {
             setError('empty')
             setLoading(false)
             return
-        } else if (name.length > 11) {
+        } else if (name.length > 10) {
             setError('long')
         }
         const image: any = Imageref.current;
@@ -192,7 +198,7 @@ const  Edituser:React.VFC<Props> =(props: Props) => {
                 <Loadingwrapper>
                     <Loading></Loading> 
                 </Loadingwrapper> :
-            <Wrapper>
+            <Wrapper className='box'>
                     <Message>
                         <Latex>
                             $Edit$  $profile$
@@ -206,7 +212,7 @@ const  Edituser:React.VFC<Props> =(props: Props) => {
                     </Filewrapper>
                     <Defaultdiv onClick={defaulthandle} >デフォルトの画像を使用する</Defaultdiv>
                     <Textwrapper>
-                        <Textinput id='name' error={error ? true : false} label="ユーザー名" variant="standard" onChange={e => { handlename(e) }} defaultValue={dataState.post.user.name} placeholder='11文字以下'/>
+                        <Textinput id='name' error={error ? true : false} label="ユーザー名" variant="standard" onChange={e => { handlename(e) }} defaultValue={dataState.post.user.name} placeholder='10文字以下'/>
                     </Textwrapper>
                     <Textareawrapper>
                         <TextareaAutosize
@@ -222,7 +228,7 @@ const  Edituser:React.VFC<Props> =(props: Props) => {
                         <Errortext>
                             {error === 'empty' && 'ユーザー名を入力してください'}
                             {error === 'exist' && 'そのユーザー名はすでに使用されています'}
-                            {error === 'long' && 'ユーザー名は11文字以下です'}
+                            {error === 'long' && 'ユーザー名は10文字以下です'}
                         </Errortext>
                     }
                        

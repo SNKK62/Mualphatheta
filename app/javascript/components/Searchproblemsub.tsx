@@ -23,9 +23,10 @@ const Loading2 = styled(Loading)`
 `
 const Loadingwrapper2 = styled.div`
     width: 35vw;
-    height: 90vh;
+    height: 70vh;
     position: relative;
     z-index: 200;
+    overflow-x: hidden;
 `
 
 interface Props {
@@ -59,18 +60,22 @@ const Searchproblemsub:React.VFC<Props> = (props: Props) => {
     }
     
     useEffect(() => {
-        setLoad(true)
-        setTimes(0)
-        axios.get(search_url + 0 + '/' + props.keyword).then(resp => {
-            setProblems([...resp.data.problem]);
-            setLoad(false)
-            if (resp.data.ifend) {
-                setDisable(true)
-            }
-        }).catch(e => {
-            console.log(e)
+        var mount = true
+        if (mount) {
+            setLoad(true)
             setTimes(0)
-        })
+            axios.get(search_url + 0 + '/' + props.keyword).then(resp => {
+                setProblems([...resp.data.problem]);
+                setLoad(false)
+                if (resp.data.ifend) {
+                    setDisable(true)
+                }
+            }).catch(e => {
+                console.log(e)
+                setTimes(0)
+            })
+        }
+        return () => {mount=false}
     }, [props.keyword,search_url]);
     
     
@@ -119,15 +124,17 @@ const Searchproblemsub:React.VFC<Props> = (props: Props) => {
                             </div>
                             )
                         })}
-                        <ListItem id='miniload' key='loaditem' sx={{ height: '70px', padding: '0' }}>
-                        {!circular ? <>
-                        {!disable && <Fab  aria-label="add" sx={{  border: '1px rgb(98,224,224) solid',margin: 'auto', color: 'rgb(98,224,224)', bgcolor: 'rgb(400,400,400)' ,'&:hover': {bgcolor: 'rgb(200,200,200)',color: 'rgb(400,400,400)',border:'none'}, '&:disabled': {opacity: '0.7', border: 'none'}}} onClick={handlescroll}>
+                        {!circular ? 
+                            <ListItem id='miniload' key='loaditem' sx={{ height: '70px', padding: '0' }}>
+                        { !disable && <><Fab aria-label="add" sx={{  border: '1px rgb(98,224,224) solid',margin: 'auto', color: 'rgb(98,224,224)', bgcolor: 'rgb(400,400,400)' ,'&:hover': {bgcolor: 'rgb(200,200,200)',color: 'rgb(400,400,400)',border:'none'}, '&:disabled': {opacity: '0.7', border: 'none'}}} onClick={handlescroll} >
                             <AddIcon  />
-                            </Fab> }</>: 
+                                </Fab>
+                        </>}
+                        </ListItem>:
+                        <ListItem id='miniload' key='loaditem' sx={{ height: '70px', padding: '0' }}>
                             <CircularProgress sx={{margin: 'auto'}} />
-                        }
                         </ListItem>
-                        <Divider key='divider3'/>
+                        }
                     </List>
                 }
         </>

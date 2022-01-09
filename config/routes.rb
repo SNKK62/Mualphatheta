@@ -35,6 +35,8 @@ Rails.application.routes.draw do
         collection do
           get '/search/:times/:category', to: 'problems#search'
           get '/search/:times', to: 'problems#search_none'
+          get '/rank/:times', to: 'problems#rank_problem'
+          get '/recommend/:times', to: 'problems#recommend_problem'
         end
       end
       resources :solutions, except: [:create] do 

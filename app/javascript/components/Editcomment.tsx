@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Wrapper from './Wrapper';
-import React,{ useMemo, useState, useEffect, useReducer } from 'react';
+import React,{ useState, useEffect, useReducer } from 'react';
 import axios from './axios';
 import { LoadingButton } from '@mui/lab';
 import { url } from './url';
@@ -9,6 +9,7 @@ import Loading from './Loading';
 import Loadingwrapper from './Loadingwrapper';
 import dataFetch from './DataFetch';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import '../../assets/stylesheets/index.css';
 
 const Textareawrapper = styled.div`
     margin: 20px auto 30px auto;
@@ -50,18 +51,22 @@ const  Editcomment:React.VFC<Props> = (props: Props) => {
     const [textarea, setTextarea] = useState('');
     const [load, setLoad] = useState(false);
     
-    const navigate = useMemo(() => { return useNavigate(); },[])
+    const navigate = useNavigate();
     useEffect(() => {
-        dispatch({type: 'init', payload: ''})
-        axios.get(get_url).then(resp => {
-            if (props.logged_in.id !== resp.data.comment.user_id) {
-                navigate('/comments/' + id, { replace: true })
-            }
-            setTextarea(resp.data.comment.text);
-            dispatch({ type: 'success', payload: resp.data })
-        }).catch(e => {
-            console.log(e);
-        })
+        var mount = true
+        if (mount) {
+            dispatch({ type: 'init', payload: '' })
+            axios.get(get_url).then(resp => {
+                if (props.logged_in.id !== resp.data.comment.user_id) {
+                    navigate('/comments/' + id, { replace: true })
+                }
+                setTextarea(resp.data.comment.text);
+                dispatch({ type: 'success', payload: resp.data })
+            }).catch(e => {
+                console.log(e);
+            })
+        }
+        return () => {mount=false}
     }, [props.logged_in.id, navigate, get_url])
     
     
@@ -93,7 +98,7 @@ const  Editcomment:React.VFC<Props> = (props: Props) => {
         <>
         {
             dataState.isLoading ? <Loadingwrapper><Loading/></Loadingwrapper> : 
-                    <Wrapper>
+                    <Wrapper className='box'>
                         <Message>
                             コメントの編集<br/><Warn>texのテキストは$(半角)で囲んでください</Warn>
                         </Message>

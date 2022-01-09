@@ -11,6 +11,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@mui/material/styles';
 import React,{ useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import '../../assets/stylesheets/index.css';
 
 
 const Box1 = styled(Box)`
@@ -74,10 +75,10 @@ const SearchTab:React.VFC<Props> = (props: Props) => {
     if (window.innerWidth >= 1025) {
        navigate('/users',{replace: true})
      }
-   })
+   },[])
 
     return (<>
-        <Wrapper id='wrapper'>
+        <Wrapper id='wrapper' className='box'>
             
         <Box1 key='box1' sx={{ width: '100%' }}>
             <Box1 key='box2' sx={{ borderBottom: 1, borderColor: 'divider',width:'100%' }}>

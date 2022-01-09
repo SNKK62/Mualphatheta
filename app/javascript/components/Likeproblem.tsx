@@ -17,6 +17,7 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CircularProgress from '@mui/material/CircularProgress';
 import Wrapper from './Wrapper';
+import '../../assets/stylesheets/index.css';
 
 
 const Loading2 = styled(Loading)`
@@ -51,20 +52,24 @@ const Searchproblem:React.VFC<Props> = (props: Props) => {
     const navigate = useNavigate()
         
     useEffect(() => {
-        if (!props.logged_in.bool) {
-            navigate('/login')
-        }
-        setTimes(0)
-        axios.get(search_url + '0').then(resp => {
-            setProblems([...resp.data.problem]);
-            setLoad(false)
-            if (resp.data.ifend) {
-                setDisable(true)
+        var mount = true
+        if (mount) {
+            if (!props.logged_in.bool) {
+                navigate('/login')
             }
-        }).catch(e => {
-            console.log(e)
             setTimes(0)
-        })
+            axios.get(search_url + '0').then(resp => {
+                setProblems([...resp.data.problem]);
+                setLoad(false)
+                if (resp.data.ifend) {
+                    setDisable(true)
+                }
+            }).catch(e => {
+                console.log(e)
+                setTimes(0)
+            })
+        }
+        return () => {mount=false}
     }, [props.logged_in.bool,search_url]);
     
     const toProblem = (id: number) => {
@@ -94,7 +99,7 @@ const Searchproblem:React.VFC<Props> = (props: Props) => {
                 <Loading2 />
             </Loadingwrapper>
             :
-                <Wrapper>
+                <Wrapper className='box'>
                     <List  sx={{ paddingTop: '0' ,marginTop: '0'}} >
                         <Divider key='divider1'/>
                         {problems.map((val: any,index) => {
@@ -114,15 +119,17 @@ const Searchproblem:React.VFC<Props> = (props: Props) => {
                             </div>
                             )
                         })}
-                        <ListItem id='miniload' key='loaditem' sx={{ height: '70px', padding: '0' }}>
-                        {!circular ? <>
-                        {!disable && <Fab aria-label="add" sx={{  border: '1px rgb(98,224,224) solid',margin: 'auto', color: 'rgb(98,224,224)', bgcolor: 'rgb(400,400,400)' ,'&:hover': {bgcolor: 'rgb(200,200,200)',color: 'rgb(400,400,400)',border:'none'}, '&:disabled': {opacity: '0.7', border: 'none'}}} onClick={handlescroll}>
+                        {!circular ? 
+                            <ListItem id='miniload' key='loaditem' sx={{ height: '70px', padding: '0' }}>
+                        { !disable && <><Fab aria-label="add" sx={{  border: '1px rgb(98,224,224) solid',margin: 'auto', color: 'rgb(98,224,224)', bgcolor: 'rgb(400,400,400)' ,'&:hover': {bgcolor: 'rgb(200,200,200)',color: 'rgb(400,400,400)',border:'none'}, '&:disabled': {opacity: '0.7', border: 'none'}}} onClick={handlescroll} >
                             <AddIcon  />
-                            </Fab> }</>: 
+                                </Fab>
+                        </>}
+                        </ListItem>:
+                        <ListItem id='miniload' key='loaditem' sx={{ height: '70px', padding: '0' }}>
                             <CircularProgress sx={{margin: 'auto'}} />
-                        }
                         </ListItem>
-                        <Divider key='divider3'/>
+                        }
                     </List>
                 </Wrapper>
                 }

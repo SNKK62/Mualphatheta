@@ -31,12 +31,13 @@ import Loading from './Loading';
 import Follow from './Follow';
 import Likeproblem from './Likeproblem';
 import Likesolution from './Likesolution';
-import Default from './Default';
+// import Default from './Default';
 import Logo from './Logo';
+import Feed from './Feed';
 
 const Appwrapper = styled.div`
   width: 100vw;
-  height: 100%;
+  height: calc(100vh - 64px);
   display: flex;
   box-sizing: border-box;
   margin: 0;
@@ -79,26 +80,50 @@ const Loadingwrapper2 = styled(Loadingwrapper)`
     left: calc(20vw - 1px);
   }
 `
+const parseInteger = (str: string | null) => {
+  if (str) {
+    return parseInt(str)
+  }
+  else {
+    return - 1
+  }
+}
+
 
 const App: React.VFC = () => {
   const [value, setValue] = useState(0);
-  const [logged_in, setLogged_in] = useState({bool: false,id: -1,image: '',name: ''});
-  const [load, setLoad] = useState(true)
+  const [logged_in, setLogged_in] = useState(window.sessionStorage.getItem('bool')!=null ? {bool: true,id: parseInteger(window.sessionStorage.getItem('id')),image: String(window.sessionStorage.getItem('image')), name: String(window.sessionStorage.getItem('name')) } : {bool: false,id: -1,image: '',name: ''});
+  const [load, setLoad] = useState(window.sessionStorage.getItem('view') ? false : true)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   useEffect(() => {
-    axios.get(url + '/logged_in').then(resp => {
-      setLogged_in({ bool: resp.data.bool, id: resp.data.id ,image: resp.data.image, name: resp.data.name});
-      window.setTimeout(() => { setLoad(false); },2500)
-    }).catch(e => {
-      console.log(e)
-    })
+    var mount = true
+    if (mount) {
+      axios.get(url + '/logged_in').then(resp => {
+        window.sessionStorage.setItem('view', 'true')
+        if (resp.data.bool) {
+          window.sessionStorage.setItem('bool', String(resp.data.bool))
+          window.sessionStorage.setItem('id', String(resp.data.id))
+          window.sessionStorage.setItem('image', resp.data.image)
+          window.sessionStorage.setItem('name', resp.data.name)
+        }
+        setLogged_in({ bool: resp.data.bool, id: resp.data.id, image: resp.data.image, name: resp.data.name });
+        window.setTimeout(() => { load && setLoad(false); }, 2500)
+      }).catch(e => {
+        console.log(e)
+      })
+    }
+    return () => {mount=false}
   }, [])
   
   const handledelete = () => {
     setLoading(true)
     axios.delete(url + '/logout').then(() => {
       // console.log(resp)
+      window.sessionStorage.removeItem('bool')
+      window.sessionStorage.removeItem('id')
+      window.sessionStorage.removeItem('image')
+      window.sessionStorage.removeItem('name')
       setLogged_in({ bool: false, id: -1, image: '', name: '' })
       setLoading(false)
       navigate('/')
@@ -121,7 +146,7 @@ const App: React.VFC = () => {
             <Loading />
           </Loadingwrapper2> }
             <Routes >
-              <Route path="/" element={ <Default logged_in={logged_in} />} />
+              <Route path="/" element={ <Feed/>} />
               <Route path="/login" element={<Login logged_in={logged_in} setLogged_in={setLogged_in} />} />
               <Route path='/signup' element={<Signup logged_in={logged_in} setLogged_in={setLogged_in} />} />
               <Route path="/users" element={<Users />} />

@@ -11,6 +11,7 @@ import React,{ useState, useRef } from 'react';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@mui/material/IconButton';
+import '../../assets/stylesheets/index.css';
 
 
 const Box1 = styled(Box)`
@@ -48,9 +49,11 @@ const Searchwrapper = styled.div`
 const Wrapper2 = styled.div`
     width: 100%;
     text-align: center;
-    height: calc(100vh-64px);
    
-    height: calc(100vh-114px);
+    height: calc(100vh - 114px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    
     margin-top: 50px;
 `
 const Allwrapper = styled.div`
@@ -88,11 +91,11 @@ const SearchTabtest:React.VFC = () => {
     return (<Allwrapper>
         <Searchwrapper>
         <SearchInput ref={search} placeholder="検索キーワード..." onKeyPress={e => { handlekeypress(e)}}/>
-        <IconButton sx={{ p: 0,  position: 'absolute', top: '20px', right: '1%'}} onClick={handlesubmit}>
+        <IconButton sx={{ padding: '0 0 0 5px',  position: 'absolute', top: '20px', right: '1%'}} onClick={handlesubmit}>
                 <SearchIcon />
             </IconButton>
         </Searchwrapper>
-      <Wrapper2 id='wrapper'>
+      <Wrapper2 id='wrapper' className='box' >
         <Box1 key='box1' sx={{ width: '100%' }}>
             <TabContext value={value}>
             <Box1 key='box2' sx={{ borderBottom: 1, borderColor: 'divider',width:'100%' }}>
@@ -107,10 +110,10 @@ const SearchTabtest:React.VFC = () => {
                     <Tab key='two'  label="問題" value='2' sx={{width: '50%'}} />
             </TabList>
             </Box1>
-            <TabPanel key='one-user-sub' value={'1'}  >
+            <TabPanel key='one-user-sub' value={'1'} sx={{p: '0'}} >
                 <Searchusersub keyword={keyword} />
             </TabPanel>
-            <TabPanel key='two-user-sub' value={'2'}  >
+            <TabPanel key='two-user-sub' value={'2'}  sx={{p: '0'}}>
                 <Searchproblemsub keyword={keyword} />
               </TabPanel>
           </TabContext>

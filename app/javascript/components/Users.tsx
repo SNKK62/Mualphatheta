@@ -17,6 +17,8 @@ import AddIcon from '@material-ui/icons/Add';
 import CircularProgress from '@mui/material/CircularProgress';
 import Wrapper from './Wrapper'
 import { useNavigate } from 'react-router-dom';
+import '../../assets/stylesheets/index.css';
+
 
 
 const Loading2 = styled(Loading)`
@@ -39,17 +41,21 @@ const Searchuser:React.VFC = () => {
     
     
     useEffect(() => {
-        setTimes(0)
-        axios.get(search_url + 0 + '/').then(resp => {
-            setUsers([...resp.data.user]);
-            setLoad(false)
-            if (resp.data.ifend) {
-                setDisable(true)
-            }
-        }).catch(e => {
-            console.log(e)
+        var mount = true
+        if (mount) {
             setTimes(0)
-        })
+            axios.get(search_url + 0 + '/').then(resp => {
+                setUsers([...resp.data.user]);
+                setLoad(false)
+                if (resp.data.ifend) {
+                    setDisable(true)
+                }
+            }).catch(e => {
+                console.log(e)
+                setTimes(0)
+            })
+        }
+        return () => {mount=false}
     }, [search_url]);
     
     const toUsers = (id: number) => {
@@ -80,7 +86,7 @@ const Searchuser:React.VFC = () => {
             <Loadingwrapper>
                 <Loading2 />
             </Loadingwrapper>
-            :<Wrapper>
+            :<Wrapper className='box'>
                 
                     <List  sx={{ paddingTop: '0' ,marginTop: '0'}} >
                         <Divider key='divider1'/>
@@ -101,15 +107,17 @@ const Searchuser:React.VFC = () => {
                             </div>
                             )
                         })}
-                        <ListItem id='miniload' key='loaditem' sx={{ height: '70px', padding: '0' }}>
-                        {!circular ? 
-                        <Fab disabled={disable} aria-label="add" sx={{  border: '1px rgb(98,224,224) solid',margin: 'auto', color: 'rgb(98,224,224)', bgcolor: 'rgb(400,400,400)' ,'&:hover': {bgcolor: 'rgb(200,200,200)',color: 'rgb(400,400,400)',border:'none'}, '&:disabled': {opacity: '0.7', border: 'none'}}} onClick={handlescroll} >
+                       {!circular ? 
+                            <ListItem id='miniload' key='loaditem' sx={{ height: '70px', padding: '0' }}>
+                        { !disable && <><Fab aria-label="add" sx={{  border: '1px rgb(98,224,224) solid',margin: 'auto', color: 'rgb(98,224,224)', bgcolor: 'rgb(400,400,400)' ,'&:hover': {bgcolor: 'rgb(200,200,200)',color: 'rgb(400,400,400)',border:'none'}, '&:disabled': {opacity: '0.7', border: 'none'}}} onClick={handlescroll} >
                             <AddIcon  />
-                            </Fab> : 
+                                </Fab>
+                        </>}
+                        </ListItem>:
+                        <ListItem id='miniload' key='loaditem' sx={{ height: '70px', padding: '0' }}>
                             <CircularProgress sx={{margin: 'auto'}} />
-                        }
                         </ListItem>
-                        <Divider key='divider3'/>
+                        }
                     </List></Wrapper>
                 }
         </>

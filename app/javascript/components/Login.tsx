@@ -8,12 +8,15 @@ import { url } from './url';
 import Wrapper from './Wrapper';
 import 'katex/dist/katex.min.css'
 import Latex from 'react-latex-next';
+import '../../assets/stylesheets/index.css';
+
 
 const Text = styled(TextField)`
     width: 100%;
 `;
 const Textwrapper = styled.div`
     width: 80%;
+    max-width: 450px;
     margin: 40px auto 40px auto;
 `
 const Button = styled(LoadingButton)`
@@ -57,9 +60,13 @@ const  Login:React.VFC<Props> = (props: Props) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (props.logged_in.bool) {
-            navigate('/users/'+props.logged_in.id,{replace: true})
+        var mount = true
+        if (mount) {
+            if (props.logged_in.bool) {
+                navigate('/users/' + props.logged_in.id, { replace: true })
+            }
         }
+        return () => {mount=false}
     })
 
     const handle = () => {
@@ -86,7 +93,7 @@ const  Login:React.VFC<Props> = (props: Props) => {
 
 
     return (
-        <Wrapper>
+        <Wrapper className='box'>
             <Message>
                 <Latex>
                     $Log$ $in$

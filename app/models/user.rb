@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    include Rails.application.routes.url_helpers
 
     attr_accessor :remember_token
     has_one_attached :image
@@ -40,7 +41,7 @@ class User < ApplicationRecord
 
     def image_url
         # 紐づいている画像のURLを取得する
-        image.attached? ? image.url : nil
+        image.attached? ? url_for(image) : nil
         # image.url
       end
 

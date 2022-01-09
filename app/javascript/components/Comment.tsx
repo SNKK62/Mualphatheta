@@ -15,6 +15,8 @@ import Button from '@mui/material/Button';
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 import Modal from './Modal';
+import '../../assets/stylesheets/index.css';
+
 
 
 
@@ -111,11 +113,15 @@ const Comment:React.VFC<Props> = (props: Props) => {
     const navigate = useNavigate()
     const [modal , setModal] = useState(false)
     useEffect(() => {
-        axios.get(comment_url).then(resp => {
-            dispatch({ type: 'success', payload: resp.data })
-        }).catch(e => {
-            console.log(e);
-        })
+        var mount = true
+        if (mount) {
+            axios.get(comment_url).then(resp => {
+                dispatch({ type: 'success', payload: resp.data })
+            }).catch(e => {
+                console.log(e);
+            })
+        }
+        return () => {mount=false}
     }, [comment_url,id])
     const toproblem = () => {
         dispatch({ type: 'init', payload: '' })
@@ -148,7 +154,7 @@ const Comment:React.VFC<Props> = (props: Props) => {
             }
         {dataState.isLoading ?
             <Loadingwrapper><Loading /></Loadingwrapper> : 
-            <Wrapper>
+            <Wrapper className='box'>
             <Userwrapper>
                 <Imagewrapper>
                         <Image src={dataState.post.user_image} onClick={() => {navigate('/users/'+String(dataState.post.comment.user_id))}} />

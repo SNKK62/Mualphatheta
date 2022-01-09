@@ -9,21 +9,21 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import MediaQuery from 'react-responsive';
 import React from 'react'
+import '../../assets/stylesheets/index.css';
+
 
 const Sidewrapper = styled.div`
-height: calc(100vh-64px);
 border-right: 1px solid rgb(200,200,200);
+height: calc(100vh - 64px);
 overflow: auto;
-margin-right: 1vw;
-overflow-scroll: touch;
 position: fixed;
 @media(min-width: 600px) {
-    width: 39vw;
+    width: 40vw;
     margin-left: 0;
     box-sizing: border-box;
 }
 @media(min-width: 1025px) {
-    width: 19vw;
+    width: 20vw;
     margin-left: 0;
     box-sizing: border-box;
 }
@@ -53,33 +53,37 @@ const StaticSidebar:React.VFC<Props> = (props: Props) => {
       navigate('/signup')
     } else if (s === 'ログイン') {
       navigate('/login')
+    } else if (s === 'ログアウト') {
+      props.handledelete()
+    } else if (s === 'トップ') {
+      navigate('/')
     }
   }
     return (
-        <Sidewrapper>
+        <Sidewrapper className='box'>
             <MediaQuery query='(min-width: 600px) and (max-width: 1024px)'>
             <Box
-          sx={{ width: '39vw' ,height: '100vh'}}
+          sx={{ width: '40vw' ,height: '100vh'}}
       role="presentation"
     >{props.logged_in.bool && <>
-      <Avatar src={props.logged_in.image} onChange={() => {toPage('プロフィール')}} sx={{ width: '80px', height: '80px', margin: '20px auto 20px auto' }} />
+      <Avatar src={props.logged_in.image} onClick={() => {toPage('プロフィール')}} sx={{cursor: 'pointer', width: '80px', height: '80px', margin: '20px auto 20px auto' }} />
       <Typography id='name' sx={{ textAlign: 'center', fontSize: '22px', marginBottom: '10px' }} >
         {props.logged_in.name}
       </Typography>
       <Divider /></>}
       {props.logged_in.bool ? <>
         <List>
-          {['プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿'].map((text, index) => (
-            <ListItem button key={index} onClick={() => { toPage(text) }}  >
-              <ListItemText primary={text} sx={{ marginLeft: '20px' }} />
-            </ListItem>
-          ))}
+            {['トップ', 'プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿'].map((text, index) => (
+              <ListItem button key={index} onClick={() => { toPage(text) }}  >
+                <ListItemText primary={text} sx={{ marginLeft: '20px' }} />
+              </ListItem>
+            ))}
+          <Divider />
+              <ListItem button onClick={() => { toPage('ログアウト') }}>
+                <ListItemText primary={'ログアウト'}  sx={{marginLeft: '20px', color: 'red'}}/>
+              </ListItem>      
         </List>
-        <List sx={{ position: 'absolute',width: '39vw', bottom: '80px', borderTop: '1px solid rgb(200,200,200)' }}>
-          <ListItem button key={'ログアウト'} onClick={props.handledelete}>
-            <ListItemText primary='ログアウト' sx={{ marginLeft: '20px', color: 'red' }} />
-          </ListItem>
-        </List></> :
+        </> :
         <List>
           {['ログイン', 'サインアップ'].map((text, index) => (<div key={index}>
             <ListItem button  onClick={() => { toPage(text) }}  >
@@ -93,27 +97,27 @@ const StaticSidebar:React.VFC<Props> = (props: Props) => {
             </MediaQuery>
         <MediaQuery query='(min-width: 1025px)'>
         <Box
-          sx={{ width: '19vw',height: '100vh' }}
+          sx={{ width: '20vw',height: '100vh'}}
       role="presentation"
     >{props.logged_in.bool && <>
-      <Avatar src={props.logged_in.image} onChange={() => {toPage('プロフィール')}} sx={{ width: '80px', height: '80px', margin: '20px auto 20px auto' }} />
+      <Avatar src={props.logged_in.image} onClick={() => {toPage('プロフィール')}} sx={{cursor: 'pointer' ,width: '80px', height: '80px', margin: '20px auto 20px auto' }} />
       <Typography id='name' sx={{ textAlign: 'center', fontSize: '22px', marginBottom: '10px' }} >
         {props.logged_in.name}
       </Typography>
       <Divider /></>}
       {props.logged_in.bool ? <>
         <List>
-          {['プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿'].map((text, index) => (
+          {['トップ','プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿'].map((text, index) => (
             <ListItem button key={index} onClick={() => { toPage(text) }}  >
               <ListItemText primary={text} sx={{ marginLeft: '20px' }} />
             </ListItem>
           ))}
+           <Divider />
+              <ListItem button onClick={() => { toPage('ログアウト') }}>
+                <ListItemText primary={'ログアウト'}  sx={{marginLeft: '20px', color: 'red'}}/>
+              </ListItem> 
         </List>
-        <List sx={{ position: 'absolute',width: '19vw', bottom: '80px', borderTop: '1px solid rgb(200,200,200)' }}>
-          <ListItem button key={'ログアウト'} onClick={props.handledelete}>
-            <ListItemText primary='ログアウト' sx={{ marginLeft: '20px', color: 'red' }} />
-          </ListItem>
-        </List></> :
+        </> :
         <List>
           {['ログイン', 'サインアップ'].map((text, index) => (<div key={index}>
             <ListItem button onClick={() => { toPage(text) }}  >

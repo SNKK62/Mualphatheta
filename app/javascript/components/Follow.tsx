@@ -14,6 +14,7 @@ import Loading from './Loading';
 import Loadingwrapper from './Loadingwrapper';
 import Wrapper from './Wrapper'
 import { useNavigate,useParams } from 'react-router-dom';
+import '../../assets/stylesheets/index.css';
 
 
 const Loading2 = styled(Loading)`
@@ -50,14 +51,18 @@ const Follow:React.VFC<Props> = (props: Props) =>  {
     
     
     useEffect(() => {
-        setLoad(true)
-        axios.get(props.iffollower ? search_url+id+'/followers' : search_url+id+'/followings').then(resp => {
-            setUsers([...resp.data.user]);
-            setUsername(resp.data.user_name)
-            setLoad(false)
-        }).catch(e => {
-            console.log(e)
-        })
+        var mount = true
+        if (mount) {
+            setLoad(true)
+            axios.get(props.iffollower ? search_url + id + '/followers' : search_url + id + '/followings').then(resp => {
+                setUsers([...resp.data.user]);
+                setUsername(resp.data.user_name)
+                setLoad(false)
+            }).catch(e => {
+                console.log(e)
+            })
+        }
+        return () => {mount=false}
     }, [props.iffollower,search_url]);
     
     const toUsers = (id: number) => {
@@ -74,7 +79,7 @@ const Follow:React.VFC<Props> = (props: Props) =>  {
             <Loadingwrapper>
                 <Loading2 />
             </Loadingwrapper>
-            :<Wrapper>
+            :<Wrapper className='box'>
                 <Intro>
                     {props.iffollower ? username+'のフォロワー' : username+'がフォローしているユーザー'}
                 </Intro>

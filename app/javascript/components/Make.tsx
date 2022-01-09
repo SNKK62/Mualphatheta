@@ -15,6 +15,8 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 import TextField from '@mui/material/TextField';
+import '../../assets/stylesheets/index.css';
+
 
 const Textareawrapper = styled.div`
     margin: 40px auto 30px auto;
@@ -89,7 +91,7 @@ const Buttonwrapper = styled.div`
 const Errortext = styled.div`
     text-align: left;
     color: red;
-    margin-left: 150px;
+    margin-left: 65px;
     font-size: 14px;
 `
 const Fab1 = styled.div`
@@ -100,6 +102,7 @@ const Warn = styled.p`
 `
 const Inputwrapper = styled.div`
     width: 80%;
+    max-width: 450px;
     margin: 20px auto 30px auto;
 `
 const Titleinput = styled(TextField)`
@@ -130,13 +133,17 @@ const  Make:React.VFC<Props> = (props: Props) => {
     const navigate = useNavigate();
     const { id } = useParams();
     useEffect(() => {
-        if (!props.logged_in.bool) {
-            navigate('/login',{replace: true})
-            return 
+        var mount = true
+        if (mount) {
+            if (!props.logged_in.bool) {
+                navigate('/login', { replace: true })
+                return
+            }
+            return () => {
+                clearTimeout(timer.current);
+            };
         }
-        return() => {
-            clearTimeout(timer.current);
-        };
+        return () => {mount=false}
     }, [navigate,props.logged_in.bool]);
     const handlecircular = (i: number) => {
         if (!circleloading[i]) {
@@ -260,7 +267,7 @@ const  Make:React.VFC<Props> = (props: Props) => {
     
     return (
         <>
-            <Wrapper>
+            <Wrapper className='box'>
                 <Message>
                     <Latex>{props.type}</Latex><br/><Warn>texのテキストは$(半角)で囲んでください</Warn>
                 </Message>

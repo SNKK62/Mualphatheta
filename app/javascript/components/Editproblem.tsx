@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Wrapper from './Wrapper';
-import React,{ useMemo,useRef, useState, useEffect, useReducer } from 'react';
+import React,{ useRef, useState, useEffect, useReducer } from 'react';
 import axios from './axios';
 import { LoadingButton } from '@mui/lab';
 import Fab from '@mui/material/Fab';
@@ -15,6 +15,8 @@ import dataFetch from './DataFetch';
 import InputBase from '@mui/material/InputBase';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import TextField from '@mui/material/TextField';
+import '../../assets/stylesheets/index.css';
+
 
 const Textareawrapper = styled.div`
     margin: 20px auto 30px auto;
@@ -94,6 +96,7 @@ const Warn = styled.p`
 `
 const Inputwrapper = styled.div`
     width: 80%;
+    max-width: 450px;
     margin: 20px auto 30px auto;
 `
 const Titleinput = styled(TextField)`
@@ -128,59 +131,63 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
     const [circleloading, setCircleloading] = useState([false,false,false]);
     const [success, setSuccess] = useState([false, false, false]);
     const timer = useRef<number>();
-    const navigate = useMemo(() => { return useNavigate(); },[])
+    const navigate = useNavigate();
     useEffect(() => {
-        dispatch({ type: 'init', payload: ''})
-        axios.get(get_url).then(resp => {
-            if (resp.data.problem.user_id !== props.logged_in.id) {
-                navigate('/problems/' + id, { replace: true })
-                return 
-            }
-            if (resp.data.problem.image1_url || resp.data.problem.image1s_url) {
-                setImage1('1')
-                if (resp.data.problem.image2_url || resp.data.problem.image2s_url) {
-                    setImage2('2')
-                    if (resp.data.problem.image3_url || resp.data.problem.image3s_url) {
-                        setImage3('3')
-                        setSuccess([true,true,true])
+        var mount = true
+        if (mount) {
+            dispatch({ type: 'init', payload: '' })
+            axios.get(get_url).then(resp => {
+                if (resp.data.problem.user_id !== props.logged_in.id) {
+                    navigate('/problems/' + id, { replace: true })
+                    return
+                }
+                if (resp.data.problem.image1_url || resp.data.problem.image1s_url) {
+                    setImage1('1')
+                    if (resp.data.problem.image2_url || resp.data.problem.image2s_url) {
+                        setImage2('2')
+                        if (resp.data.problem.image3_url || resp.data.problem.image3s_url) {
+                            setImage3('3')
+                            setSuccess([true, true, true])
+                        } else {
+                            setSuccess([true, true, false])
+                        }
                     } else {
-                        setSuccess([true,true,false])
+                        if (resp.data.problem.image3_url || resp.data.problem.image3s_url) {
+                            setImage3('3')
+                            setSuccess([true, false, true])
+                        } else {
+                            setSuccess([true, false, false])
+                        }
                     }
                 } else {
-                    if (resp.data.problem.image3_url || resp.data.problem.image3s_url) {
-                        setImage3('3')
-                        setSuccess([true,false,true])
+                    if (resp.data.problem.image2_url || resp.data.problem.image2s_url) {
+                        setImage2('2')
+                        if (resp.data.problem.image3_url || resp.data.problem.image3s_url) {
+                            setImage3('3')
+                            setSuccess([false, true, true])
+                        } else {
+                            setSuccess([false, true, false])
+                        }
                     } else {
-                        setSuccess([true,false,false])
+                        if (resp.data.problem.image3_url || resp.data.problem.image3s_url) {
+                            setImage3('3')
+                            setSuccess([false, false, true])
+                        } else {
+                            setSuccess([false, false, false])
+                        }
                     }
                 }
-            } else {
-                if (resp.data.problem.image2_url || resp.data.problem.image2s_url) {
-                    setImage2('2')
-                    if (resp.data.problem.image3_url || resp.data.problem.image3s_url) {
-                        setImage3('3')
-                        setSuccess([false,true,true])
-                    } else {
-                        setSuccess([false,true,false])
-                    }
-                } else {
-                    if (resp.data.problem.image3_url || resp.data.problem.image3s_url) {
-                        setImage3('3')
-                        setSuccess([false,false,true])
-                    } else {
-                        setSuccess([false,false,false])
-                    }
-                }
-            }
                     
                
-            setTextarea(resp.data.problem.description);
-            setKeyword(resp.data.problem.category);
-            setTitle(resp.data.problem.title)
-            dispatch({ type: 'success', payload: resp.data })
-        }).catch(e => {
-            console.log(e);
-        })
+                setTextarea(resp.data.problem.description);
+                setKeyword(resp.data.problem.category);
+                setTitle(resp.data.problem.title)
+                dispatch({ type: 'success', payload: resp.data })
+            }).catch(e => {
+                console.log(e);
+            })
+        }
+        return () => {mount=false}
     }, [props.logged_in.id, navigate,  get_url])
     useEffect(() => {
         return() => {
@@ -290,7 +297,7 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
         <>
         {
             dataState.isLoading ? <Loadingwrapper><Loading /></Loadingwrapper> : 
-                <Wrapper>
+                <Wrapper className='box'>
                         <Message>
                             {props.type}の編集<br/><Warn>texのテキストは$(半角)で囲んでください</Warn>
                         </Message>

@@ -2,12 +2,13 @@ import axios from './axios';
 import { url } from './url';
 import styled from 'styled-components';
 import Wrapper from './Wrapper';
-import React,{useMemo, useRef,  useState, useEffect } from 'react';
+import React,{useRef,  useState, useEffect } from 'react';
 import { useNavigate, useParams, useMatch } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
+import '../../assets/stylesheets/index.css';
 
 const Textareawrapper = styled.div`
     margin: 20px auto 30px auto;
@@ -38,15 +39,19 @@ interface Props {
 const  Makecomment:React.VFC<Props> = (props: Props) => {
     const textref = useRef(null);
     const [load, setLoad] = useState(false);
-    const navigate = useMemo(() => { return useNavigate(); },[])
+    const navigate = useNavigate();
     const { id} = useParams();
     const match = useMatch('/problems/:id/comments/new');
     var create_url = ''
     
     useEffect(() => {
-        if (!props.logged_in.bool) {
-            navigate('/login',{replace: true})
+        var mount = true
+        if (mount) {
+            if (!props.logged_in.bool) {
+                navigate('/login', { replace: true })
+            }
         }
+        return () => {mount=false}
     },[navigate,props.logged_in.bool])
     
     const handle = () => {
@@ -75,7 +80,7 @@ const  Makecomment:React.VFC<Props> = (props: Props) => {
     };
     
     return (
-        <Wrapper>
+        <Wrapper className='box'>
             <Message><Latex>$Comment$</Latex><br/><Warn>texのテキストは$(半角)で囲んでください</Warn></Message>
             <Textareawrapper>
             <TextareaAutosize

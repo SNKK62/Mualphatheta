@@ -50,15 +50,15 @@ skip_before_action :verify_authenticity_token
     def search_from_problem 
         times =params[:times].to_i
         problem = Problem.find(params[:id])
-        comments = problem.comments.order(updated_at: :DESC).limit(10).offset(10*times)
-        ifend = problem.comments.length < 10*times+10
+        comments = problem.comments.order(updated_at: :DESC).limit(50).offset(50*times)
+        ifend = problem.comments.length < 50*times+50
         render json: {comment: comments, ifend: ifend}, methods: [:user_image,:user_name]
     end
     def search_from_solution 
         times =params[:times].to_i
         solution = Solution.find(params[:id])
-        comments = solution.comments.order(updated_at: :DESC).limit(10).offset(10*times)
-        ifend = solution.comments.length < 10*times+10
+        comments = solution.comments.order(updated_at: :DESC).limit(50).offset(50*times)
+        ifend = solution.comments.length < 50*times+50
         render json: {comment: comments, ifend: ifend}, methods: [:user_image,:user_name]
     end
 

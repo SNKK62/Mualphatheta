@@ -7,7 +7,9 @@ const Wrapper = styled.div`
     padding: 0px 0px 0px 0px;
     z-index: 100;
     scrollbar-width: none;
-
+    overflow-y: auto;
+    overflow-x: auto;
+    
     @media (min-width: 600px) {
         box-sizing: border-box;
         width: 60vw;

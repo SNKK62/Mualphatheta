@@ -25,12 +25,10 @@ const SearchInput = styled(InputBase)`
     width: 100%;
     padding: 0;
     border-radius: 15px;
-    border: 1px rgb(155,155,155,70) solid;
-    background: rgb(250,250,250);
+    border: 1px rgb(100,100,100,0.7) solid;
+    background: rgb(80,80,80);
     padding-left: 15px;
-    &:hover {
-        background: rgb(240,240,240,70);
-    };
+    color: rgb(300,300,300);
     display: flex;
     align-items: center;
 `
@@ -88,17 +86,21 @@ function Appbar(props: Props) {
         }
     }
     useEffect(() => {
-        const element = document.querySelector('input')
-        if (element) {
-            element.focus();
+        var mount = true
+        if (mount) {
+            const element = document.querySelector('input')
+            if (element) {
+                element.focus();
+            }
         }
+        return () => {mount=false}
     },[])
     const toProfile = () => {
         navigate('/users/'+props.logged_in.id)
     }
     return (<>
-        <AppBar position="sticky"  sx={{height: '64px', bgcolor: 'white',zIndex: '500', boxShadow: '0 1px 5px rgb(200,200,200)' ,color: 'rgb(100,100,100)'}}>
-            <Container maxWidth="xl" sx={{height: '64px'}}>
+        <AppBar position="sticky"  sx={{height: '64px', bgcolor: 'rgb(50,50,50)',color: 'rgb(400,400,400)',zIndex: '500', boxShadow: '0 1px 5px rgb(200,200,200)' , padding: '0', width: '100vw'}}>
+            <Container maxWidth="xl" sx={{height: '64px',padding: '0',width: '100vw'}}>
                 <Toolbar disableGutters sx={{height: '64px'}}>
                     {(ifsearch || ifsearchprocess) ?
                         <>
@@ -114,7 +116,7 @@ function Appbar(props: Props) {
                             </IconButton>
                             <Box sx={{ flexGrow: 1, display: 'flex' }}>
                                 <SearchInput onChange={(e) => { handlechangekeyword(e) }} placeholder="検索キーワード..." defaultValue={ query.get('keyword')} onKeyPress={e => {handlekeypress(e)}} />
-                                <IconButton sx={{ p: 0, marginLeft: '10px' }} onClick={handlesubmit}>
+                                <IconButton sx={{ p: 0}} onClick={handlesubmit} color='inherit'>
                                     <SearchIcon />
                                 </IconButton>
                             </Box>
@@ -145,7 +147,7 @@ function Appbar(props: Props) {
                             </Tooltip>
                             </MediaQuery>
                         </Box >
-                        <Box sx={{ position: 'absolute', left: '24vw', width: '40vw', textAlign: 'center' }}>
+                        <Box sx={{ position: 'absolute', left: '30vw', width: '40vw', textAlign: 'center' }}>
                             <Title>
                                 <Latex>
                                     $Mualphatheta$
@@ -156,13 +158,13 @@ function Appbar(props: Props) {
 
                         <Box sx={{ flexGrow: 0, position: 'absolute', right: '18px' }}>
                             <MediaQuery query='(max-width: 1025px)'>
-                                <IconButton sx={{ p: 0, marginRight: '5px', display:'static'}} onClick={() => { handlesearch(true) }}>
+                                <IconButton sx={{ p: 0, marginRight: '5px', display:'static'}} onClick={() => { handlesearch(true) }} color='inherit'>
                                     <SearchIcon />
                                 </IconButton>
                             </MediaQuery>        
                                 {props.logged_in.bool &&
                                     <IconButton sx={{ p: 0 }} onClick={toProfile}>
-                                        <Avatar alt="中" src={props.logged_in.image} />
+                                        <Avatar alt="U" src={props.logged_in.image} />
                                     </IconButton>}
                         </Box>
                     </>}
