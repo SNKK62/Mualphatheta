@@ -8,8 +8,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 require('katex/dist/katex.min.css')
-require('slick-carousel/slick/slick-theme')
-require('slick-carousel/slick/slick')
+require('slick-carousel/slick/slick-theme.css')
+require('slick-carousel/slick/slick.css')
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
