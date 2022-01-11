@@ -143,8 +143,7 @@ const Bigimage = styled.img`
 `
 const Wrapper = styled.div`
     width: 100%;
-    min-height: 100vh;
-    scrollbar-width: none;
+    height: clac(100vh - 64px);
     overflow-y: auto;
     overflow-x: hidden;
 
