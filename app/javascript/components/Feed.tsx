@@ -84,7 +84,7 @@ const Shadow = styled.div`
 `
 
 const Feed: React.VFC = () => {
-    const [type, setType] = useState('recommend')
+    const [type, setType] = useState('search')
     const [times, setTimes] = useState(0);
     const search_url = useMemo(() => {return  url + '/problems/'; },[])
     const [problems,setProblems] = useState<any[]>([])
