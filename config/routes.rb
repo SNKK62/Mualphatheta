@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   end
 
   get '/' , to: 'sites#index'
+  get '/top' , to: 'sites#index'
   get '/login' , to: 'sites#index'
   get '/signup' , to: 'sites#index'
   get '/users' , to: 'sites#index'
