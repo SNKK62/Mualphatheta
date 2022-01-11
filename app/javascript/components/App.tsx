@@ -31,7 +31,7 @@ import Loading from './Loading';
 import Follow from './Follow';
 import Likeproblem from './Likeproblem';
 import Likesolution from './Likesolution';
-// import Default from './Default';
+import Default from './Default';
 import Logo from './Logo';
 import Feed from './Feed';
 
@@ -146,7 +146,8 @@ const App: React.VFC = () => {
             <Loading />
           </Loadingwrapper2> }
             <Routes >
-              <Route path="/" element={ <Feed/>} />
+              <Route path="/" element={ <Default/>} />
+              <Route path="/top" element={<Feed/>} />
               <Route path="/login" element={<Login logged_in={logged_in} setLogged_in={setLogged_in} />} />
               <Route path='/signup' element={<Signup logged_in={logged_in} setLogged_in={setLogged_in} />} />
               <Route path="/users" element={<Users />} />
