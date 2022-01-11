@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation, useMatch} from 'react-router-dom';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate, useLocation, useMatch, matchPath} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -52,6 +52,13 @@ interface Props {
 
 function Appbar(props: Props) {
     const [state, setState] = useState(false);
+    const { pathname } = useLocation();
+    const patharray: string[] = useMemo(() => {
+        return ['/users/:id','/users/:id/followers','/users/:id/followings','/users/:id/edit','/problems/:id/','/problems/:id/solutions/new','/problems/:id/solutions','/problems/:id/edit','/problems/:id/comments/new','/solutions/:id','/solutions/:id/edit','/solutions/:id/comments/new','/comments/:id','/comments/:id/edit']
+    },[])
+    const match = useMemo(() => {
+        return patharray.find((path) => !!matchPath(path, pathname));
+    }, [pathname]);
     const navigate = useNavigate();
     const ifsearch = useMatch('/search')
     const ifsearchprocess = useMatch('/searchprocess')
@@ -121,16 +128,18 @@ function Appbar(props: Props) {
                             </Box>
                         </> : <>
                             <Box sx={{ flexGrow: 1, display: 'flex',position: 'absolute',left:'0' }}  >
-                            <IconButton
-                                size="medium"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                color="inherit"
-                                onClick={() => {navigate(-1)}}
-                            >
-                                <ArrowBackIcon  />
-                            </IconButton>
+                                {match &&
+                                    <IconButton
+                                        size="medium"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        color="inherit"
+                                        onClick={() => { navigate(-1) }}
+                                    >
+                                        <ArrowBackIcon />
+                                    </IconButton>
+                                }
                             <MediaQuery query='(max-width: 600px)'>
                             <Tooltip title="サイドバーを開く">
                                 <IconButton

@@ -91,9 +91,9 @@ function Sidebar(props: Props) {
 
   return (
     <div>
-        <React.Fragment key={'left'}>
+        <React.Fragment key={'right'}>
           <SwipeableDrawer
-            anchor={'left'}
+            anchor={'right'}
             open={props.state}
           onClose={e => { props.toggleDrawer(false)(e) }}
           onOpen={e => { props.toggleDrawer(true)(e) }}   
