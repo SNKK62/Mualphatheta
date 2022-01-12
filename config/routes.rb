@@ -7,7 +7,7 @@ Rails.application.routes.draw do
           get :followings, :followers
           get :show_image
           get '/problems/:times', to: 'problems#user_problem'
-          get '/solutions/:times', to: 'solutions#user_solution'
+          get '/solutions/:times', to: 'users#usersolutions'
         end
         collection do
           get '/search/:times/:name', to: 'users#search'
@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   get '/users/:id/followers' , to: 'sites#index'
   get '/users/:id/followings' , to: 'sites#index'
   get '/users/:id/edit' , to: 'sites#index'
+  get '/users/:id/solutions', to: 'sites#index'
   get '/users/like_problems' , to: 'sites#index'
   get '/users/like_solutions' , to: 'sites#index'
   get '/problems/new' , to: 'sites#index'

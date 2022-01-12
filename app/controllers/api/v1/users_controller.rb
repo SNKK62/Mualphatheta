@@ -109,6 +109,14 @@ class Api::V1::UsersController < ApplicationController
     render json: {solution: solutions, ifend: ifend}, methods: [:category,:user_name,:slike_count, :user_image]
   end
 
+  def usersolutions
+    times = params[:times].to_i
+    user = User.find(params[:id])
+    solutions = user.solutions.order(updated_at: :DESC).limit(50).offset(50*times)
+    ifend = user.solutions.count < 50*times+50
+    render json: {solutions: solutions, ifend: ifend},methods: [:category,:user_name,:slike_count,:user_image]
+  end
+
   private
     def user_params
       params.require(:user).permit(:name,:password,:password_confirmation,:image,:description)

@@ -11,6 +11,7 @@ import Userproblems from './Userproblems'
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@mui/material/IconButton';
 import Latex from 'react-latex-next';
+import Button from '@mui/material/Button';
 import '../../assets/stylesheets/index.css';
 
 
@@ -177,6 +178,9 @@ const Userprofile:React.VFC<Props> = (props: Props) => {
     const tofollowings = () => {
         navigate('/users/'+id+'/followings')
     }
+    const tosolutions = () => {
+        navigate('/users/'+id+'/solutions')
+    }
     return (
         <>
                 {dataState.isLoading ?
@@ -194,6 +198,7 @@ const Userprofile:React.VFC<Props> = (props: Props) => {
                     <Countwrapper>
                         <Count onClick={tofollowings} >{dataState.post.followings}フォロー</Count>
                         <Count id='follower' onClick={tofollowers}>{dataState.post.followers}フォロワー</Count>
+                        <Button sx={{width: '30%',margin: 'auto'}} variant='text' onClick={tosolutions}>問題を見る</Button>        
                     </Countwrapper>
                     {(props.logged_in.bool && props.logged_in.id !== Number(id)) &&
                         <Followbutton>
