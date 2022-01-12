@@ -54,7 +54,7 @@ function Appbar(props: Props) {
     const [state, setState] = useState(false);
     const { pathname } = useLocation();
     const patharray: string[] = useMemo(() => {
-        return ['/users/:id','/users/:id/followers','/users/:id/followings','/users/:id/edit','/problems/:id/','/problems/:id/solutions/new','/problems/:id/solutions','/problems/:id/edit','/problems/:id/comments/new','/solutions/:id','/solutions/:id/edit','/solutions/:id/comments/new','/comments/:id','/comments/:id/edit']
+        return ['/users/:id','/users/:id/solutions','/users/:id/followers','/users/:id/followings','/users/:id/edit','/problems/:id/','/problems/:id/solutions/new','/problems/:id/solutions','/problems/:id/edit','/problems/:id/comments/new','/solutions/:id','/solutions/:id/edit','/solutions/:id/comments/new','/comments/:id','/comments/:id/edit']
     },[])
     const match = useMemo(() => {
         return patharray.find((path) => !!matchPath(path, pathname));

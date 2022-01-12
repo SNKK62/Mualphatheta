@@ -34,6 +34,7 @@ import Likesolution from './Likesolution';
 import Default from './Default';
 import Logo from './Logo';
 import Feed from './Feed';
+import Usersolutions from './Usersolutions';
 
 const Appwrapper = styled.div`
   width: 100vw;
@@ -156,6 +157,7 @@ const App: React.VFC = () => {
               <Route path="/users/:id/followers" element={<Follow iffollower={true}/>}/>
               <Route path="/users/:id/followings" element={<Follow iffollower={false}/>}/>
               <Route path="/users/:id/edit" element={<Edituser logged_in={logged_in} setLogged_in={setLogged_in}/>} />
+              <Route path="/users/:id/solutions" element={<Usersolutions />} />
               <Route path="/users/like_problems" element={<Likeproblem logged_in={ logged_in}/> }/>
               <Route path="/users/like_solutions" element={<Likesolution logged_in={logged_in}/>}/>
               <Route path="/problems/new" element={<Makeproblem logged_in={logged_in} />} />
