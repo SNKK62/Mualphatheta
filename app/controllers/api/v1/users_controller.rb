@@ -99,14 +99,14 @@ class Api::V1::UsersController < ApplicationController
     times = params[:times].to_i
     problems = current_user.like_problem.order(updated_at: :DESC).limit(50).offset(50*times)
     ifend = current_user.like_problem.count < 50*times+50
-    render json: {problem: problems, ifend: ifend}, methods: [:plike_count,:user_name,:user_image]
+    render json: {problem: problems, ifend: ifend}, methods: [:plike_count,:user_name,:user_image,:update_time_of_problem]
   end
 
   def like_solutions
     times = params[:times].to_i
     solutions = current_user.like_solution.order(updated_at: :DESC).limit(50).offset(50*times)
     ifend = current_user.like_solution.count < 50*times+50
-    render json: {solution: solutions, ifend: ifend}, methods: [:category,:user_name,:slike_count, :user_image]
+    render json: {solution: solutions, ifend: ifend}, methods: [:category,:user_name,:slike_count, :user_image,:update_time_of_solution]
   end
 
   def usersolutions
@@ -114,7 +114,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.find(params[:id])
     solutions = user.solutions.order(updated_at: :DESC).limit(50).offset(50*times)
     ifend = user.solutions.count < 50*times+50
-    render json: {solution: solutions, ifend: ifend},methods: [:category,:user_name,:slike_count,:user_image]
+    render json: {solution: solutions, ifend: ifend},methods: [:category,:user_name,:slike_count,:user_image,:update_time_of_solution]
   end
 
   private

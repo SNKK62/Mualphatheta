@@ -91,7 +91,7 @@ class Api::V1::SolutionsController < ApplicationController
         problem = Problem.find(params[:id])
         solutions = problem.solutions.order(updated_at: :DESC).limit(50).offset(50*times)
         ifend = problem.solutions.length < 50*times+50
-        render json: {solution: solutions, ifend: ifend}, methods: [:title,:user_image,:user_name,:slike_count]
+        render json: {solution: solutions, ifend: ifend}, methods: [:title,:user_image,:user_name,:slike_count,:update_time_of_solution]
     end
 
     private

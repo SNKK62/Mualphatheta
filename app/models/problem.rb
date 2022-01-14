@@ -37,4 +37,8 @@ class Problem < ApplicationRecord
     def plike_count
         users.count
     end
+
+    def update_time_of_problem
+        updated_at.strftime("%Y/%m/%d")
+    end
 end

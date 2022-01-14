@@ -45,4 +45,8 @@ class Solution < ApplicationRecord
     def category
         problem.category
     end
+
+    def update_time_of_solution
+        updated_at.strftime("%Y/%m/%d")
+    end
 end
