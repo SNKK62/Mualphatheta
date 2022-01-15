@@ -159,7 +159,7 @@ const Wrapper = styled.div`
     }
 `
 const Like = styled.div`
-    width: 50%;
+    width: 100%;
     display: flex;
     align-items: center;
 `

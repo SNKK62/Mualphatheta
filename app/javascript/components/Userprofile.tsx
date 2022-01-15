@@ -17,7 +17,7 @@ import '../../assets/stylesheets/index.css';
 
 const Userwrapper = styled.div`
     display: grid;
-    grid-template-columns: 100px 100px 1fr;
+    grid-template-columns: 100px 80px 1fr;
     grid-template-rows: 120pxs 60px;
     width: 90%;
     height: 180px;
@@ -58,6 +58,7 @@ const Countwrapper = styled.div`
     grid-row-start: 2;
     grid-row-end: 3;
     margin-top: 5px;
+    cursor: pointer;
 `
 const Countwrapper2 = styled.div`
     column: 2/3;
@@ -66,7 +67,6 @@ const Countwrapper2 = styled.div`
 `
 const Count = styled.div`
     font-size: 14px;
-    cursor: pointer;
     padding-left: 5px;
 `
 const Followbutton = styled.div`

@@ -43,7 +43,7 @@ const Title = styled.div`
     padding-left: 15px;
 `
 const Date = styled.div`
-    width: 100%;
+    width: 95%;
     text-align: right;
     font-size: 12px;
     padding-right: 15px;

@@ -44,7 +44,7 @@ const Title = styled.div`
     padding-left: 15px;
 `
 const Date = styled.div`
-    width: 100%;
+    width: 95%;
     text-align: right;
     font-size: 12px;
     padding-right: 15px;
@@ -113,10 +113,10 @@ const Solutions:React.VFC = () => {
                         {problems.map((val: any,index) => {
                             return (<div key={index}>
                                 <ListItemButton  sx={{ padding: '0',height: '100px' }} onClick={() => {navigate('/solutions/'+String(val.id))}} >
-                                    <Date>{val.update_time_of_solution }</Date>
                                     <List sx={{width: '100%'}}>
+                                    <Date>{val.update_time_of_solution }</Date>
                                     <ListItem  key={val.id.to_String+'item'} sx={{ height: '50px', padding: '0',width: '100%' }}>
-                                    <Avatar key={val.id.to_String+'avatar'} alt={val.name} src={val.user_image} sx={{ height: '40px', width: '40px', marginLeft: '10px' }} />
+                                        <Avatar key={val.id.to_String+'avatar'} alt={val.name} src={val.user_image} sx={{ height: '40px', width: '40px', marginLeft: '10px' }} />
                                         <ListItemText key={val.id.to_String+'item2'} primary={val.user_name } primaryTypographyProps={{ fontSize: '17px', paddingLeft: '30px',width: '100%', color: 'rgb(100,100,100)' }} />
                                     </ListItem>
                                     <Title>{val.title }</Title>    

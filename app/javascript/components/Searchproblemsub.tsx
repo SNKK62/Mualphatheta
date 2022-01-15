@@ -116,13 +116,13 @@ const Searchproblemsub:React.VFC<Props> = (props: Props) => {
                         {problems.map((val: any,index) => {
                             return (<div key={index}>
                                 <ListItemButton  sx={{ padding: '0' }} onClick={() => {toProblem(val.id)}}>
-                                    <ListItem  key={val.id.to_String+'item'} sx={{ height: '120px', padding: '0' }}>
+                                    <ListItem  key={val.id.to_String+'item'} sx={{ height: '135px', padding: '0' }}>
                                         <Avatar key={val.id.to_String+'avatar'} alt={val.user_name} src={val.user_image} sx={{ height: '40px', width: '40px', marginLeft: '10px' }} />
                                         <List key={val.id.to_String+'list'} sx={{ width: '80%', paddingLeft: '10px', padding: '0 0 0 5px' }}>
                                             <Date>{val.update_time_of_problem }</Date>
                                             <ListItemText  key={val.id.to_String+'item1'} primary={val.user_name} primaryTypographyProps={{ fontSize: '18px', paddingLeft: '25px', paddingTop: '5px' }} />
                                             <Divider key={val.id.to_String+'divider1'} />
-                                            <ListItemText key={val.id.to_String+'item3'} primary={'#'+val.category} primaryTypographyProps={{ fontSize: '14px',paddingTop: '10px', paddingLeft: '30px', color: 'blue' }} />
+                                            <ListItemText key={val.id.to_String+'item3'} primary={'#'+val.category} primaryTypographyProps={{ fontSize: '14px',paddingTop: '5px', paddingLeft: '30px', color: 'blue' }} />
                                             <Title>{ val.title}</Title>
                                             <Count>{val.plike_count }いいね</Count>
                                         </List>

@@ -47,7 +47,7 @@ const Title = styled.div`
     text-align: left;
     font-size: 18px;
     padding-left: 15px;
-    padding-top: 10px;
+    padding-top: 5px;
 `
 const Menubutton = styled.div`
     width: 100%;
@@ -196,7 +196,7 @@ const Feed: React.VFC = () => {
                         {problems.map((val: any,index) => {
                             return (<div key={index}>
                                 <ListItemButton sx={{ padding: '0' }} onClick={() => {toProblem(val.id)}} >
-                                    <ListItem  key={val.id.to_String+'item'} sx={{ height: '120px', padding: '0' }}>
+                                    <ListItem  key={val.id.to_String+'item'} sx={{ height: '135px', padding: '0' }}>
                                         <Avatar key={val.id.to_String+'avatar'} alt={val.name} src={val.user_image} sx={{ height: '40px', width: '40px', marginLeft: '10px' }} />
                                         <List key={val.id.to_String+'list'} sx={{ width: '80%', paddingLeft: '10px', padding: '0 0 0 5px' }}>
                                             <Date>{val.update_time_of_problem }</Date>
