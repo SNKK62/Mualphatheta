@@ -42,9 +42,13 @@ const Title = styled.div`
     font-size: 18px;
     padding-left: 15px;
 `
-
-
-
+const Date = styled.div`
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+    padding-right: 15px;
+    color: rgb(200,200,200);
+`
 
 const Usersolutions:React.VFC = () => {
     const { id } = useParams();
@@ -107,6 +111,7 @@ const Usersolutions:React.VFC = () => {
                             return (<div key={index}>
                                 <ListItemButton  sx={{ padding: '0',height: '100px' }} onClick={() => {navigate('/solutions/'+String(val.id))}} >
                                     <List sx={{width: '100%'}}>
+                                    <Date>{val.update_time_of_solution }</Date>
                                     <ListItem  key={val.id.to_String+'item'} sx={{ height: '50px', padding: '0',width: '100%' }}>
                                         <ListItemText key={val.id.to_String+'item2'} primary={val.user_name } primaryTypographyProps={{ fontSize: '17px', paddingLeft: '30px',width: '100%', color: 'rgb(100,100,100)' }} />
                                     </ListItem>

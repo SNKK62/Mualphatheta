@@ -22,23 +22,6 @@ class User < ApplicationRecord
     has_many :like_problem, through: :likes, source: :problem
     has_many :like_solution, through: :likes, source: :solution
 
-    def problem_count
-        problems.count
-    end
-
-    def solution_count
-        solutions.count
-    end
-     
-    def follower_count
-        followers.count
-    end
-
-    def following_count
-        followings.count
-    end
-
-
     def image_url
         # 紐づいている画像のURLを取得する
         image.attached? ? image.url : nil

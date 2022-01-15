@@ -19,7 +19,13 @@ import Wrapper from './Wrapper';
 import { useNavigate } from 'react-router-dom'
 import '../../assets/stylesheets/index.css';
 
-
+const Date = styled.div`
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+    padding-right: 15px;
+    color: rgb(200,200,200);
+`
 
 const Loading2 = styled(Loading)`
     height: 100%;
@@ -105,6 +111,7 @@ const  Problems:React.VFC = () => {
                                     <ListItem  key={val.id.to_String+'item'} sx={{ height: '120px', padding: '0' }}>
                                         <Avatar key={val.id.to_String+'avatar'} alt={val.name} src={val.user_image} sx={{ height: '40px', width: '40px', marginLeft: '10px' }} />
                                         <List key={val.id.to_String+'list'} sx={{ width: '80%', paddingLeft: '10px', padding: '0 0 0 5px' }}>
+                                            <Date>{val.update_time_of_problem }</Date>
                                             <ListItemText  key={val.id.to_String+'item1'} primary={val.user_name} primaryTypographyProps={{ fontSize: '18px', paddingLeft: '30px',paddingTop: '5px' }} />
                                             <Divider key={val.id.to_String+'divider1'} />
                                             <Title>{ val.title}</Title>

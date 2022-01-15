@@ -44,6 +44,13 @@ const Title = styled.div`
     font-size: 18px;
     padding-left: 15px;
 `
+const Date = styled.div`
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+    padding-right: 15px;
+    color: rgb(200,200,200);
+`
 
 const Searchproblemsub:React.VFC<Props> = (props: Props) => {
     const [times, setTimes] = useState(0);
@@ -112,6 +119,7 @@ const Searchproblemsub:React.VFC<Props> = (props: Props) => {
                                     <ListItem  key={val.id.to_String+'item'} sx={{ height: '120px', padding: '0' }}>
                                         <Avatar key={val.id.to_String+'avatar'} alt={val.user_name} src={val.user_image} sx={{ height: '40px', width: '40px', marginLeft: '10px' }} />
                                         <List key={val.id.to_String+'list'} sx={{ width: '80%', paddingLeft: '10px', padding: '0 0 0 5px' }}>
+                                            <Date>{val.update_time_of_problem }</Date>
                                             <ListItemText  key={val.id.to_String+'item1'} primary={val.user_name} primaryTypographyProps={{ fontSize: '18px', paddingLeft: '25px', paddingTop: '5px' }} />
                                             <Divider key={val.id.to_String+'divider1'} />
                                             <ListItemText key={val.id.to_String+'item3'} primary={'#'+val.category} primaryTypographyProps={{ fontSize: '14px', paddingLeft: '30px', color: 'blue' }} />

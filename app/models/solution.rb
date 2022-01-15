@@ -6,8 +6,8 @@ class Solution < ApplicationRecord
     has_one_attached :image3
 
     has_many :comments,dependent: :destroy
-    belongs_to :user
-    belongs_to :problem
+    belongs_to :user, counter_cache: true
+    belongs_to :problem, counter_cache: true
     validates :user_id, presence: true
     validates :problem_id, presence: true
 
@@ -32,10 +32,6 @@ class Solution < ApplicationRecord
     end
     def user_name
         user.name
-    end
-
-    def slike_count
-        users.count
     end
 
     def title

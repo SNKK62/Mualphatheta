@@ -4,7 +4,7 @@ class Problem < ApplicationRecord
     has_one_attached :image1
     has_one_attached :image2
     has_one_attached :image3
-    belongs_to :user
+    belongs_to :user, counter_cache: true
     validates :user_id, presence: true
     validates :category, presence: true
 
@@ -32,10 +32,6 @@ class Problem < ApplicationRecord
     end
     def user_name
         user.name
-    end
-
-    def plike_count
-        users.count
     end
 
     def update_time_of_problem

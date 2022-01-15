@@ -1,8 +1,8 @@
 class Comment < ApplicationRecord
     # include Rails.application.routes.url_helpers
     belongs_to :user
-    belongs_to :problem, optional: true
-    belongs_to :solution, optional: true
+    belongs_to :problem, optional: true, counter_cache: true
+    belongs_to :solution, optional: true, counter_cache: true
     validates :user_id, presence: true
     
     def user_image

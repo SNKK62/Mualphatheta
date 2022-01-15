@@ -43,7 +43,13 @@ const Title = styled.div`
     font-size: 18px;
     padding-left: 15px;
 `
-
+const Date = styled.div`
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+    padding-right: 15px;
+    color: rgb(200,200,200);
+`
 
 
 
@@ -107,6 +113,7 @@ const Solutions:React.VFC = () => {
                         {problems.map((val: any,index) => {
                             return (<div key={index}>
                                 <ListItemButton  sx={{ padding: '0',height: '100px' }} onClick={() => {navigate('/solutions/'+String(val.id))}} >
+                                    <Date>{val.update_time_of_solution }</Date>
                                     <List sx={{width: '100%'}}>
                                     <ListItem  key={val.id.to_String+'item'} sx={{ height: '50px', padding: '0',width: '100%' }}>
                                     <Avatar key={val.id.to_String+'avatar'} alt={val.name} src={val.user_image} sx={{ height: '40px', width: '40px', marginLeft: '10px' }} />

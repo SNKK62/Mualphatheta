@@ -97,7 +97,7 @@ const Searchuser:React.VFC = () => {
                                         <List key={val.id.to_String+'list'} sx={{ width: '80%', paddingLeft: '10px', padding: '0 0 0 5px' }}>
                                             <ListItemText  key={val.id.to_String+'item1'} primary={val.name} primaryTypographyProps={{ fontSize: '23px', paddingLeft: '10px', textAlign: 'center',paddingTop: '5px' }} />
                                             <Divider key={val.id.to_String+'divider1'} />
-                                            <ListItemText key={val.id.to_String+'item2'} primary={val.problem_count + '投稿 ' + val.solution_count + '解答'} primaryTypographyProps={{ fontSize: '14px', paddingLeft: '5px' }} />
+                                            <ListItemText key={val.id.to_String+'item2'} primary={val.problems_count + '投稿 ' + val.solutions_count + '解答'} primaryTypographyProps={{ fontSize: '14px', paddingLeft: '5px' }} />
                                             <ListItemText key={val.id.to_String+'item3'} primary={val.follower_count + 'フォロワー ' + val.following_count + 'フォロー'} primaryTypographyProps={{ fontSize: '14px', paddingLeft: '5px' }} />
                                         </List>
                                     </ListItem>

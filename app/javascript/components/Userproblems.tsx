@@ -41,7 +41,13 @@ const Title = styled.div`
     font-size: 18px;
     padding-left: 15px;
 `
-
+const Date = styled.div`
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+    padding-right: 15px;
+    color: rgb(200,200,200);
+`
 
 const Userproblems:React.VFC = () => {
     const { id } = useParams();
@@ -106,9 +112,10 @@ const Userproblems:React.VFC = () => {
                             return (<div key={index}>
                                 <ListItemButton sx={{ padding: '0', height: '90px' }} onClick={() => { toProblem(val.id) }} >
                                     <Listwrapper>
-                                    <Title>{val.title }</Title>
-                                    <Tag>#{ val.category}</Tag>
-                                    <Count>{ val.plike_count}いいね</Count>
+                                        <Date>{val.update_time_of_problem }</Date>
+                                        <Title>{val.title }</Title>
+                                        <Tag>#{ val.category}</Tag>
+                                        <Count>{ val.plike_count}いいね</Count>
                                     </Listwrapper>
                                 </ListItemButton>
                                 <Divider key={val.id.to_String+'divider2'}/>
