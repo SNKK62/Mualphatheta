@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_154740) do
+ActiveRecord::Schema.define(version: 2022_01_15_080902) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(version: 2022_01_04_154740) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
+    t.integer "comments_count"
+    t.integer "plike_count"
+    t.integer "solutions_count"
     t.index ["user_id", "created_at"], name: "index_problems_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_problems_on_user_id"
   end
@@ -94,6 +97,8 @@ ActiveRecord::Schema.define(version: 2022_01_04_154740) do
     t.integer "problem_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "comments_count"
+    t.integer "slike_count"
     t.index ["problem_id", "created_at"], name: "index_solutions_on_problem_id_and_created_at"
     t.index ["problem_id"], name: "index_solutions_on_problem_id"
     t.index ["user_id", "created_at"], name: "index_solutions_on_user_id_and_created_at"
@@ -107,6 +112,10 @@ ActiveRecord::Schema.define(version: 2022_01_04_154740) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "remember_digest"
     t.text "description"
+    t.integer "problems_count"
+    t.integer "following_count"
+    t.integer "follower_count"
+    t.integer "solutions_count"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

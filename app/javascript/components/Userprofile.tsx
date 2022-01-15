@@ -198,7 +198,7 @@ const Userprofile:React.VFC<Props> = (props: Props) => {
                     <Countwrapper>
                         <Count onClick={tofollowings} >{dataState.post.followings}フォロー</Count>
                         <Count id='follower' onClick={tofollowers}>{dataState.post.followers}フォロワー</Count>
-                        <Button sx={{width: '30%',margin: 'auto'}} variant='text' onClick={tosolutions}>問題を見る</Button>        
+                        <Button sx={{width: '30%',margin: 'auto'}} variant='text' onClick={tosolutions}>解答集</Button>        
                     </Countwrapper>
                     {(props.logged_in.bool && props.logged_in.id !== Number(id)) &&
                         <Followbutton>

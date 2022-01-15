@@ -121,7 +121,7 @@ function Appbar(props: Props) {
                                 <ArrowBackIcon  />
                             </IconButton>
                             <Box sx={{ flexGrow: 1, display: 'flex' }}>
-                                <SearchInput onChange={(e) => { handlechangekeyword(e) }} placeholder="検索キーワード..." defaultValue={ query.get('keyword')} onKeyPress={e => {handlekeypress(e)}} />
+                                <SearchInput onChange={(e) => { handlechangekeyword(e) }} placeholder="検索キーワード..." sx={{color: 'white'}} defaultValue={ query.get('keyword')} onKeyPress={e => {handlekeypress(e)}} />
                                 <IconButton sx={{ p: 0}} onClick={handlesubmit} color='inherit'>
                                     <SearchIcon />
                                 </IconButton>

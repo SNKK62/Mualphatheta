@@ -122,7 +122,7 @@ const Searchproblemsub:React.VFC<Props> = (props: Props) => {
                                             <Date>{val.update_time_of_problem }</Date>
                                             <ListItemText  key={val.id.to_String+'item1'} primary={val.user_name} primaryTypographyProps={{ fontSize: '18px', paddingLeft: '25px', paddingTop: '5px' }} />
                                             <Divider key={val.id.to_String+'divider1'} />
-                                            <ListItemText key={val.id.to_String+'item3'} primary={'#'+val.category} primaryTypographyProps={{ fontSize: '14px', paddingLeft: '30px', color: 'blue' }} />
+                                            <ListItemText key={val.id.to_String+'item3'} primary={'#'+val.category} primaryTypographyProps={{ fontSize: '14px',paddingTop: '10px', paddingLeft: '30px', color: 'blue' }} />
                                             <Title>{ val.title}</Title>
                                             <Count>{val.plike_count }いいね</Count>
                                         </List>

@@ -366,7 +366,7 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
                         </IconButton> : <IconButton  onClick={handlelike} >
                             <FavoriteBorderIcon />
                         </IconButton>}
-                            </>}  </Iconwrapper> <Like id='count'>{count}いいね</Like>
+                            </>}  </Iconwrapper> <Like id='count'>{count}いいね・{dataState.post.problem.comments_count}件のコメント{props.ifproblem && '・'+dataState.post.problem.solutions_count+'件の解答' }</Like>
                 </Buttonarea2>    
                 <Buttonarea>
                     {(props.ifproblem && !loadlike) &&<>

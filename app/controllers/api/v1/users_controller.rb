@@ -114,7 +114,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.find(params[:id])
     solutions = user.solutions.order(updated_at: :DESC).limit(50).offset(50*times)
     ifend = user.solutions.count < 50*times+50
-    render json: {solution: solutions, ifend: ifend},methods: [:category,:user_name,:user_image,:update_time_of_solution]
+    render json: {solution: solutions, ifend: ifend},methods: [:title,:category,:user_name,:user_image,:update_time_of_solution]
   end
 
   private

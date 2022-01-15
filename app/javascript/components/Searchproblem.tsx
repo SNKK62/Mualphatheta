@@ -34,6 +34,7 @@ const Title = styled.div`
     text-align: left;
     font-size: 18px;
     padding-left: 15px;
+    padding-top: 10px;
 `
 const Loadingwrapper2 = styled(Loadingwrapper)`
     height: calc(100vh - 114px);

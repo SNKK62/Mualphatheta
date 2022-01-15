@@ -4,7 +4,7 @@ import { url } from './url';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
+// import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@material-ui/icons/Add';
@@ -109,12 +109,9 @@ const Usersolutions:React.VFC = () => {
                         <Divider key='divider1'/>
                         {problems.map((val: any,index) => {
                             return (<div key={index}>
-                                <ListItemButton  sx={{ padding: '0',height: '100px' }} onClick={() => {navigate('/solutions/'+String(val.id))}} >
+                                <ListItemButton  sx={{ padding: '0',height: '80px' }} onClick={() => {navigate('/solutions/'+String(val.id))}} >
                                     <List sx={{width: '100%'}}>
                                     <Date>{val.update_time_of_solution }</Date>
-                                    <ListItem  key={val.id.to_String+'item'} sx={{ height: '50px', padding: '0',width: '100%' }}>
-                                        <ListItemText key={val.id.to_String+'item2'} primary={val.user_name } primaryTypographyProps={{ fontSize: '17px', paddingLeft: '30px',width: '100%', color: 'rgb(100,100,100)' }} />
-                                    </ListItem>
                                     <Title>{val.title }</Title>    
                                     <Count>{ val.slike_count}いいね</Count>
                                     </List>
