@@ -17,7 +17,7 @@ import '../../assets/stylesheets/index.css';
 
 const Userwrapper = styled.div`
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 100px 100px 1fr;
     grid-template-rows: 120pxs 60px;
     width: 90%;
     height: 180px;
@@ -31,7 +31,7 @@ const Image = styled.img`
 `
 const Username = styled.div`
     grid-column-start: 2;
-    grid-column-end: 3;
+    grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 2;
     padding-left: 10px;
@@ -59,13 +59,18 @@ const Countwrapper = styled.div`
     grid-row-end: 3;
     margin-top: 5px;
 `
+const Countwrapper2 = styled.div`
+    column: 2/3;
+    row: 2/3;
+    margin-top: 5px;
+`
 const Count = styled.div`
     font-size: 14px;
     cursor: pointer;
     padding-left: 5px;
 `
 const Followbutton = styled.div`
-    column: 2/3;
+    column: 3/4;
     row: 2/3;
     display: flex;
     justify-content: center;
@@ -200,6 +205,10 @@ const Userprofile:React.VFC<Props> = (props: Props) => {
                         <Count id='follower' onClick={tofollowers}>{dataState.post.followers}フォロワー</Count>
                         <Button sx={{width: '30%',margin: 'auto'}} variant='text' onClick={tosolutions}>解答集</Button>        
                     </Countwrapper>
+                    <Countwrapper2>
+                        <Count>{dataState.post.user.problems_count }問題</Count>        
+                        <Count>{dataState.post.user.solutions_count }解答</Count>        
+                    </Countwrapper2>        
                     {(props.logged_in.bool && props.logged_in.id !== Number(id)) &&
                         <Followbutton>
                             {follow ? 
