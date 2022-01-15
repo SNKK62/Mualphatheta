@@ -1,5 +1,5 @@
 class AddProblemsCountToUsers < ActiveRecord::Migration[6.1]
   def change
-    add_column :users, :problems_count, :integer
+    add_column :users, :problems_count, :integer, default: 0
   end
 end
