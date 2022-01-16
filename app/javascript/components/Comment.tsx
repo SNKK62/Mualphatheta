@@ -48,35 +48,24 @@ const Username = styled.div`
     font-size: 22px;
 `
 const Imagewrapper = styled.div`
-grid-column-start: 1;
-grid-column-end: 2;
-grid-row-start: 1;
-grid-row-end: 2;
-display: flex;
-// justify-content: center;
-align-items: center;
-margin: auto;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    align-items: center;
+    margin: auto;
 `
-
-
-// const Problemimage = styled.div`
-//     margin: auto;
-//     width: 80%;
-//     text-align: center;
-//     display: flex;
-//     justify-content: center;
-//     height: 200px;
-// `
 
 const Description = styled.div`
     white-space: pre-wrap;
     word-wrap: break-word;
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
     text-align: left;
     font-size: 18px;
     margin-bottom: 40px;
-    padding: 15px 10px 0 35px;
+    padding: 0px 15px 0 15px;
 `
 const Buttonwrapper = styled.div`
     width: 30%;

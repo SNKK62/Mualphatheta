@@ -47,27 +47,26 @@ const Username = styled.div`
     margin: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
-    
     font-size: 25px;
 `
 const Imagewrapper = styled.div`
-grid-column-start: 1;
-grid-column-end: 2;
-grid-row-start: 1;
-grid-row-end: 2;
-margin: 10px 0 0 10px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 5px 0 0 10px;
 `
 const Tagdiv = styled.div`
     width: 100%;
-    height: 60px;
+    height: 30px;
     display: flex;
     align-items: center;
 `
 const Tagwrapper = styled.div`
-width: 70%;
-color: blue;
-text-align: left;
-padding-left: 10px;
+    width: 70%;
+    color: blue;
+    text-align: left;
+    padding-left: 10px;
 `
 
 const Problemimage = styled.div`
@@ -88,11 +87,11 @@ const Description = styled.div`
     white-space: pre-wrap;
     word-wrap: break-word;
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
     text-align: left;
     font-size: 18px;
-    margin-bottom: 20px;
-    padding: 15px 10px 0 35px;
+    margin-bottom: 10px;
+    padding: 0px 15px 0 15px;
 `
 const Slide = styled(Slider)`
     width: 100%;

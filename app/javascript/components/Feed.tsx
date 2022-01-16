@@ -41,6 +41,7 @@ const Date = styled.div`
     font-size: 12px;
     padding-right: 15px;
     color: rgb(200,200,200);
+    padding-top: 5px;
 `
 const Title = styled.div`
     width: 100%;

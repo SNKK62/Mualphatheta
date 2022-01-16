@@ -17,9 +17,9 @@ import '../../assets/stylesheets/index.css';
 
 const Userwrapper = styled.div`
     display: grid;
-    grid-template-columns: 100px 80px 1fr;
-    grid-template-rows: 120pxs 60px;
-    width: 90%;
+    grid-template-columns: 100px 90px 1fr;
+    grid-template-rows: 100px 75px;
+    width: 100%;
     height: 180px;
     margin: 0;
 `
@@ -69,6 +69,9 @@ const Count = styled.div`
     font-size: 14px;
     padding-left: 5px;
 `
+const Buttontosolution = styled.div`
+    text-align: right;
+`
 const Followbutton = styled.div`
     column: 3/4;
     row: 2/3;
@@ -77,11 +80,11 @@ const Followbutton = styled.div`
     align-items: center;
 `
 const Allwrapper = styled.div`
-width: 100%;
-height: calc(100vh - 64px);
-overflow-y: auto;
-overflow-x: hidden;
-scrollbar-width: none;
+    width: 100%;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
 
     @media(min-width: 600px){
         width: 60vw;
@@ -95,14 +98,12 @@ scrollbar-width: none;
     }
 `
 const Userintroduction = styled.div`
-    margin: auto;
-    padding: 30px;
-    padding-top: 0;
+    margin: 0 auto;
+    padding: 0 20px 10px 20px;
     widdth: 70%;
     white-space: pre-wrap;
     word-wrap: break-word;
     font-size: 15px;
-
 `
 const initialState = {
     isLoading: true,
@@ -203,11 +204,13 @@ const Userprofile:React.VFC<Props> = (props: Props) => {
                     <Countwrapper>
                         <Count onClick={tofollowings} >{dataState.post.followings}フォロー</Count>
                         <Count id='follower' onClick={tofollowers}>{dataState.post.followers}フォロワー</Count>
-                        <Button sx={{width: '30%',margin: 'auto'}} variant='text' onClick={tosolutions}>解答集</Button>        
+                        <Buttontosolution>
+                            <Button sx={{width: '30%',margin: 'auto'}} variant='text' onClick={tosolutions}>解答集</Button>        
+                        </Buttontosolution>
                     </Countwrapper>
                     <Countwrapper2>
-                        <Count>{dataState.post.user.problems_count }問題</Count>        
-                        <Count>{dataState.post.user.solutions_count }解答</Count>        
+                        <Count>問題数{dataState.post.user.problems_count }</Count>        
+                        <Count>解答数{dataState.post.user.solutions_count }</Count>        
                     </Countwrapper2>        
                     {(props.logged_in.bool && props.logged_in.id !== Number(id)) &&
                         <Followbutton>
