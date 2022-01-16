@@ -99,7 +99,7 @@ const Allwrapper = styled.div`
 `
 const Userintroduction = styled.div`
     margin: 0 auto;
-    padding: 0 20px 10px 20px;
+    padding: 20px 30px 10px 30px;
     widdth: 70%;
     white-space: pre-wrap;
     word-wrap: break-word;
