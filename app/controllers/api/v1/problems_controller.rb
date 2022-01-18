@@ -95,7 +95,7 @@ skip_before_action :verify_authenticity_token
 
     def search_none
         times = params[:times].to_i
-        problems = Problem.limit(50).offset(50*times)
+        problems = Problem.all.order(updated_at: :DESC).limit(50).offset(50*times)
         ifend = Problem.all.order(updated_at: :DESC).length < 50*times+50
         render json: {problem: problems, ifend: ifend}, methods: [:user_image,:user_name,:update_time_of_problem]
     end

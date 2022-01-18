@@ -45,7 +45,7 @@ const Username = styled.div`
     white-space: pre-wrap;
     word-wrap: break-word;
     font-size: 20px;
-
+    padding-top: 10px;
 `
 const Imagewrapper = styled.div`
     grid-column-start: 1;
