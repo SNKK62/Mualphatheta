@@ -176,11 +176,6 @@ const  Make:React.VFC<Props> = (props: Props) => {
                 setTitleerror('empty')
                 setLoad(false)
             }
-            else if (title.childNodes[1].childNodes[0].value.length > 16) {
-                terror = true
-                setTitleerror('long')
-                setLoad(false)
-            }
             if (kerror || terror) {
                 return 
             }
@@ -273,8 +268,8 @@ const  Make:React.VFC<Props> = (props: Props) => {
             <Textareawrapper>
             {props.ifproblem && <>
                 <Inputwrapper>
-                    <Titleinput error={titleerror ? true : false} ref={titleref} label='Title' placeholder='タイトル(16文字以下)' variant='standard'/>
-                {titleerror && <TitleError>{titleerror==='empty' ? 'タイトルを入力してください' : 'タイトルは16文字以下です'}</TitleError>}
+                    <Titleinput error={titleerror ? true : false} ref={titleref} label='Title' variant='standard'/>
+                {titleerror && <TitleError>{titleerror==='empty' && 'タイトルを入力してください'}</TitleError>}
                 </Inputwrapper></>
             }    
                 <TextareaAutosize

@@ -222,11 +222,7 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                 terror = true
                 setTitleerror('empty')
                 setLoad(false)
-            } else if (title.length > 16) {
-                terror = true
-                setTitleerror('long')
-                setLoad(false)
-            }
+            } 
             if (terror || kerror) {
                 return 
             }
@@ -303,8 +299,8 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                         </Message>
                         {props.ifproblem && <>
                 <Inputwrapper>
-                                <Titleinput error={titleerror ? true : false} onChange={e => { changetitle(e) }} label='Title' placeholder='タイトル(16文字以下)' variant='standard' defaultValue={title}/>
-                {titleerror && <TitleError>{titleerror==='empty' ? 'タイトルを入力してください' : 'タイトルは16文字以下です'}</TitleError>}
+                                <Titleinput error={titleerror ? true : false} onChange={e => { changetitle(e) }} label='Title' variant='standard' defaultValue={title}/>
+                {titleerror && <TitleError>{titleerror==='empty' && 'タイトルを入力してください'}</TitleError>}
                 </Inputwrapper></>
             }    
                     <Textareawrapper>

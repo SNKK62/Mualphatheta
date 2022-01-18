@@ -45,7 +45,7 @@ const Username = styled.div`
     white-space: pre-wrap;
     word-wrap: break-word;
     font-size: 20px;
-    vertical-align: middle;
+
 `
 const Imagewrapper = styled.div`
     grid-column-start: 1;
@@ -84,10 +84,10 @@ const Images = styled.img`
 const Description = styled.div`
     white-space: pre-wrap;
     word-wrap: break-word;
-    width: 95%;
+    width: 90%;
     border: 1px solid black;
     border-radius: 10px;
-    background-color: rgb(230,230,230,0.7);
+    background-color: rgb(230,230,230,0.4);
     margin: 10px auto;
     text-align: left;
     font-size: 18px;
@@ -167,12 +167,15 @@ const Iconwrapper = styled.div`
     
 `
 const Title = styled.div`
-    width: 100%;
+    width: 90%;
     text-align: center;
     font-size: 22px;
-    margin-top: 25px;
+    margin-top: 20px;
     margin-bottom: 20px;
     font-weight: bold;
+    padding: 0 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 `
 const initialState = {
     isLoading: true,
