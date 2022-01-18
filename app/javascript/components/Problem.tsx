@@ -23,15 +23,15 @@ import '../../assets/stylesheets/index.css';
 
 const Userwrapper = styled.div`
     display: grid;
-    grid-template-columns: 80px 1fr;
-    grid-template-rows: 80px;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 50px;
     width: 90%;
-    height: 100px;
+    height: 50px;
     margin: 0;
 `
 const Image = styled.img`
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     object-fit: cover;
     border-radius: 50%;
     cursor: pointer;
@@ -41,20 +41,17 @@ const Username = styled.div`
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-    margin: auto;
+    padding-left: 20px;
     white-space: pre-wrap;
     word-wrap: break-word;
-    font-size: 25px;
+    font-size: 20px;
 `
 const Imagewrapper = styled.div`
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
-    margin: 5px 0 0 10px;
+    margin 5px 0 0 5px;
 `
 const Tagdiv = styled.div`
     width: 100%;
@@ -86,12 +83,15 @@ const Images = styled.img`
 const Description = styled.div`
     white-space: pre-wrap;
     word-wrap: break-word;
-    width: 80%;
-    margin: 0 auto;
+    width: 95%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(230,230,230,0.7);
+    margin: 10px auto;
     text-align: left;
     font-size: 18px;
     margin-bottom: 10px;
-    padding: 0px 15px 0 15px;
+    padding: 30px 10px 30px 10px;
 `
 const Slide = styled(Slider)`
     width: 100%;
@@ -171,6 +171,7 @@ const Title = styled.div`
     font-size: 22px;
     margin-top: 25px;
     margin-bottom: 20px;
+    font-weight: bold;
 `
 const initialState = {
     isLoading: true,
@@ -303,13 +304,13 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
         {dataState.isLoading ?
         <Loadingwrapper><Loading /></Loadingwrapper> : <>
             <Wrapper className='box'>
-                    <Title>{ dataState.post.problem.title}</Title>
             <Userwrapper>
                 <Imagewrapper>
                         <Image src={dataState.post.user_image} onClick={() => {navigate('/users/'+String(dataState.post.problem.user_id))} }/>
                 </Imagewrapper>
                     <Username>{dataState.post.user_name}</Username>
             </Userwrapper>
+            <Title>{ dataState.post.problem.title}</Title>
             <Tagdiv>
                         {props.ifproblem ? <Tagwrapper id='tag'>#{dataState.post.problem.category}</Tagwrapper> : <Button sx={{width: '30%',margin: 'auto'}} variant='text' onClick={toproblem}>問題を見る</Button>}
                 {dataState.post.problem.user_id === props.logged_in.id && <Buttonwrapper>

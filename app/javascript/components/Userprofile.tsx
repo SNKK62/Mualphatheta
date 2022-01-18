@@ -98,9 +98,9 @@ const Allwrapper = styled.div`
     }
 `
 const Userintroduction = styled.div`
-    margin: 0 auto;
-    padding: 20px 30px 20px 30px;
-    widdth: 70%;
+    margin: 10px auto;
+    padding: 20px 10px 20px 10px;
+    width: 90%;
     white-space: pre-wrap;
     word-wrap: break-word;
     font-size: 15px;
