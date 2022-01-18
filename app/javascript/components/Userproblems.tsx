@@ -110,7 +110,7 @@ const Userproblems:React.VFC = () => {
                         <Divider key='divider1'/>
                         {problems.map((val: any,index) => {
                             return (<div key={index}>
-                                <ListItemButton sx={{ padding: '0', height: '90px' }} onClick={() => { toProblem(val.id) }} >
+                                <ListItemButton sx={{ padding: '0', minHeight: '90px' }} onClick={() => { toProblem(val.id) }} >
                                     <Listwrapper>
                                         <Date>{val.update_time_of_problem }</Date>
                                         <Title>{val.title }</Title>

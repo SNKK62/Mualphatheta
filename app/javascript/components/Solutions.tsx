@@ -112,7 +112,7 @@ const Solutions:React.VFC = () => {
                         <Divider key='divider1'/>
                         {problems.map((val: any,index) => {
                             return (<div key={index}>
-                                <ListItemButton  sx={{ padding: '0',height: '100px' }} onClick={() => {navigate('/solutions/'+String(val.id))}} >
+                                <ListItemButton  sx={{ padding: '0',minHeight: '100px' }} onClick={() => {navigate('/solutions/'+String(val.id))}} >
                                     <List sx={{width: '100%'}}>
                                     <Date>{val.update_time_of_solution }</Date>
                                     <ListItem  key={val.id.to_String+'item'} sx={{ height: '50px', padding: '0',width: '100%' }}>
