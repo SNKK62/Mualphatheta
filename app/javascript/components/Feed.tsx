@@ -58,7 +58,7 @@ const Menubutton = styled.div`
     left: 0px;
     height: 40px;
     z-index: 500;
-    box-shadow: 0px 2px 1px 0 rgb(100,100,100,0.2) inset;
+    box-shadow: 0px 2px 5px  rgb(100,100,100,0.2), rgb(50,50,50) 0px 1px 1px inset;
     background: rgb(250,250,250);
     @media(min-width: 600px){
         width: 60vw;

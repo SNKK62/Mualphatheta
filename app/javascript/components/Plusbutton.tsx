@@ -17,9 +17,10 @@ const Floatbutton = styled.div`
     text-width: bold;
     font-size: 35px;
     box-shadow: rgb(0,0,0) 1px 1px 5px;
-    z-index: 500;
+    z-index: 150;
+    cursor: pointer;
     &:active {
-        background-color: rgb(100,100,100);
+        background-color: rgb(150,150,150);
     }
     @media(min-width: 1025px){
         right: calc(35vw + 20px);

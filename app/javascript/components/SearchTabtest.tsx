@@ -31,7 +31,7 @@ const SearchInput = styled(InputBase)`
     display: flex;
     align-items: center;
     &:hover{
-      rgb(350,350,350);
+      background: rgb(350,350,350);
     }
 `
 const Searchwrapper = styled.div`
