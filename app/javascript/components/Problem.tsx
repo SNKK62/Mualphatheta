@@ -83,26 +83,8 @@ const Images = styled.img`
 `
 const Bigimage = styled.img`
     object-fit: contain;
-    animation: do 1s 1 ease;
-    -webkit-animation: do 1s 1 ease;
-    @keyframes do {
-        0% {
-            height: 200px;
-        }
-        100% {
-            height: 100%;
-            width: 100%; 
-        }
-    }
-    @-webkit-keyframes do {
-        0% {
-            height: 200px;
-        }
-        100% {
-            height: 100%;
-            width: 100%; 
-        }
-    }
+    height: 100%;
+    width: 100%; 
 `
 const Description = styled.div`
     white-space: pre-wrap;
