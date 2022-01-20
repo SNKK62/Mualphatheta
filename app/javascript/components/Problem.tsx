@@ -83,7 +83,6 @@ const Images = styled.img`
 `
 const Bigimage = styled.img`
     object-fit: contain;
-    max-height: 90%;
     animation: do 1s 1 ease;
     -webkit-animation: do 1s 1 ease;
     @keyframes do {
@@ -91,7 +90,7 @@ const Bigimage = styled.img`
             height: 200px;
         }
         100% {
-            height: 90%;
+            height: 100%;
             width: 100%; 
         }
     }
@@ -100,7 +99,7 @@ const Bigimage = styled.img`
             height: 200px;
         }
         100% {
-            height: 90%;
+            height: 100%;
             width: 100%; 
         }
     }
