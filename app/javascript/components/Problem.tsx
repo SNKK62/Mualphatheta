@@ -75,20 +75,35 @@ const Problemimage = styled.div`
     justify-content: center;
     height: 200px;
 `
-const Images = styled.img<{open: boolean}>`
+const Images = styled.img`
     margin: auto;
     object-fit: contain;
     height: 200px;
     cursor: pointer;
-    transition: 1s;
-    max-height: 90vh;
-    z-index: 900;
-    ${({ open }) => open &&  `
-        object-fit: contain;
-        width: 100vw;
-        height: 90vh;
-        cursor: none;
-    `}
+`
+const Bigimage = styled.img`
+    object-fit: contain;
+    max-height: 90%;
+    animation: do 1s 1 ease;
+    -webkit-animation: do 1s 1 ease;
+    @keyframes do {
+        0% {
+            height: 200px;
+        }
+        100% {
+            height: 90vh;
+            width: 100vw; 
+        }
+    }
+    @-webkit-keyframes do {
+        0% {
+            height: 200px;
+        }
+        100% {
+            height: 90vh;
+            width: 100vw; 
+        }
+    }
 `
 const Description = styled.div`
     white-space: pre-wrap;
@@ -109,7 +124,8 @@ const Slide = styled(Slider)`
     margin: auto;
 `
 const Buttonwrapper = styled.div`
-    width: 30%;
+width: 30%;
+
 `
 const Slidewrapper = styled.div`
     width: 80%;
@@ -138,11 +154,10 @@ const Buttonarea2 = styled.div`
 `
 const Allwrapper = styled.div`
     position: fixed;
-    top 0;
-    z-index: 890;
+    z-index: 900;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(0,0,0,0.9);
+    background-color: rgb(0,0,0,0.8);
 `
 
 const Wrapper = styled.div`
@@ -206,11 +221,14 @@ const settings = {
     accessibility: true,
 }
 interface imageprops {
+    url: string,
     close: ()=> void
 }
 function Openimage(props: imageprops) {
     return (
-        <Allwrapper onClick={props.close}/>
+        <Allwrapper onClick={props.close}>
+            <Bigimage src={props.url} />
+        </Allwrapper>
     )
 }
 
@@ -219,6 +237,7 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
     const problem_url = props.ifproblem ? url + '/problems/' + id : url + '/solutions/' + id
     const [dataState, dispatch] = useReducer(dataFetch, initialState);
     const [open, setOpen] = useState(false);
+    const [imageurl, setImageurl] = useState('');
     const navigate = useNavigate()
     const [modal, setModal] = useState(false)
     const [like, setLike] = useState(false)
@@ -285,11 +304,13 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
             console.log(e)
         })
     }
-    const handleopen = () => {
-        !open && setOpen(true)
+    const handleopen = (propurl: string) => {
+        setImageurl(propurl)
+        setOpen(true)
     }
     const handleclose = () => {
         setOpen(false)
+        setImageurl('')
     }
     const modalopen = () => {
         setModal(true)
@@ -299,7 +320,7 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
     }
     
     return (<>
-        {open && Openimage({  close: handleclose })}
+        {open && Openimage({ url: imageurl, close: handleclose })}
         {modal &&
             <Modal delete={handledelete} close={modalclose} />
         }
@@ -334,30 +355,30 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
                                 <Slide {...settings}>
                                 {dataState.post.problem.image1_url &&
                                         <Problemimage  >
-                                            <Images open={open} src={dataState.post.problem.image1_url} onClick={() => {handleopen()}}/>
+                                            <Images src={dataState.post.problem.image1_url} onClick={() => {handleopen(dataState.post.problem.image1_url)}}/>
                                         </Problemimage>}
                                     
                                     {dataState.post.problem.image2_url &&
                                         <Problemimage >
-                                            <Images open={open} src={dataState.post.problem.image2_url} onClick={() => {handleopen()}}/>
+                                            <Images src={dataState.post.problem.image2_url} onClick={() => {handleopen(dataState.post.problem.image2_url)}}/>
                                         </Problemimage>}
                                     {dataState.post.problem.image3_url &&
                                         <Problemimage >
-                                            <Images open={open} src={dataState.post.problem.image3_url} onClick={() => {handleopen()}}/>
+                                            <Images src={dataState.post.problem.image3_url} onClick={() => {handleopen(dataState.post.problem.image3_url)}}/>
                                         </Problemimage>}
                                 </Slide> :
                                 <Slide {...settings}>
                                     {dataState.post.problem.image1s_url &&
                                         <Problemimage >
-                                            <Images src={dataState.post.problem.image1s_url} onClick={() => { handleopen() }} open={open}/>
+                                            <Images src={dataState.post.problem.image1s_url} onClick={() => {handleopen(dataState.post.problem.image1s_url)}}/>
                                         </Problemimage>}
                                     {dataState.post.problem.image2s_url &&
                                         <Problemimage >
-                                            <Images src={dataState.post.problem.image2s_url} onClick={() => {handleopen()}} open={open} />
+                                            <Images src={dataState.post.problem.image2s_url} onClick={() => {handleopen(dataState.post.problem.image2s_url)}}/>
                                         </Problemimage>}
                                     {dataState.post.problem.image3s_url &&
                                         <Problemimage >
-                                            <Images src={dataState.post.problem.image3s_url} onClick={() => {handleopen()}} open={open} />
+                                            <Images src={dataState.post.problem.image3s_url} onClick={() => {handleopen(dataState.post.problem.image3s_url)}}/>
                                         </Problemimage>}
                                 </Slide>}</>
                     }
@@ -365,9 +386,9 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
                     <Buttonarea2>
                     <Iconwrapper>
                     {(props.logged_in.bool && props.logged_in.id !== dataState.post.problem.user_id) && <>
-                        {like ? <IconButton sx={{ color: 'pink'}} onClick={handleunlike}>
+                        {like ? <IconButton sx={{ color: 'pink' }} onClick={handleunlike}>
                             <FavoriteIcon />
-                        </IconButton> : <IconButton  onClick={handlelike} sx={{color: 'pink'}} >
+                                </IconButton> : <IconButton onClick={handlelike} sx={{ color: 'pink' }} >
                             <FavoriteBorderIcon />
                         </IconButton>}
                             </>}  </Iconwrapper> <Like id='count'>{count}いいね・{dataState.post.problem.comments_count}件のコメント{props.ifproblem && '・'+dataState.post.problem.solutions_count+'件の解答' }</Like>
