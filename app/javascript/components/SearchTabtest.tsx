@@ -21,13 +21,13 @@ const Box1 = styled(Box)`
 
 
 const SearchInput = styled(InputBase)`
-    width: 90%;
+    width: 85%;
     padding: 0;
     border-radius: 15px;
     border: 1px rgb(155,155,155,70) solid;
     background: rgb(100,100,100);
     padding-left: 15px;
-    margin: 15px 5px 15px  5px;
+    margin: 10px 5px 10px  5px;
     display: flex;
     align-items: center;
 `

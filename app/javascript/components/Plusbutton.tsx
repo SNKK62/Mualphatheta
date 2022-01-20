@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import  React  from 'react';
 
-const Floatbutton = styled.button`
+const Floatbutton = styled.div`
     height: 45px;
     width: 45px;
     border-radius: 50%;
@@ -16,7 +16,7 @@ const Floatbutton = styled.button`
     right: 20px;
     text-width: bold;
     font-size: 33px;
-    box-shadow: 2px 2px 10px 10px rgb(0,0,0);
+    box-shadow: 1px 1px 5px 5px rgb(0,0,0);
     z-index: 500;
     &:active {
         background-color: rgb(100,100,100);
