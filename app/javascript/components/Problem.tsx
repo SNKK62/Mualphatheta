@@ -82,12 +82,12 @@ const Images = styled.img<{open: boolean}>`
     cursor: pointer;
     transition: 1s;
     max-height: 90vh;
+    z-index: 900;
     ${({ open }) => open &&  `
         object-fit: contain;
         width: 100vw;
         height: 90vh;
         cursor: none;
-        z-index: 901;
     `}
 `
 const Description = styled.div`
@@ -109,8 +109,7 @@ const Slide = styled(Slider)`
     margin: auto;
 `
 const Buttonwrapper = styled.div`
-width: 30%;
-
+    width: 30%;
 `
 const Slidewrapper = styled.div`
     width: 80%;
@@ -140,10 +139,10 @@ const Buttonarea2 = styled.div`
 const Allwrapper = styled.div`
     position: fixed;
     top 0;
-    z-index: 900;
+    z-index: 890;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(0,0,0,0.7);
+    background-color: rgb(0,0,0,0.9);
 `
 
 const Wrapper = styled.div`
