@@ -27,24 +27,18 @@ const SearchInput = styled(InputBase)`
     border: 1px rgb(155,155,155,70) solid;
     background: rgb(250,250,250);
     padding-left: 15px;
-    margin: 15px 5px 0  10px;
-    &:hover {
-        background: rgb(240,240,240,70);
-    };
+    margin: 10px 5px 10px  5px;
     display: flex;
     align-items: center;
 `
 const Searchwrapper = styled.div`
     width: 35vw;
-    background: rgb(0,0,0);
+    background: rgb(50,50,50);
     z-index: 20;
     height: 50px;
     position: fixed;
     top: 64px;
     left: 65vw;
-    box-shadow: 0px 2px 1px 0 rgb(100,100,100,0.2) inset;
-    // border-left: 1px solid rgb(200,200,200);
-
 `
 const Wrapper2 = styled.div`
     width: 100%;
