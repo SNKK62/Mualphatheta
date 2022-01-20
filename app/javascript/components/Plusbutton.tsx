@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import  React  from 'react';
 
 const Floatbutton = styled.div`
-    height: 45px;
-    width: 45px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     background-color: rgb(70,70,70);
     display: flex;
@@ -15,8 +15,8 @@ const Floatbutton = styled.div`
     bottom: 20px;
     right: 20px;
     text-width: bold;
-    font-size: 33px;
-    box-shadow: 1px 1px 5px 5px rgb(0,0,0);
+    font-size: 35px;
+    box-shadow: rgb(0,0,0) 1px 1px 5px;
     z-index: 500;
     &:active {
         background-color: rgb(100,100,100);

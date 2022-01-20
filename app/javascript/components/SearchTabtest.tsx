@@ -25,15 +25,18 @@ const SearchInput = styled(InputBase)`
     padding: 0;
     border-radius: 15px;
     border: 1px rgb(155,155,155,70) solid;
-    background: rgb(100,100,100);
+    background: rgb(230,230,230);
     padding-left: 15px;
-    margin: 10px 5px 10px  5px;
+    margin: 10px 5px 10px  10px;
     display: flex;
     align-items: center;
+    &:hover{
+      rgb(350,350,350);
+    }
 `
 const Searchwrapper = styled.div`
     width: 35vw;
-    background: rgb(50,50,50);
+    background: rgb(350,350,350);
     z-index: 20;
     height: 50px;
     position: fixed;
@@ -84,8 +87,8 @@ const SearchTabtest:React.VFC = () => {
 
     return (<Allwrapper>
         <Searchwrapper>
-        <SearchInput sx={{color: 'white', bgcolor: 'rgb(64,64,64)'}} ref={search} placeholder="検索キーワード..." onKeyPress={e => { handlekeypress(e)}}/>
-        <IconButton sx={{ padding: '0 0 0 5px', color: 'white', position: 'absolute', top: '20px', right: '1%'}} onClick={handlesubmit}>
+        <SearchInput ref={search} placeholder="検索キーワード..." onKeyPress={e => { handlekeypress(e)}}/>
+        <IconButton sx={{ padding: '0 0 0 5px',  position: 'absolute', top: '20px', right: '1%'}} onClick={handlesubmit}>
                 <SearchIcon />
             </IconButton>
         </Searchwrapper>
