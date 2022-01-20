@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import  React  from 'react';
 
 const Floatbutton = styled.div`
-    height: 45px;
+    height: 50px;
     width: 50px;
     border-radius: 50%;
     background-color: rgb(70,70,70);
     text-align: center;
-    padding-bottom: 5px;
     color: white;
     position: fixed;
     bottom: 20px;
