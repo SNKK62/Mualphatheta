@@ -1,6 +1,6 @@
 import '../css/App.css';
-import React, { useState ,useEffect} from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState ,useEffect, useMemo} from 'react';
+import { Routes, Route, useNavigate, useLocation, matchPath } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import styled from 'styled-components';
 import {url} from './url'
@@ -35,6 +35,7 @@ import Default from './Default';
 import Logo from './Logo';
 import Feed from './Feed';
 import Usersolutions from './Usersolutions';
+import Plusbutton from './Plusbutton';
 
 const Appwrapper = styled.div`
   width: 100vw;
@@ -92,6 +93,13 @@ const parseInteger = (str: string | null) => {
 
 
 const App: React.VFC = () => {
+  const { pathname } = useLocation();
+    const patharray: string[] = useMemo(() => {
+        return ['/top','/users/:id']
+    },[])
+    const match = useMemo(() => {
+        return patharray.find((path) => !!matchPath(path, pathname));
+    }, [pathname]);
   const [value, setValue] = useState(0);
   const [logged_in, setLogged_in] = useState(window.sessionStorage.getItem('bool')!=null ? {bool: true,id: parseInteger(window.sessionStorage.getItem('id')),image: String(window.sessionStorage.getItem('image')), name: String(window.sessionStorage.getItem('name')) } : {bool: false,id: -1,image: '',name: ''});
   const [load, setLoad] = useState(window.sessionStorage.getItem('view') ? false : true)
@@ -138,6 +146,9 @@ const App: React.VFC = () => {
       {load ? <Logo/> : <>
         <Appbar logged_in={logged_in} handledelete={handledelete} />
         <Appwrapper>
+        {match &&
+          <Plusbutton/>
+        }
         <Border/>
         <MediaQuery query="(min-width: 600px)">
           <Whitespace/>    

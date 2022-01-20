@@ -7,7 +7,7 @@ const Whitespace = styled.div`
     width: 90%;
     margin: auto;
     height: 25vh;
-    border-radius: 5px;
+    border-radius: 10px;
     background: white;
     min-width: 300px;
     @media(min-width: 600px){

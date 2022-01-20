@@ -75,11 +75,20 @@ const Problemimage = styled.div`
     justify-content: center;
     height: 200px;
 `
-const Images = styled.img`
+const Images = styled.img<{open: boolean}>`
     margin: auto;
     object-fit: contain;
     height: 200px;
     cursor: pointer;
+    transition: 1s;
+    max-height: 90%;
+    ${({ open }) => open &&  `
+        object-fit: contain;
+        width: 100%;
+        height: 90%;
+        cursor: none;
+        z-index: 901;
+    `}
 `
 const Description = styled.div`
     white-space: pre-wrap;
@@ -130,17 +139,13 @@ const Buttonarea2 = styled.div`
 `
 const Allwrapper = styled.div`
     position: fixed;
+    top 0;
     z-index: 900;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(0,0,0,0.5);
+    background-color: rgb(0,0,0,0.7);
 `
-const Bigimage = styled.img`
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
 
-`
 const Wrapper = styled.div`
     width: 100%;
     height: clac(100vh - 64px);
@@ -202,14 +207,11 @@ const settings = {
     accessibility: true,
 }
 interface imageprops {
-    url: string,
     close: ()=> void
 }
 function Openimage(props: imageprops) {
     return (
-        <Allwrapper onClick={props.close}>
-            <Bigimage src={props.url} />
-        </Allwrapper>
+        <Allwrapper onClick={props.close}/>
     )
 }
 
@@ -218,7 +220,6 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
     const problem_url = props.ifproblem ? url + '/problems/' + id : url + '/solutions/' + id
     const [dataState, dispatch] = useReducer(dataFetch, initialState);
     const [open, setOpen] = useState(false);
-    const [imageurl, setImageurl] = useState('');
     const navigate = useNavigate()
     const [modal, setModal] = useState(false)
     const [like, setLike] = useState(false)
@@ -285,13 +286,11 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
             console.log(e)
         })
     }
-    const handleopen = (propurl: string) => {
-        setImageurl(propurl)
-        setOpen(true)
+    const handleopen = () => {
+        !open && setOpen(true)
     }
     const handleclose = () => {
         setOpen(false)
-        setImageurl('')
     }
     const modalopen = () => {
         setModal(true)
@@ -301,7 +300,7 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
     }
     
     return (<>
-        {open && Openimage({ url: imageurl, close: handleclose })}
+        {open && Openimage({  close: handleclose })}
         {modal &&
             <Modal delete={handledelete} close={modalclose} />
         }
@@ -336,30 +335,30 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
                                 <Slide {...settings}>
                                 {dataState.post.problem.image1_url &&
                                         <Problemimage  >
-                                            <Images src={dataState.post.problem.image1_url} onClick={() => {handleopen(dataState.post.problem.image1_url)}}/>
+                                            <Images open={open} src={dataState.post.problem.image1_url} onClick={() => {handleopen()}}/>
                                         </Problemimage>}
                                     
                                     {dataState.post.problem.image2_url &&
                                         <Problemimage >
-                                            <Images src={dataState.post.problem.image2_url} onClick={() => {handleopen(dataState.post.problem.image2_url)}}/>
+                                            <Images open={open} src={dataState.post.problem.image2_url} onClick={() => {handleopen()}}/>
                                         </Problemimage>}
                                     {dataState.post.problem.image3_url &&
-                                        <Problemimage onClick={() => {handleopen(dataState.post.problem.image3_url)}}>
-                                            <Images src={dataState.post.problem.image3_url} onClick={() => {handleopen(dataState.post.problem.image3_url)}}/>
+                                        <Problemimage >
+                                            <Images open={open} src={dataState.post.problem.image3_url} onClick={() => {handleopen()}}/>
                                         </Problemimage>}
                                 </Slide> :
                                 <Slide {...settings}>
                                     {dataState.post.problem.image1s_url &&
                                         <Problemimage >
-                                            <Images src={dataState.post.problem.image1s_url} onClick={() => {handleopen(dataState.post.problem.image1s_url)}}/>
+                                            <Images src={dataState.post.problem.image1s_url} onClick={() => { handleopen() }} open={open}/>
                                         </Problemimage>}
                                     {dataState.post.problem.image2s_url &&
                                         <Problemimage >
-                                            <Images src={dataState.post.problem.image2s_url} onClick={() => {handleopen(dataState.post.problem.image2s_url)}}/>
+                                            <Images src={dataState.post.problem.image2s_url} onClick={() => {handleopen()}} open={open} />
                                         </Problemimage>}
                                     {dataState.post.problem.image3s_url &&
                                         <Problemimage >
-                                            <Images src={dataState.post.problem.image3s_url} onClick={() => {handleopen(dataState.post.problem.image3s_url)}}/>
+                                            <Images src={dataState.post.problem.image3s_url} onClick={() => {handleopen()}} open={open} />
                                         </Problemimage>}
                                 </Slide>}</>
                     }
@@ -367,9 +366,9 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
                     <Buttonarea2>
                     <Iconwrapper>
                     {(props.logged_in.bool && props.logged_in.id !== dataState.post.problem.user_id) && <>
-                        {like ? <IconButton sx={{ color: 'pink' }} onClick={handleunlike}>
+                        {like ? <IconButton sx={{ color: 'pink'}} onClick={handleunlike}>
                             <FavoriteIcon />
-                        </IconButton> : <IconButton  onClick={handlelike} >
+                        </IconButton> : <IconButton  onClick={handlelike} sx={{color: 'pink'}} >
                             <FavoriteBorderIcon />
                         </IconButton>}
                             </>}  </Iconwrapper> <Like id='count'>{count}いいね・{dataState.post.problem.comments_count}件のコメント{props.ifproblem && '・'+dataState.post.problem.solutions_count+'件の解答' }</Like>
