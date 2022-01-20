@@ -21,7 +21,7 @@ const Box1 = styled(Box)`
 
 
 const SearchInput = styled(InputBase)`
-    width: 85%;
+    width: 88%;
     padding: 0;
     border-radius: 15px;
     border: 1px rgb(155,155,155,70) solid;
