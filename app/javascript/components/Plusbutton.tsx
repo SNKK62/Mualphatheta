@@ -6,17 +6,20 @@ const Floatbutton = styled.button`
     height: 45px;
     width: 45px;
     border-radius: 50%;
-    text-align: center;
-    padding-top: 18px;
-    background-color: rgb(50,50,50);
+    background-color: rgb(70,70,70);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     position: fixed;
     bottom: 20px;
     right: 20px;
     text-width: bold;
-    box-shadow: 1px 1px 5px 5px;
+    font-size: 33px;
+    box-shadow: 2px 2px 10px 10px rgb(0,0,0);
+    z-index: 500;
     &:active {
-        background-color: rgb(70,70,70);
+        background-color: rgb(100,100,100);
     }
     @media(min-width: 1025px){
         right: calc(35vw + 20px);

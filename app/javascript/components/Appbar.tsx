@@ -105,7 +105,7 @@ function Appbar(props: Props) {
         navigate('/users/'+props.logged_in.id)
     }
     return (<>
-        <AppBar position="sticky"  sx={{height: '64px', bgcolor: 'rgb(50,50,50)',color: 'rgb(400,400,400)',zIndex: '500', boxShadow: '0 1px 5px rgb(200,200,200)' , padding: '0', width: '100vw'}}>
+        <AppBar position="sticky"  sx={{height: '64px', bgcolor: 'rgb(50,50,50)',color: 'rgb(400,400,400)',zIndex: '500', boxShadow: '0 1px 5px rgb(50,50,50)' , padding: '0', width: '100vw'}}>
             <Container maxWidth="xl" sx={{height: '64px',padding: '0',width: '100vw'}}>
                 <Toolbar disableGutters sx={{height: '64px'}}>
                     {(ifsearch || ifsearchprocess) ?
