@@ -91,8 +91,8 @@ const Bigimage = styled.img`
             height: 200px;
         }
         100% {
-            height: 90vh;
-            width: 100vw; 
+            height: 90%;
+            width: 100%; 
         }
     }
     @-webkit-keyframes do {
@@ -100,8 +100,8 @@ const Bigimage = styled.img`
             height: 200px;
         }
         100% {
-            height: 90vh;
-            width: 100vw; 
+            height: 90%;
+            width: 100%; 
         }
     }
 `
@@ -158,6 +158,7 @@ const Allwrapper = styled.div`
     width: 100vw;
     height: 100vh;
     background-color: rgb(0,0,0,0.8);
+    top: 0;
 `
 
 const Wrapper = styled.div`
