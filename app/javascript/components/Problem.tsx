@@ -81,11 +81,11 @@ const Images = styled.img<{open: boolean}>`
     height: 200px;
     cursor: pointer;
     transition: 1s;
-    max-height: 90%;
+    max-height: 90vh;
     ${({ open }) => open &&  `
         object-fit: contain;
-        width: 100%;
-        height: 90%;
+        width: 100vw;
+        height: 90vh;
         cursor: none;
         z-index: 901;
     `}
