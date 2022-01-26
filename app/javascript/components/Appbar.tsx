@@ -155,7 +155,7 @@ function Appbar(props: Props) {
                             </Tooltip>
                             </MediaQuery>
                         </Box >
-                        <Box sx={{ position: 'absolute', left: '30vw', width: '40vw', textAlign: 'center' }}>
+                        <Box sx={{ position: 'absolute', left: '25vw', width: '40vw', textAlign: 'center' }}>
                             <Title>
                                 <Latex>
                                     $Mualphatheta$
