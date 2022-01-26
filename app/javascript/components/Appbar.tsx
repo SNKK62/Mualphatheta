@@ -23,7 +23,7 @@ import Latex from 'react-latex-next';
 const SearchInput = styled(InputBase)`
     width: 100%;
     padding: 0;
-    border-radius: 15px;
+    border-radius: 30px;
     border: 1px rgb(100,100,100,0.7) solid;
     background: rgb(80,80,80);
     padding-left: 15px;
@@ -121,8 +121,8 @@ function Appbar(props: Props) {
                                 <ArrowBackIcon  />
                             </IconButton>
                             <Box sx={{ flexGrow: 1, display: 'flex' }}>
-                                <SearchInput onChange={(e) => { handlechangekeyword(e) }} placeholder="検索キーワード..." sx={{color: 'white'}} defaultValue={ query.get('keyword')} onKeyPress={e => {handlekeypress(e)}} />
-                                <IconButton sx={{ p: 0}} onClick={handlesubmit} color='inherit'>
+                                <SearchInput onChange={(e) => { handlechangekeyword(e) }} placeholder="検索キーワード..." sx={{color: 'white', width: '85%'}} defaultValue={ query.get('keyword')} onKeyPress={e => {handlekeypress(e)}} />
+                                <IconButton sx={{ p: 0, margin: '10px'}} onClick={handlesubmit} color='inherit'>
                                     <SearchIcon />
                                 </IconButton>
                             </Box>
