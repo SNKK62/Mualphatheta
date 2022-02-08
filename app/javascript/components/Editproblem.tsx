@@ -231,6 +231,7 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
         var edit_url = '';
         var new_url:string = '';
         if (props.ifproblem) {
+            data.append('problem[title]', title);
             data.append('problem[description]', textarea);
             data.append('problem[category]', keyword);
             data.append('problem[image1]', image1);
