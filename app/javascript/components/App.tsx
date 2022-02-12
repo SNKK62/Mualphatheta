@@ -159,7 +159,7 @@ const App: React.VFC = () => {
           </Loadingwrapper2> }
             <Routes >
               <Route path="/" element={ <Default/>} />
-              <Route path="/top" element={<Feed/>} />
+            <Route path="/top" element={<Feed logged_in={logged_in}/>} />
               <Route path="/login" element={<Login logged_in={logged_in} setLogged_in={setLogged_in} />} />
               <Route path='/signup' element={<Signup logged_in={logged_in} setLogged_in={setLogged_in} />} />
               <Route path="/users" element={<Users />} />
