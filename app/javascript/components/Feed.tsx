@@ -57,8 +57,7 @@ const Menubutton = styled.div`
     top: 64px;
     left: 0px;
     height: 40px;
-    z-index: 500;
-    box-shadow: 0px 2px 5px  rgb(100,100,100,0.2), rgb(50,50,50) 0px 1px 1px inset;
+    z-index: 490;
     background: rgb(250,250,250);
     @media(min-width: 600px){
         width: 60vw;
@@ -91,8 +90,15 @@ const Shadow = styled.div`
         left: 20vw;
     }
 `
-
-const Feed: React.VFC = () => {
+interface Props {
+    logged_in: {
+        bool: boolean,
+        id: number,
+        image: string,
+        name: string
+    };
+}
+const Feed: React.VFC<Props> = (props) => {
     const [type, setType] = useState('search')
     const [times, setTimes] = useState(0);
     const search_url = useMemo(() => {return  url + '/problems/'; },[])
@@ -181,7 +187,7 @@ const Feed: React.VFC = () => {
                         'aria-labelledby': 'basic-button',
                         }}
                     >
-                            <MenuItem onClick={() => { handleClose('recommend') }}>おすすめ</MenuItem>
+                            {props.logged_in.bool && <MenuItem onClick={() => { handleClose('recommend') }}>おすすめ</MenuItem>}
                             <MenuItem onClick={() => { handleClose('rank') }}>人気順</MenuItem>
                             <MenuItem onClick={() => { handleClose('search')}}>新着順</MenuItem>
                     </Menu>
