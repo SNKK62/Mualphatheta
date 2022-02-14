@@ -62,7 +62,7 @@ const Border = styled.div`
   }
   @media(min-width: 1025px){
     width: 45vw;
-    height: calc(100vw - 67px);
+    height: calc(100vh - 67px);
     position: fixed;
     border-right: 1px solid rgb(200,200,200);
     left: calc(20vw - 1px);
