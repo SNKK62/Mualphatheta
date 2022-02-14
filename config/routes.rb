@@ -6,17 +6,16 @@ Rails.application.routes.draw do
         member do
           get :followings, :followers
           get :show_image
-          get '/problems/:times', to: 'problems#user_problem'
-          get '/solutions/:times', to: 'users#usersolutions'
+          get '/solutions/:times' => 'users#usersolutions'
         end
         collection do
-          get '/search/:times/:name', to: 'users#search'
-          get '/search/:times', to: 'users#search_none'
+          get '/search/:times/:name' => 'users#search'
+          get '/search/:times' => 'users#search_none'
           post '/follow/:id', to: 'relationships#create'
           delete '/unfollow/:id', to: 'relationships#destroy'
           get '/iffollow/:id', to: 'relationships#iffollow'
-          get '/like_problems/:times', to: 'users#like_problems'
-          get '/like_solutions/:times', to: 'users#like_solutions'
+          get '/like_problems/:times' => 'users#like_problems'
+          get '/like_solutions/:times' => 'users#like_solutions'
         end
       end
       resources :problems, except: [:index] do 
@@ -24,25 +23,17 @@ Rails.application.routes.draw do
           post '/like', to: 'likes#problem_create'
           delete '/unlike', to: 'likes#problem_destroy'
           get '/iflike', to: 'likes#ifplike'
-          resources :solutions, only: [:create] do
-            collection do
-              get '/:times', to: 'solutions#search'
-            end
-          end
-          get '/comments/:times', to: 'comments#search_from_problem'
-          post '/comments/', to: 'comments#problem_create'
+          # post '/comments/' => 'comments#problem_create'
         end
         collection do
-          get '/search/:times/:category', to: 'problems#search'
-          get '/search/:times', to: 'problems#search_none'
-          get '/rank/:times', to: 'problems#rank_problem'
-          get '/recommend/:times', to: 'problems#recommend_problem'
+          get '/search/:times/:category' => 'problems#search'
+          get '/search/:times' => 'problems#search_none'
+          get '/rank/:times' => 'problems#rank_problem'
+          get '/recommend/:times' => 'problems#recommend_problem'
         end
       end
       resources :solutions, except: [:create] do 
         member do 
-          post '/comments/', to: 'comments#solution_create'
-          get '/comments/:times', to: 'comments#search_from_solution'
           post '/like', to: 'likes#solution_create'
           delete '/unlike', to: 'likes#solution_destroy'
           get '/iflike', to: 'likes#ifslike'
@@ -54,7 +45,19 @@ Rails.application.routes.draw do
       resources :relationships, only: [:create, :destroy]
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
-      get '/logged_in', to: 'users#logged_in'
+      get '/logged_in' => 'users#logged_in'
+
+      post '/problems/:id/comments' => 'comments#problem_create'
+      get '/problems/:id/comments/:times' => 'comments#search_from_problem'
+      post '/problems/:id/solutions' => 'solutions#create'
+      get '/problems/:id/solutions/:times' => 'solutions#search'
+      get '/users/:id/problems/:times' => 'problems#user_problem'
+
+
+      post '/solutions/:id/comments' => 'comments#solution_create'
+      get '/solutions/:id/comments/:times' => 'comments#search_from_solution'
+      
+
     end
   end
 

@@ -57,9 +57,7 @@ const Allwrapper = styled.div`
     min-height: calc(100vh - 64px);
     width: 35vw;
     scrollbar-width: none;
-
 `
-
 
 const SearchTabtest:React.VFC = () => {
   const [value, setValue] = useState('1')
@@ -83,7 +81,6 @@ const SearchTabtest:React.VFC = () => {
       handlesubmit()
     }
   }
-   
 
     return (<Allwrapper>
         <Searchwrapper>
