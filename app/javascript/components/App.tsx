@@ -150,7 +150,7 @@ const App: React.VFC = () => {
         {match &&
           <Plusbutton/>
         }
-        <Border/>
+        <Border id="boader"/>
         <MediaQuery query="(min-width: 600px)">
           <Whitespace id="white_space"/>    
           <StaticSidebar logged_in={logged_in} handledelete={handledelete} />

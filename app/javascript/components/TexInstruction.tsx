@@ -16,7 +16,7 @@ const Title = styled.div`
     white-space: pre-wrap;
 `
 const Description = styled.div`
-    margin: auto 0;
+    margin: auto;
     width: 80%;
     text-align: center;
 `
