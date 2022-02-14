@@ -10,7 +10,7 @@ const Title = styled.div`
     text-align: center;
     font-size: 22px;
     margin-top: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     font-weight: bold;
     padding: 0 10px;
     white-space: pre-wrap;
@@ -19,7 +19,7 @@ const Description = styled.div`
     margin: auto;
     width: 80%;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 `
 const Table = styled.table`
     width: 70%;
