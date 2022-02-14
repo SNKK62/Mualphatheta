@@ -16,7 +16,7 @@ const Title = styled.div`
     white-space: pre-wrap;
 `
 const Description = styled.div`
-    margin: 5px 0;
+    margin: auto 0;
     width: 80%;
     text-align: center;
 `
@@ -1150,9 +1150,7 @@ const TexInstruction:React.VFC = () => {
                         </Latex>
                     </Td>
                     <Td>
-                        <Latex>
-                            {"$\\vec{x}$"}
-                        </Latex>
+                        {"$\\vec{x}$"}
                     </Td>
                 </Tr1>
                 <Tr2>

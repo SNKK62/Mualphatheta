@@ -152,7 +152,7 @@ const App: React.VFC = () => {
         }
         <Border/>
         <MediaQuery query="(min-width: 600px)">
-          <Whitespace/>    
+          <Whitespace id="white_space"/>    
           <StaticSidebar logged_in={logged_in} handledelete={handledelete} />
         </MediaQuery>
           {loading && <Loadingwrapper2>
