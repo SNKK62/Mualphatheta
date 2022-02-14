@@ -16,7 +16,7 @@ const Title = styled.div`
     white-space: pre-wrap;
 `
 const Description = styled.div`
-    margin: 5px;
+    margin: 5px 0;
     width: 80%;
     text-align: center;
 `
@@ -45,19 +45,16 @@ const Subtitle = styled.div`
     padding-left: 10px;
     border-bottom: 1px solid black;
 `;
-const Wrapper2 = styled(Wrapper)`
-    position: fixed;
-    top: 64px;
-`
+
 
 const TexInstruction:React.VFC = () => {
     return (
-        <Wrapper2 className='box'>
+        <Wrapper className='box'>
             <Title>
                 Texテキストの書き方
             </Title>
             <Description>
-                よく使う数式や記号などのTexの書き方です
+                よく使う数式や記号などのTex記法です
             </Description>
             <Subtitle>
                 ギリシャ文字
@@ -1208,16 +1205,6 @@ const TexInstruction:React.VFC = () => {
                         {"$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$"}
                     </Td>
                 </Tr2>
-                <Tr1>
-                    <Td>
-                        <Latex>
-                            {"オイラーの公式$$e^{i\\theta} = \\cos \\theta + i\\sin \\theta$$"}
-                        </Latex>
-                    </Td>
-                    <Td>
-                        {"オイラーの公式$$e^{i\\theta} = \\cos \\theta + i\\sin \\theta$$"}
-                    </Td>
-                </Tr1>
             </Table>
             <Subtitle>文字のスタイル</Subtitle>
             <Table>
@@ -1281,7 +1268,7 @@ const TexInstruction:React.VFC = () => {
                 </Tr2>
             </Table>
             
-        </Wrapper2>
+        </Wrapper>
     )
 }
 
