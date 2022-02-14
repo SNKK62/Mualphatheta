@@ -1,4 +1,5 @@
 import '../css/App.css';
+import '../../assets/stylesheets/index.css';
 import React, { useState ,useEffect, useMemo} from 'react';
 import { Routes, Route, useNavigate, useLocation, matchPath } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
@@ -45,6 +46,7 @@ const Appwrapper = styled.div`
   box-sizing: border-box;
   margin: 0;
   overflow-x: hidden;
+  overflow-y: hidden;
 `
 const Whitespace = styled.div`
   @media(min-width: 600px){
@@ -146,7 +148,7 @@ const App: React.VFC = () => {
     <>
       {load ? <Logo/> : <>
         <Appbar logged_in={logged_in} handledelete={handledelete} />
-        <Appwrapper>
+        <Appwrapper className='box'>
         {match &&
           <Plusbutton/>
         }
