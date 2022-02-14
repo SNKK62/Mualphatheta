@@ -87,4 +87,5 @@ Rails.application.routes.draw do
   get '/comments/:id/edit' , to: 'sites#index'
   get '/search' , to: 'sites#index'
   get '/searchprocess' , to: 'sites#index'
+  get '/tex', to: 'sites#index'
 end

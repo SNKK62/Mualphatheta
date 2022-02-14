@@ -36,6 +36,7 @@ import Logo from './Logo';
 import Feed from './Feed';
 import Usersolutions from './Usersolutions';
 import Plusbutton from './Plusbutton';
+import TexInstruction from './TexInstruction';
 
 const Appwrapper = styled.div`
   width: 100vw;
@@ -159,7 +160,7 @@ const App: React.VFC = () => {
           </Loadingwrapper2> }
             <Routes >
               <Route path="/" element={ <Default/>} />
-            <Route path="/top" element={<Feed logged_in={logged_in}/>} />
+              <Route path="/top" element={<Feed logged_in={logged_in}/>} />
               <Route path="/login" element={<Login logged_in={logged_in} setLogged_in={setLogged_in} />} />
               <Route path='/signup' element={<Signup logged_in={logged_in} setLogged_in={setLogged_in} />} />
               <Route path="/users" element={<Users />} />
@@ -186,6 +187,7 @@ const App: React.VFC = () => {
               <Route path="/solutions/:id/comments" element={<Comments ifproblem={false} />} />
               <Route path="/search" element={<SearchTab value={value} setValue={setValue}/>} />
               <Route path="/searchprocess" element={<Searchprocess />} />
+              <Route path="/tex" element={<TexInstruction/>} />
             </Routes>
         <MediaQuery query='(min-width:1025px)'>
           <SearchTabtest/>

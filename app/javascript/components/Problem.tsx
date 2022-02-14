@@ -105,8 +105,7 @@ const Slide = styled(Slider)`
     margin: auto;
 `
 const Buttonwrapper = styled.div`
-width: 30%;
-
+    width: 30%;
 `
 const Slidewrapper = styled.div`
     width: 80%;
@@ -136,8 +135,8 @@ const Buttonarea2 = styled.div`
 const Allwrapper = styled.div`
     position: fixed;
     z-index: 900;
-    width: 100vw;
-    height: 100vh;
+    width: 101vw;
+    height: 102vh;
     background-color: rgb(0,0,0,0.8);
     top: 0;
 `
