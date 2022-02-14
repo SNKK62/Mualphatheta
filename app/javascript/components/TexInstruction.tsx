@@ -16,19 +16,21 @@ const Title = styled.div`
     white-space: pre-wrap;
 `
 const Table = styled.table`
-    width: 70%;
+    width: 75%;
     margin: 10px auto;    
 `;
 const Tr1 = styled.tr`
-
+    background: rgb(300,300,300);
 `;
 const Tr2 = styled.tr`
-    background: rgb(100,100,100)
+    background: rgb(200,200,200);
 `
 const Th = styled.th`
     text-align: center;
 `;
 const Td = styled.td`
+    padding-top: 5px;
+    padding-bottom: 5px;
     text-align: center;
 `;
 const Subtitle = styled.div`
@@ -41,7 +43,7 @@ const Subtitle = styled.div`
 
 const TexInstruction:React.VFC = () => {
     return (
-        <Wrapper>
+        <Wrapper className='box'>
             <Title>
                 Texテキストの書き方
             </Title>
@@ -1157,11 +1159,11 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
-                            {"$\\left{ \\left[ a \\\\ b \\right] \\right\\}$"}
+                            {"$\\left{ \\left[ {a \\\\ b} \\right] \\right\\}$"}
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\left{ \\left[ a \\\\ b \\right] \\right\\}$"}
+                        {"$\\left{ \\left[ {a \\\\ b} \\right] \\right\\}$"}
                     </Td>
                 </Tr1>
                 <Tr2>
@@ -1201,7 +1203,7 @@ const TexInstruction:React.VFC = () => {
                         </Latex>
                     </Td>
                     <Td>
-                        {"オイラーの公式$$e^i\\theta=\\cos \\theta+ i\\sin \\theta$$"}
+                        {"オイラーの公式$$e^{i\\theta} = \\cos \\theta + i\\sin \\theta$$"}
                     </Td>
                 </Tr1>
             </Table>
