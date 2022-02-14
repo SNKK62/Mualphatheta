@@ -15,12 +15,17 @@ const Title = styled.div`
     padding: 0 10px;
     white-space: pre-wrap;
 `
+const Description = styled.div`
+    margin: 5px;
+    width: 80%;
+    text-align: center;
+`
 const Table = styled.table`
-    width: 75%;
+    width: 70%;
     margin: 10px auto;    
 `;
 const Tr1 = styled.tr`
-    background: rgb(300,300,300);
+    background: rgb(250,250,250);
 `;
 const Tr2 = styled.tr`
     background: rgb(200,200,200);
@@ -40,13 +45,20 @@ const Subtitle = styled.div`
     padding-left: 10px;
     border-bottom: 1px solid black;
 `;
+const Wrapper2 = styled(Wrapper)`
+    position: fixed;
+    top: 64px;
+`
 
 const TexInstruction:React.VFC = () => {
     return (
-        <Wrapper className='box'>
+        <Wrapper2 className='box'>
             <Title>
                 Texテキストの書き方
             </Title>
+            <Description>
+                よく使う数式や記号などのTexの書き方です
+            </Description>
             <Subtitle>
                 ギリシャ文字
             </Subtitle>
@@ -1199,7 +1211,7 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
-                            {"オイラーの公式$$e^i\\theta=\\cos \\theta+ i\\sin \\theta$$"}
+                            {"オイラーの公式$$e^{i\\theta} = \\cos \\theta + i\\sin \\theta$$"}
                         </Latex>
                     </Td>
                     <Td>
@@ -1269,7 +1281,7 @@ const TexInstruction:React.VFC = () => {
                 </Tr2>
             </Table>
             
-        </Wrapper>
+        </Wrapper2>
     )
 }
 

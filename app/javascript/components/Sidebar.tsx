@@ -49,6 +49,8 @@ function Sidebar(props: Props) {
       props.handledelete()
     } else if (s === 'トップ') {
       navigate('/')
+    } else if (s === 'Texの書き方') {
+      navigate('/tex')
     }
   }
   const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -59,14 +61,14 @@ function Sidebar(props: Props) {
       onClick={props.toggleDrawer(false)}
       onKeyDown={props.toggleDrawer(false)}
     >{props.logged_in.bool && <>
-      <Avatar src={props.logged_in.image} onChange={() => {toPage('プロフィール')}} sx={{ width: '80px', height: '80px', margin: '20px auto 20px auto' }} />
+      <Avatar src={props.logged_in.image} onChange={(e) => { e.stopPropagation(); toPage('プロフィール')}} sx={{ width: '80px', height: '80px', margin: '20px auto 20px auto' }} />
       <Typography id='name' sx={{ textAlign: 'center', fontSize: '22px', marginBottom: '10px' }} >
         {props.logged_in.name}
       </Typography>
       <Divider /></>}
       {props.logged_in.bool ? <>
         <List>
-          {['トップ','プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿'].map((text, index) => (
+          {['トップ','プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿', 'Texの書き方'].map((text, index) => (
             <ListItem button key={index} onClick={() => { toPage(text) }}  >
               <ListItemText primary={text} sx={{ marginLeft: '20px' }} />
             </ListItem>
@@ -78,7 +80,7 @@ function Sidebar(props: Props) {
         </List>
         </> :
         <List>
-          {['ログイン', 'サインアップ'].map((text, index) => (<div key={index}>
+          {['トップ','ログイン', 'サインアップ'].map((text, index) => (<div key={index}>
             <ListItem button  onClick={() => { toPage(text) }}  >
               <ListItemText primary={text} sx={{ marginLeft: '20px' }} />
             </ListItem>
@@ -91,9 +93,9 @@ function Sidebar(props: Props) {
 
   return (
     <div>
-        <React.Fragment key={'right'}>
+        <React.Fragment key={'left'}>
           <SwipeableDrawer
-            anchor={'right'}
+            anchor={'left'}
             open={props.state}
           onClose={e => { props.toggleDrawer(false)(e) }}
           onOpen={e => { props.toggleDrawer(true)(e) }}   

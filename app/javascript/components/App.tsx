@@ -189,10 +189,10 @@ const App: React.VFC = () => {
               <Route path="/searchprocess" element={<Searchprocess />} />
               <Route path="/tex" element={<TexInstruction/>} />
             </Routes>
-        <MediaQuery query='(min-width:1025px)'>
+          <MediaQuery query='(min-width:1025px)'>
           <SearchTabtest/>
           </MediaQuery>
-          </Appwrapper>
+        </Appwrapper>
       </>}
     </>
   );
