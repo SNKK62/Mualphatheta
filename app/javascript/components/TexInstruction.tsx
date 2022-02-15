@@ -1382,9 +1382,9 @@ const TexInstruction:React.VFC = () => {
                             {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}}\n\\d{y}{x}$"}
                         </Latex>
                     </Td>
-                    <Td>
+                    <Desctd>
                         {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}}\n　\n\\d{y}{x}$"}
-                    </Td>
+                    </Desctd>
                 </Tr2>
             </Lasttable>
         </Wrapper>
