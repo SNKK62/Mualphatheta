@@ -81,7 +81,11 @@ const  Makecomment:React.VFC<Props> = (props: Props) => {
     
     return (
         <Wrapper className='box'>
-            <Message><Latex>$Comment$</Latex><br/><Warn>KaTexのテキストは$(半角)で囲んでください</Warn></Message>
+            <Message>
+                <Latex>$Comment$</Latex><br />
+                <Warn>KaTexのテキストは$(半角)で囲んでください</Warn>
+                <Warn>数式のみ$で囲んでください</Warn>
+            </Message>
             <Textareawrapper>
             <TextareaAutosize
                 aria-label="minimum height"
