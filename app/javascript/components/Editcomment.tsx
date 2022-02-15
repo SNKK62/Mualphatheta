@@ -20,6 +20,10 @@ const Textareawrapper = styled.div`
 const Warn = styled.p`
     font-size: 13px;
 `
+const Redwarn = styled.p`
+    font-size: 13px;
+    color: red;
+`
 const Message = styled.div`
     width: 100%;
     font-size: 25px;
@@ -100,7 +104,8 @@ const  Editcomment:React.VFC<Props> = (props: Props) => {
             dataState.isLoading ? <Loadingwrapper><Loading/></Loadingwrapper> : 
                     <Wrapper className='box'>
                         <Message>
-                            コメントの編集<br/><Warn>KaTexのテキストは$(半角)で囲んでください</Warn>
+                            コメントの編集<br /><Warn>KaTexのテキストは$(半角)で囲んでください</Warn>
+                            <Redwarn>数式のみ$で囲んでください</Redwarn>
                         </Message>
                     <Textareawrapper>
                     <TextareaAutosize

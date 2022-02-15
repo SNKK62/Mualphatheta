@@ -209,7 +209,7 @@ const Signup: React.FC<Props> = (props) => {
                     aria-label="minimum height"
                     minRows={3}
                     style={{ width: '100%' }}
-                    placeholder='紹介文を書いてください'
+                    placeholder='紹介文を書いてください(任意)'
                 ref={textref}
                     />
             </Textareawrapper>

@@ -23,6 +23,10 @@ const Message = styled.div`
 const Warn = styled.p`
     font-size: 13px;
 `
+const Redwarn = styled.p`
+    font-size: 13px;
+    color: red;
+`
 const Submitbutton = styled(LoadingButton)`
     width: 100px;
     margin: 40px auto 0 auto;
@@ -84,7 +88,7 @@ const  Makecomment:React.VFC<Props> = (props: Props) => {
             <Message>
                 <Latex>$Comment$</Latex><br />
                 <Warn>KaTexのテキストは$(半角)で囲んでください</Warn>
-                <Warn>数式のみ$で囲んでください</Warn>
+                <Redwarn>数式のみ$で囲んでください</Redwarn>
             </Message>
             <Textareawrapper>
             <TextareaAutosize

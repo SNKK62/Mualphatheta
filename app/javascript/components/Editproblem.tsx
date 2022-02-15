@@ -94,6 +94,10 @@ const Fab1 = styled.div`
 const Warn = styled.p`
     font-size: 13px;
 `
+const Redwarn = styled.p`
+    font-size: 13px;
+    color: red;
+`
 const Inputwrapper = styled.div`
     width: 80%;
     max-width: 450px;
@@ -296,7 +300,8 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
             dataState.isLoading ? <Loadingwrapper><Loading /></Loadingwrapper> : 
                 <Wrapper className='box'>
                         <Message>
-                            {props.type}の編集<br/><Warn>KaTexのテキストは$(半角)で囲んでください</Warn><Warn>独立式は$$で囲んでください</Warn>
+                            {props.type}の編集<br /><Warn>KaTexのテキストは$(半角)で囲んでください</Warn><Warn>独立式は$$で囲んでください</Warn>
+                            <Redwarn>数式のみ$で囲んでください</Redwarn>
                         </Message>
                         {props.ifproblem && <>
                 <Inputwrapper>
