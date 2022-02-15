@@ -22,7 +22,7 @@ const Description = styled.div`
     margin-bottom: 15px;
 `
 const Table = styled.table`
-    width: 70%;
+    width: 77%;
     margin: 10px auto;    
 `;
 const Tr1 = styled.tr`
@@ -960,11 +960,11 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
-                            $\forany$
+                            $\exist$
                         </Latex>
                     </Td>
                     <Td>
-                        $\forany$
+                        $\exist$
                     </Td>
                 </Tr1>
                 <Tr2>
@@ -980,11 +980,11 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
-                            $\left\lang \, \right\lang$
+                            $\lang \, \rang$
                         </Latex>
                     </Td>
                     <Td>
-                        $\left\lang \, \right\lang$
+                        $\lang \, \rang$
                     </Td>
                 </Tr1>
                 <Tr2>
@@ -1221,11 +1221,11 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
-                            {"$\\overbrace{2^3}{\\text{2の3乗}}$"}
+                            {"$\\overbrace{2^3}^{\\text{2の3乗}}$"}
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\overbrace{2^3}{\\text{2の3乗}}$"}
+                        {"$\\overbrace{2^3}^{\\text{2の3乗}}$"}
                     </Td>
                 </Tr1>
                 <Tr2>
@@ -1251,11 +1251,11 @@ const TexInstruction:React.VFC = () => {
                 <Tr2>
                     <Td>
                         <Latex>
-                            {"$\\begin{aligned} x&=3+2 \\\\ &=5 \\end{align*}$"}
+                            {"$\\begin{aligned} x&=3+2 \\\\ &=5 \\end{aligned}$"}
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\begin{aligned} x&=3+2 \\\\ &=5 \\end{align*}$"}
+                        {"$\\begin{aligned} x&=3+2 \\\\ &=5 \\end{aligned}$"}
                     </Td>
                 </Tr2>
                 <Tr1>
@@ -1352,11 +1352,18 @@ const TexInstruction:React.VFC = () => {
             </Table>
             <Subtitle>マクロ</Subtitle>
             <Table>
+                <Tr1>
+                    <Th>
+                        使い方
+                    </Th>
+                </Tr1>
                 <Tr2>
                     <Desctd>
                         {"$\n\\gdef\\関数名#1#2{表示} //定義(#数字は引数の数だけ)//\n\\関数名{引数１}{引数２} //実行//\n$"}
                     </Desctd>
                 </Tr2>
+            </Table>
+            <Table>
                 <Tr1>
                     <Th>
                         表示
@@ -1368,11 +1375,11 @@ const TexInstruction:React.VFC = () => {
                 <Tr2>
                     <Td>
                         <Latex>
-                            {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}\\n\\d{y}{x}$"}
+                            {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}}\n\\d{y}{x}$"}
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}\\n\\d{y}{x}$"}
+                        {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}}\\d{y}{x}$"}
                     </Td>
                 </Tr2>
             </Table>
