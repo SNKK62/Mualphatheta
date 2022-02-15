@@ -1082,26 +1082,6 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
-                            {"\\norm{x}"}
-                        </Latex>
-                    </Td>
-                    <Td>
-                        {"\\norm{x}"}
-                    </Td>
-                </Tr1>
-                <Tr2>
-                    <Td>
-                        <Latex>
-                            {"$$\\tag{1} x + y = 3$$"}
-                        </Latex>
-                    </Td>
-                    <Td>
-                        {"$$\\tag{1} x + y = 3$$"}
-                    </Td>
-                </Tr2>
-                <Tr1>
-                    <Td>
-                        <Latex>
                             {"${}_nC_r$"}
                         </Latex>
                     </Td>
@@ -1299,6 +1279,16 @@ const TexInstruction:React.VFC = () => {
                         {"$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$"}
                     </Td>
                 </Tr2>
+                <Tr1>
+                    <Desctd>
+                        <Latex>
+                            {"$$\\tag{1} x + y = 3$$"}
+                        </Latex>
+                    </Desctd>
+                    <Td>
+                        {"$$\\tag{1} x + y = 3$$"}
+                    </Td>
+                </Tr1>
             </Table>
             <Subtitle>文字のスタイル</Subtitle>
             <Table>
@@ -1390,7 +1380,7 @@ const TexInstruction:React.VFC = () => {
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}}\n\n\\d{y}{x}$"}
+                        {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}}\n　\n\\d{y}{x}$"}
                     </Td>
                 </Tr2>
             </Table>
