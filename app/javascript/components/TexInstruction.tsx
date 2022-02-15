@@ -1388,7 +1388,7 @@ const TexInstruction:React.VFC = () => {
                 </Tr2>
             </Lasttable>
             <Description>
-                ここにないものについては各自調べてください
+                上記以外は各自調べてください
             </Description>
         </Wrapper>
     )
