@@ -26,7 +26,7 @@ const Table = styled.table`
     margin: 10px auto;    
 `;
 const Tr1 = styled.tr`
-    background: rgb(250,250,250);
+    background: rgb(230,235,235);
 `;
 const Tr2 = styled.tr`
     background: rgb(200,200,200);
@@ -46,6 +46,10 @@ const Subtitle = styled.div`
     padding-left: 10px;
     border-bottom: 1px solid black;
 `;
+const Desctd = styled(Td)`
+    white-space: pre-wrap;
+    word-wrap: break-word;    
+`
 
 
 const TexInstruction:React.VFC = () => {
@@ -943,6 +947,56 @@ const TexInstruction:React.VFC = () => {
                         $\Leftrightarrow$
                     </Td>
                 </Tr1>
+                <Tr2>
+                    <Td>
+                        <Latex>
+                            $\forall$
+                        </Latex>
+                    </Td>
+                    <Td>
+                        $\forall$
+                    </Td>
+                </Tr2>
+                <Tr1>
+                    <Td>
+                        <Latex>
+                            $\forany$
+                        </Latex>
+                    </Td>
+                    <Td>
+                        $\forany$
+                    </Td>
+                </Tr1>
+                <Tr2>
+                    <Td>
+                        <Latex>
+                            $( \big( \Big( \bigg( \Bigg( \Bigg) \bigg) \Big) \big) )$
+                        </Latex>
+                    </Td>
+                    <Td>
+                        $( \big( \Big( \bigg( \Bigg( \Bigg) \bigg) \Big) \big) )$
+                    </Td>
+                </Tr2>
+                <Tr1>
+                    <Td>
+                        <Latex>
+                            $\left\lang \, \right\lang$
+                        </Latex>
+                    </Td>
+                    <Td>
+                        $\left\lang \, \right\lang$
+                    </Td>
+                </Tr1>
+                <Tr2>
+                    <Td>
+                        <Latex>
+                            {"$\\{ \\, \\}$"}
+                        </Latex>
+                    </Td>
+                    <Td>
+                        {"$\\{ \\, \\}$"}
+                    </Td>
+                </Tr2>
             </Table>
             <Subtitle>数式・演算子</Subtitle>
             <Table>
@@ -1157,6 +1211,26 @@ const TexInstruction:React.VFC = () => {
                 <Tr2>
                     <Td>
                         <Latex>
+                            {"$\\bm{a}$"}
+                        </Latex>
+                    </Td>
+                    <Td>
+                        {"$\\bm{a}$"}
+                    </Td>
+                </Tr2>
+                <Tr1>
+                    <Td>
+                        <Latex>
+                            {"$\\overbrace{2^3}{\\text{2の3乗}}$"}
+                        </Latex>
+                    </Td>
+                    <Td>
+                        {"$\\overbrace{2^3}{\\text{2の3乗}}$"}
+                    </Td>
+                </Tr1>
+                <Tr2>
+                    <Td>
+                        <Latex>
                             {"$a \\\\ b$"}
                         </Latex>
                     </Td>
@@ -1167,21 +1241,21 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
-                            {"$\\left{ \\left[ {a \\\\ b} \\right] \\right\\}$"}
+                            {"$\\begin{cases} x + y &= 3 \\\\ 2x + y &= 8 \\end{cases}$"}
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\left{ \\left[ {a \\\\ b} \\right] \\right\\}$"}
+                        {"$\\begin{cases} x + y &= 3 \\\\ 2x + y &= 8 \\end{cases}$"}
                     </Td>
                 </Tr1>
                 <Tr2>
                     <Td>
                         <Latex>
-                            {"$\\begin{align} x&=3+2 \\\\ &=5 \\end{align}$"}
+                            {"$\\begin{aligned} x&=3+2 \\\\ &=5 \\end{align*}$"}
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\begin{align} x&=3+2 \\\\ &=5 \\end{align}$"}
+                        {"$\\begin{aligned} x&=3+2 \\\\ &=5 \\end{align*}$"}
                     </Td>
                 </Tr2>
                 <Tr1>
@@ -1204,6 +1278,16 @@ const TexInstruction:React.VFC = () => {
                         {"$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$"}
                     </Td>
                 </Tr2>
+                <Tr1>
+                    <Td>
+                        <Latex>
+                            {"$\\tag{1} x + y = 3$"}
+                        </Latex>
+                    </Td>
+                    <Td>
+                        {"$\\tag{1} x + y = 3$"}
+                    </Td>
+                </Tr1>
             </Table>
             <Subtitle>文字のスタイル</Subtitle>
             <Table>
@@ -1248,11 +1332,11 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
-                            {"$\\mathrm{x}$"}
+                            {"$\\mathrm{Re}$"}
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\mathrm{x}$"}
+                        {"$\\mathrm{Re}$"}
                     </Td>
                 </Tr1>
                 <Tr2>
@@ -1266,7 +1350,32 @@ const TexInstruction:React.VFC = () => {
                     </Td>
                 </Tr2>
             </Table>
-            
+            <Subtitle>マクロ</Subtitle>
+            <Table>
+                <Tr2>
+                    <Desctd>
+                        {"$\n\\gdef\\関数名#1#2{表示} //定義(#数字は引数の数だけ)//\n\\関数名{引数１}{引数２} //実行//\n$"}
+                    </Desctd>
+                </Tr2>
+                <Tr1>
+                    <Th>
+                        表示
+                    </Th>
+                    <Th>
+                        書き方
+                    </Th>
+                </Tr1>
+                <Tr2>
+                    <Td>
+                        <Latex>
+                            {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}\\n\\d{y}{x}$"}
+                        </Latex>
+                    </Td>
+                    <Td>
+                        {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}\\n\\d{y}{x}$"}
+                    </Td>
+                </Tr2>
+            </Table>
         </Wrapper>
     )
 }
