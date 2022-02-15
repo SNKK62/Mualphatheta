@@ -1285,7 +1285,7 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Desctd>
                         <Latex>
-                            {"$$\\tag{1} x + y = 3$$"}
+                            {"$$\\tag{1} x + y = 3\\,\\,$$"}
                         </Latex>
                     </Desctd>
                     <Td>
