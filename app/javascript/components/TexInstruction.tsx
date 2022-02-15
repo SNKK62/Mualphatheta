@@ -1001,6 +1001,16 @@ const TexInstruction:React.VFC = () => {
                         {"$\\{ \\, \\}$"}
                     </Td>
                 </Tr2>
+                <Tr1>
+                    <Td>
+                        <Latex>
+                            $\angle$
+                        </Latex>
+                    </Td>
+                    <Td>
+                        $\angle$
+                    </Td>
+                </Tr1>
             </Table>
             <Subtitle>数式・演算子</Subtitle>
             <Table>

@@ -61,7 +61,7 @@ function Sidebar(props: Props) {
       onClick={props.toggleDrawer(false)}
       onKeyDown={props.toggleDrawer(false)}
     >{props.logged_in.bool && <>
-      <Avatar src={props.logged_in.image} onClick={(e) => { e.stopPropagation(); toPage('プロフィール')}} sx={{ width: '80px', height: '80px', margin: '20px auto 20px auto' }} />
+      <Avatar src={props.logged_in.image} onClick={() => { toPage('プロフィール')}} sx={{ width: '80px', height: '80px', margin: '20px auto 20px auto' }} />
       <Typography id='name' sx={{ textAlign: 'center', fontSize: '22px', marginBottom: '10px' }} >
         {props.logged_in.name}
       </Typography>
