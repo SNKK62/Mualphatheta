@@ -25,6 +25,9 @@ const Table = styled.table`
     width: 77%;
     margin: 10px auto;    
 `;
+const Lasttable = styled(Table)`
+    margin-bottom: 30px;
+`
 const Tr1 = styled.tr`
     background: rgb(230,235,235);
 `;
@@ -1364,7 +1367,7 @@ const TexInstruction:React.VFC = () => {
                     </Desctd>
                 </Tr2>
             </Table>
-            <Table>
+            <Lasttable>
                 <Tr1>
                     <Th>
                         表示
@@ -1383,7 +1386,7 @@ const TexInstruction:React.VFC = () => {
                         {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}}\n　\n\\d{y}{x}$"}
                     </Td>
                 </Tr2>
-            </Table>
+            </Lasttable>
         </Wrapper>
     )
 }
