@@ -48,7 +48,8 @@ const Subtitle = styled.div`
 `;
 const Desctd = styled(Td)`
     white-space: pre-wrap;
-    word-wrap: break-word;    
+    word-wrap: break-word;
+    text-align: left;  
 `
 
 
@@ -1081,6 +1082,26 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
+                            {"\\norm{x}"}
+                        </Latex>
+                    </Td>
+                    <Td>
+                        {"\\norm{x}"}
+                    </Td>
+                </Tr1>
+                <Tr2>
+                    <Td>
+                        <Latex>
+                            {"$$\\tag{1} x + y = 3$$"}
+                        </Latex>
+                    </Td>
+                    <Td>
+                        {"$$\\tag{1} x + y = 3$$"}
+                    </Td>
+                </Tr2>
+                <Tr1>
+                    <Td>
+                        <Latex>
                             {"${}_nC_r$"}
                         </Latex>
                     </Td>
@@ -1221,11 +1242,11 @@ const TexInstruction:React.VFC = () => {
                 <Tr1>
                     <Td>
                         <Latex>
-                            {"$\\overbrace{2^3}^{\\text{2の3乗}}$"}
+                            {"$\\overbrace{2 \\times 2 \\times 2}^{\\text{2の3乗}}$"}
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\overbrace{2^3}^{\\text{2の3乗}}$"}
+                        {"$\\overbrace{2 \\times 2 \\times 2}^{\\text{2の3乗}}$"}
                     </Td>
                 </Tr1>
                 <Tr2>
@@ -1278,16 +1299,6 @@ const TexInstruction:React.VFC = () => {
                         {"$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$"}
                     </Td>
                 </Tr2>
-                <Tr1>
-                    <Td>
-                        <Latex>
-                            {"$\\tag{1} x + y = 3$"}
-                        </Latex>
-                    </Td>
-                    <Td>
-                        {"$\\tag{1} x + y = 3$"}
-                    </Td>
-                </Tr1>
             </Table>
             <Subtitle>文字のスタイル</Subtitle>
             <Table>
@@ -1359,7 +1370,7 @@ const TexInstruction:React.VFC = () => {
                 </Tr1>
                 <Tr2>
                     <Desctd>
-                        {"$\n\\gdef\\関数名#1#2{表示} //定義(#数字は引数の数だけ)//\n\\関数名{引数１}{引数２} //実行//\n$"}
+                        {"$\n　　\\gdef\\関数名#1#2{表示} //定義(#数字は引数の数だけ)//\n　　\\関数名{引数１}{引数２} //実行//\n$"}
                     </Desctd>
                 </Tr2>
             </Table>
@@ -1379,7 +1390,7 @@ const TexInstruction:React.VFC = () => {
                         </Latex>
                     </Td>
                     <Td>
-                        {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}}\\d{y}{x}$"}
+                        {"$\\gdef\\d#1#2{\\frac{d#1}{d#2}}\n\n\\d{y}{x}$"}
                     </Td>
                 </Tr2>
             </Table>
