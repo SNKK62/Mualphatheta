@@ -263,7 +263,7 @@ const  Make:React.VFC<Props> = (props: Props) => {
         <>
             <Wrapper className='box'>
                 <Message>
-                    <Latex>{props.type}</Latex><br/><Warn>texのテキストは$(半角)で囲んでください</Warn>
+                    <Latex>{props.type}</Latex><br/><Warn>KaTexのテキストは$(半角)で囲んでください</Warn>
                     <Warn>独立式は$$で囲んでください</Warn>
                 </Message>
             <Textareawrapper>

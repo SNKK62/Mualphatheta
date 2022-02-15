@@ -60,10 +60,10 @@ const TexInstruction:React.VFC = () => {
     return (
         <Wrapper className='box'>
             <Title>
-                Texテキストの書き方
+                KaTexテキストの書き方
             </Title>
             <Description>
-                よく使う数式や記号などのTex記法です
+                よく使う数式や記号などのKaTex記法です
             </Description>
             <Subtitle>
                 ギリシャ文字
@@ -1387,6 +1387,9 @@ const TexInstruction:React.VFC = () => {
                     </Desctd>
                 </Tr2>
             </Lasttable>
+            <Description>
+                ここにないものについては各自調べてください
+            </Description>
         </Wrapper>
     )
 }

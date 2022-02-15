@@ -49,8 +49,8 @@ function Sidebar(props: Props) {
       props.handledelete()
     } else if (s === 'トップ') {
       navigate('/')
-    } else if (s === 'Texの書き方') {
-      navigate('/tex')
+    } else if (s === 'KaTexの書き方') {
+      navigate('/katex')
     }
   }
   const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -68,7 +68,7 @@ function Sidebar(props: Props) {
       <Divider /></>}
       {props.logged_in.bool ? <>
         <List>
-          {['トップ','プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿', 'Texの書き方'].map((text, index) => (
+          {['トップ','プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿', 'KaTexの書き方'].map((text, index) => (
             <ListItem button key={index} onClick={() => { toPage(text) }}  >
               <ListItemText primary={text} sx={{ marginLeft: '20px' }} />
             </ListItem>

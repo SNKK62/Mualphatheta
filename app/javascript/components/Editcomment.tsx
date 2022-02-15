@@ -100,7 +100,7 @@ const  Editcomment:React.VFC<Props> = (props: Props) => {
             dataState.isLoading ? <Loadingwrapper><Loading/></Loadingwrapper> : 
                     <Wrapper className='box'>
                         <Message>
-                            コメントの編集<br/><Warn>texのテキストは$(半角)で囲んでください</Warn>
+                            コメントの編集<br/><Warn>KaTexのテキストは$(半角)で囲んでください</Warn>
                         </Message>
                     <Textareawrapper>
                     <TextareaAutosize

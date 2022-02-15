@@ -296,7 +296,7 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
             dataState.isLoading ? <Loadingwrapper><Loading /></Loadingwrapper> : 
                 <Wrapper className='box'>
                         <Message>
-                            {props.type}の編集<br/><Warn>texのテキストは$(半角)で囲んでください</Warn><Warn>独立式は$$で囲んでください</Warn>
+                            {props.type}の編集<br/><Warn>KaTexのテキストは$(半角)で囲んでください</Warn><Warn>独立式は$$で囲んでください</Warn>
                         </Message>
                         {props.ifproblem && <>
                 <Inputwrapper>
