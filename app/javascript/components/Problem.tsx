@@ -255,7 +255,7 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
         navigate('/problems/'+dataState.post.problem.problem_id)
     }
     const toedit = () => {
-        navigate('/problems/'+id+'/edit')
+        ifproblem ?  navigate('/problems/'+id+'/edit') : navigate('/solutions/'+id+'/edit')
     }
     const handledelete = () => {
         axios.delete(url + '/problems/' + id).then(() => {
