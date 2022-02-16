@@ -88,8 +88,8 @@ skip_before_action :verify_authenticity_token
     def search
         query = params[:category]
         times = params[:times].to_i
-        ifend = Problem.where('category LIKE ?', '%'+query+'%').order(updated_at: :DESC).length < 50*times+50
-        @problems = Problem.where('category LIKE ?', '%'+query+'%').order(updated_at: :DESC).limit(50).offset(50*times)
+        ifend = Problem.where('category LIKE ?', '%'+query+'%').or(Problem.where('title LIKE ?', '%'+query+'%')).order(updated_at: :DESC).length < 50*times+50
+        @problems = Problem.where('category LIKE ?', '%'+query+'%').or(Problem.where('title LIKE ?', '%'+query+'%')).order(updated_at: :DESC).limit(50).offset(50*times)
         render json: {problem: @problems, ifend: ifend},methods: [:user_image,:user_name,:update_time_of_problem]
     end
 
