@@ -124,7 +124,7 @@ const Searchproblemsub:React.VFC<Props> = (props: Props) => {
                                             <Divider key={val.id.to_String+'divider1'} />
                                             <ListItemText key={val.id.to_String+'item3'} primary={'#'+val.category} primaryTypographyProps={{ fontSize: '14px',paddingTop: '5px', paddingLeft: '30px', color: 'blue' }} />
                                             <Title>{ val.title}</Title>
-                                            <Count>{val.plike_count }いいね</Count>
+                                            <Count>{val.solutions_count}解答　{ val.comments_count}コメント　{val.plike_count }いいね</Count>
                                         </List>
                                     </ListItem>
                                 </ListItemButton>

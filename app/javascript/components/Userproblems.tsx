@@ -115,7 +115,7 @@ const Userproblems:React.VFC = () => {
                                         <Date>{val.update_time_of_problem }</Date>
                                         <Title>{val.title }</Title>
                                         <Tag>#{ val.category}</Tag>
-                                        <Count>{ val.plike_count}いいね</Count>
+                                        <Count>{val.solutions_count}解答　{ val.comments_count}コメント　{ val.plike_count}いいね</Count>
                                     </Listwrapper>
                                 </ListItemButton>
                                 <Divider key={val.id.to_String+'divider2'}/>

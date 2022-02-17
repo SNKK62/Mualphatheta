@@ -60,10 +60,11 @@ const Message = styled.div`
 const Button = styled(LoadingButton)`
     width: 150px;
     text-align: center;
-    margin: 20px atuo 500px auto;
+    margin: 20px atuo 20px auto;
 `
 const Recommend = styled.div`
     margin:auto;
+    margin-top: 400px;
     padding: 10px;
     text-align: center;
 `
@@ -231,7 +232,7 @@ const Signup: React.FC<Props> = (props) => {
                 登録
             </Button>
             <Recommend>
-                アカウントをお持ちの方は<Tologin onClick={() => {navigate('/login')}}>ログイン画面へ</Tologin>
+                アカウントをお持ちの方は→<Tologin onClick={() => {navigate('/login')}}>ログイン画面へ</Tologin>
             </Recommend>
         </Wrapper>
     )

@@ -211,7 +211,7 @@ const Feed: React.VFC<Props> = (props) => {
                                             <Divider key={val.id.to_String+'divider1'} />
                                             <Title>{ val.title}</Title>
                                             <ListItemText key={val.id.to_String+'item2'} primary={'#'+val.category } primaryTypographyProps={{ fontSize: '14px', paddingLeft: '30px', color: 'blue' }} />
-                                            <Count>{ val.plike_count}いいね</Count>
+                                            <Count>{val.solutions_count }解答　{val.comments_count }コメント　{ val.plike_count}いいね</Count>
                                         </List>
                                     </ListItem>
                                 </ListItemButton>
