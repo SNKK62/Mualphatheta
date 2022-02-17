@@ -118,9 +118,23 @@ const TitleError = styled.div`
     font-size: 14px
     width: 80%;
 `
+const Description = styled.div`
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(230,230,230,0.4);
+    margin: 20px auto;
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 30px 10px 30px 10px;
+`
+
 
 const  Make:React.VFC<Props> = (props: Props) => {
-    const textref = useRef(null);
+    const [text, setText] = useState('');
     const [image1, setImage1] = useState('');
     const [image2, setImage2] = useState('');
     const [image3, setImage3] = useState('');
@@ -185,13 +199,12 @@ const  Make:React.VFC<Props> = (props: Props) => {
             }
         }
         const data = new FormData()
-        const text: any = textref.current;
         var create_url = '';
         var new_url:string = '';
         if (props.ifproblem) {
             const keyword: any = keywordref.current;
             const title: any = titleref.current;
-            data.append('problem[description]', text.value);
+            data.append('problem[description]', text);
             data.append('problem[category]', keyword.childNodes[0].value);
             data.append('problem[title]', title.childNodes[1].childNodes[0].value);
             data.append('problem[image1]', image1);
@@ -200,7 +213,7 @@ const  Make:React.VFC<Props> = (props: Props) => {
             create_url = url + '/problems';
             new_url = '/problems/'
         } else {
-            data.append('solution[description]', text.value);
+            data.append('solution[description]', text);
             data.append('solution[image1]', image1);
             data.append('solution[image2]', image2);
             data.append('solution[image3]', image3);
@@ -279,12 +292,15 @@ const  Make:React.VFC<Props> = (props: Props) => {
                 </Inputwrapper></>
             }    
                 <TextareaAutosize
-                    aria-label="minimum height"
-                    minRows={5}
-                    style={{ width: '80%' }}
-                ref={textref}
+                        aria-label="minimum height"
+                        minRows={5}
+                        style={{ width: '80%' }}
+                        onChange={e => { setText(e.target.value) }}
                     />
-            </Textareawrapper>
+                </Textareawrapper>
+                <Description className='tetete'>
+                    <Latex>{ text}</Latex>
+                </Description>
                 {props.ifproblem && (<>
                     <Categorywrapper>
                         <Keyword>キーワード:</Keyword>

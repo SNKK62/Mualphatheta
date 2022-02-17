@@ -62,6 +62,14 @@ const Button = styled(LoadingButton)`
     text-align: center;
     margin: 20px atuo 500px auto;
 `
+const Recommend = styled.div`
+    margin:auto;
+    padding: 10px;
+    text-align: center;
+`
+const Tologin = styled.div`
+    color: blue;
+`
 const Defaultdiv = styled.div`
     width: 200px;
     margin: 30px auto 20px auto;;
@@ -222,6 +230,9 @@ const Signup: React.FC<Props> = (props) => {
             <Button loading={load} onClick={handle} variant="outlined" >
                 登録
             </Button>
+            <Recommend>
+                アカウントをお持ちの方は<Tologin onClick={() => {navigate('/login')}}>ログイン画面へ</Tologin>
+            </Recommend>
         </Wrapper>
     )
 }
