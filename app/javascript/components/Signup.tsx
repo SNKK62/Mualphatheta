@@ -60,7 +60,7 @@ const Message = styled.div`
 const Button = styled(LoadingButton)`
     width: 150px;
     text-align: center;
-    margin: 20px auto;
+    margin: 200px auto;
 `
 const Defaultdiv = styled.div`
     width: 200px;
