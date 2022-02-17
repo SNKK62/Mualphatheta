@@ -327,7 +327,7 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
                 </Buttonwrapper>}
             </Tagdiv>        
             {dataState.post.problem.description.length > 0 &&
-            <Description id='tex'><Latex >{dataState.post.problem.description}</Latex></Description>
+            <Description id='tex' className='tetete' ><Latex>{dataState.post.problem.description}</Latex></Description>
             }
                 <Slidewrapper>
                     {!(!dataState.post.problem.image1_url && !dataState.post.problem.image2_url && !dataState.post.problem.image3_url && !dataState.post.problem.image1s_url && !dataState.post.problem.image2s_url && !dataState.post.problem.image3s_url) &&

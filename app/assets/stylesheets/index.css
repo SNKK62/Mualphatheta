@@ -14,7 +14,9 @@ body {
 body::-webkit-scrollbar{
   display: none;
 }
-
+.tetete {
+  overflow-x: auto;
+}
 .box {
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
