@@ -78,7 +78,7 @@ skip_before_action :verify_authenticity_token
     
     def destroy
         problem = Problem.find(params[:id])
-        if problem.user.logged_in 
+        if current_user.id == problem.user.id
             if problem.destroy
                 render json: {message: '削除しました'}
             else
