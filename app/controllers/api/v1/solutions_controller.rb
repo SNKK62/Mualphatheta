@@ -79,10 +79,12 @@ class Api::V1::SolutionsController < ApplicationController
     
     def destroy
         solution = Solution.find(params[:id])
-        if solution.destroy
-            render json: {message: '削除しました'}
-        else
-            render json: {error: solution.errors}, status: 422
+        if current_user.id == solution.user.id
+            if solution.destroy
+                render json: {message: '削除しました'}
+            else
+                render json: {error: solution.errors}, status: 422
+            end
         end
     end
 

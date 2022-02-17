@@ -41,10 +41,12 @@ skip_before_action :verify_authenticity_token
 
     def destroy
         comment = Comment.find(params[:id])
-        if comment.destroy
-            render json: {message: '削除しました'}
-        else
-            render json: {error: comment.errors}, status: 422
+        if current_user.id == comment.user.id
+            if comment.destroy
+                render json: {message: '削除しました'}
+            else
+                render json: {error: comment.errors}, status: 422
+            end
         end
     end
     def search_from_problem 
