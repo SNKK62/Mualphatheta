@@ -64,7 +64,7 @@ const Button = styled(LoadingButton)`
 `
 const Recommend = styled.div`
     margin:auto;
-    margin-top: 400px;
+    margin-top: 170px;
     padding: 10px;
     text-align: center;
 `
