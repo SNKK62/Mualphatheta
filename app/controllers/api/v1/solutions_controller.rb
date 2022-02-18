@@ -88,7 +88,7 @@ class Api::V1::SolutionsController < ApplicationController
             end
         end
     end
-
+    #from problem
     def search 
         times =params[:times].to_i
         problem = Problem.find(params[:id])
@@ -97,6 +97,11 @@ class Api::V1::SolutionsController < ApplicationController
         render json: {solution: @solutions, ifend: ifend}, methods: [:title,:user_image,:user_name,:update_time_of_solution]
     end
 
+    def ideal_solution
+        problem = Problem.find(params[:id])
+        @solutions = problem.solutions.where('user_id = ?', problem.user.id)
+        render json: {solution: @solutions}, methods: [:title,:user_image,:user_name,:update_time_of_solution]
+    end
     private
         def solution_params
             params.require(:solution).permit(:description,:image1,:image2,:image3)

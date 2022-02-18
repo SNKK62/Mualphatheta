@@ -125,7 +125,7 @@ const Feed: React.VFC<Props> = (props) => {
         var mount = true
         if (mount) {
             setLoad(true)
-            window.scroll({ top: 0, behavior: "auto" })
+            // window.scroll({ top: 0, behavior: "auto" })
             setTimes(0)
             axios.get(search_url + type + '/' + 0 + '/').then(resp => {
                 // console.log(resp.data.problem)

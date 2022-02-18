@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Wrapper from './Wrapper';
 import Latex from 'react-latex-next';
 import '../../assets/stylesheets/index.css';
+import MediaQuery from 'react-responsive';
 
 
 const Title = styled.div`
@@ -54,11 +55,85 @@ const Desctd = styled(Td)`
     word-wrap: break-word;
     text-align: left;  
 `
+const Tolist = styled.ul`
+    margin: 10px;
+`
+const Toitem = styled.li`
+    color: blue;
+    text-decoration: underline;
+    margin: 5px 0px 10px 30px;
+    cursor: pointer;
+    text-align: left;
+    width: 120px;
+`
+
+const Button_pc = styled.span`
+    border-radius: 50%;
+    position: fixed;
+    width: 50px;
+    height: 45px;
+    bottom: 10px;
+    right: 37vw;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid black;
+    z-index: 30;
+    padding-top: 5px;
+    background-color: white;
+    cursor: pointer;
+`
+const Button_mb = styled.span`
+    border-radius: 50%;
+    position: fixed;
+    width: 50px;
+    height: 45px;
+    bottom: 10px;
+    right: 4vw;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid black;
+    z-index: 30;
+    padding-top: 5px;
+    background-color: white;
+    cursor: pointer;
+`
 
 
-const TexInstruction:React.VFC = () => {
-    return (
-        <Wrapper className='box'>
+
+const TexInstruction: React.VFC = () => {
+    const Scrollto = (e: string) => {
+        const wrapper: HTMLElement | null = document.getElementById('wrap');
+        const target: HTMLElement | null = document.getElementById(e);
+        if (target && wrapper) {
+            const rect = target.getBoundingClientRect().top;
+            const offset = window.pageYOffset;
+            const gap = 75;
+            const target_place = rect + offset - gap;
+            wrapper.scrollTo({
+                top: target_place,
+                behavior: 'smooth',
+            });
+        }
+    }
+    const Totop = () => {
+        const wrapper: HTMLElement | null = document.getElementById('wrap');
+        if (wrapper) {
+            wrapper.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+    }
+    return (<>
+        <Wrapper id='wrap' className='box'>
+            <MediaQuery query='(min-width:1025px)'>
+                <Button_pc onClick={(e) => { e.preventDefault(); Totop() }}>↑</Button_pc>
+            </MediaQuery>
+            <MediaQuery query='(max-width:1024px)'>
+                <Button_mb onClick={(e) => { e.preventDefault(); Totop() }}>↑</Button_mb>
+            </MediaQuery>
             <Title>
                 KaTexテキストの書き方
             </Title>
@@ -66,7 +141,18 @@ const TexInstruction:React.VFC = () => {
                 よく使う数式や記号などのKaTex記法です
             </Description>
             <Subtitle>
-                ギリシャ文字
+                目次
+            </Subtitle>
+            <Tolist>
+                <Toitem onClick={() => {Scrollto('greek1')}}>ギリシャ文字1</Toitem>
+                <Toitem onClick={() => { Scrollto('greek2') }}>ギリシャ文字2</Toitem>
+                <Toitem onClick={() => { Scrollto('single') }} >単記号</Toitem>
+                <Toitem onClick={() => { Scrollto('equation') }}>数式・演算子</Toitem>
+                <Toitem onClick={() => {Scrollto('style')}} >文字のスタイル</Toitem>
+                <Toitem onClick={() => {Scrollto('macro')}} >マクロ</Toitem>
+            </Tolist>
+            <Subtitle id='greek1'>
+                ギリシャ文字1
             </Subtitle>
             <Table>
                 <Tr1>
@@ -516,7 +602,7 @@ const TexInstruction:React.VFC = () => {
                     </Td>
                 </Tr1>
             </Table>
-            <Subtitle>
+            <Subtitle id='greek2'>
                 ギリシャ文字２
             </Subtitle>
             <Table>
@@ -579,7 +665,7 @@ const TexInstruction:React.VFC = () => {
                     </Td>
                 </Tr2>
             </Table>
-            <Subtitle>
+            <Subtitle id='single'>
                 単記号
             </Subtitle>
             <Table>
@@ -1012,7 +1098,7 @@ const TexInstruction:React.VFC = () => {
                     </Td>
                 </Tr1>
             </Table>
-            <Subtitle>数式・演算子</Subtitle>
+            <Subtitle id='equation'>数式・演算子</Subtitle>
             <Table>
                 <Tr1>
                     <Th>
@@ -1303,7 +1389,7 @@ const TexInstruction:React.VFC = () => {
                     </Td>
                 </Tr1>
             </Table>
-            <Subtitle>文字のスタイル</Subtitle>
+            <Subtitle id='style'>文字のスタイル</Subtitle>
             <Table>
                 <Tr1>
                     <Th>
@@ -1364,7 +1450,7 @@ const TexInstruction:React.VFC = () => {
                     </Td>
                 </Tr2>
             </Table>
-            <Subtitle>マクロ</Subtitle>
+            <Subtitle id='macro'>マクロ</Subtitle>
             <Table>
                 <Tr1>
                     <Th>
@@ -1401,7 +1487,7 @@ const TexInstruction:React.VFC = () => {
                 上記以外は各自調べてください
             </Description>
         </Wrapper>
-    )
+  </>  )
 }
 
 export default TexInstruction

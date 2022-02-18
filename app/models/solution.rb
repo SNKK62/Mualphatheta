@@ -46,6 +46,10 @@ class Solution < ApplicationRecord
         problem.title
     end
 
+    def iflike 
+        user.slike?(problem)
+    end
+
     def update_time_of_solution
         updated_at.strftime("%Y/%m/%d")
     end
