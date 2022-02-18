@@ -92,14 +92,14 @@ skip_before_action :verify_authenticity_token
         times = params[:times].to_i
         ifend = Problem.where('category LIKE ?', '%'+query+'%').or(Problem.where('title LIKE ?', '%'+query+'%')).order(updated_at: :DESC).length < 50*times+50
         @problems = Problem.where('category LIKE ?', '%'+query+'%').or(Problem.where('title LIKE ?', '%'+query+'%')).order(updated_at: :DESC).limit(50).offset(50*times)
-        render json: {problem: @problems, ifend: ifend},methods: [:ideal, :user_image,:user_name,:update_time_of_problem]
+        render json: {problem: @problems, ifend: ifend},methods: [:user_image,:user_name,:update_time_of_problem]
     end
 
     def search_none
         times = params[:times].to_i
         @problems = Problem.all.order(updated_at: :DESC).limit(50).offset(50*times)
         ifend = Problem.all.order(updated_at: :DESC).length < 50*times+50
-        render json: {problem: @problems, ifend: ifend}, methods: [:ideal, :user_image,:user_name,:update_time_of_problem]
+        render json: {problem: @problems, ifend: ifend}, methods: [:user_image,:user_name,:update_time_of_problem]
     end
 
     def user_problem
@@ -107,14 +107,14 @@ skip_before_action :verify_authenticity_token
         user = User.find(params[:id])
         ifend = user.problems.length < 50*times+50
         @problems = user.problems.order(updated_at: :DESC).limit(50).offset(50*times)
-        render json: {problem: @problems, ifend: ifend}, methods: [:ideal, :user_name,:update_time_of_problem]
+        render json: {problem: @problems, ifend: ifend}, methods: [:user_name,:update_time_of_problem]
     end
 
     def rank_problem
         times = params[:times].to_i
         @problems = Problem.all.sort{|a,b| b.likes.size <=> a.likes.size }
         ifend = Problem.all.size < 50*times+50
-        render json: {problem: @problems[50*times,50], ifend: ifend}, methods: [:ideal, :user_image, :user_name, :update_time_of_problem]
+        render json: {problem: @problems[50*times,50], ifend: ifend}, methods: [:user_image, :user_name, :update_time_of_problem]
     end
 
     def recommend_problem
@@ -122,7 +122,7 @@ skip_before_action :verify_authenticity_token
         ifend = Problem.all.size < 50*times+50
         followings_ids = current_user.followings.ids
         @problems = Problem.all.sort_by{|a| [id_of_following?(a.user_id,followings_ids),-a.updated_at.to_i]}
-        render json: {problem: @problems[50*times,50], ifend: ifend}, methods: [:ideal, :user_image, :user_name, :update_time_of_problem]
+        render json: {problem: @problems[50*times,50], ifend: ifend}, methods: [ :user_image, :user_name, :update_time_of_problem]
     end
 
 
