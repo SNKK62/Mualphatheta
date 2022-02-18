@@ -12,7 +12,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Avatar from '@mui/material/Avatar';
 import Loading from './Loading';
 import Loadingwrapper from './Loadingwrapper';
-import { useLocation ,useNavigate} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -55,7 +55,7 @@ const Searchproblem:React.VFC = () => {
     const [load, setLoad] = useState(true)
     const [circular, setCircular] = useState(false);
     const [disable, setDisable] = useState(false);
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const query = new URLSearchParams(useLocation().search)
     
     useEffect(() => {
@@ -77,7 +77,9 @@ const Searchproblem:React.VFC = () => {
     }, []);
     
     const toProblem = (id: number) => {
-        navigate('/problems/'+id)
+        // navigate('/problems/'+id)
+        window.open('/problems/'+String(id),'_blank')
+
     }
     
     const handlescroll = () => {

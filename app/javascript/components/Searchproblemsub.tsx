@@ -14,7 +14,7 @@ import Loading from './Loading';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CircularProgress from '@mui/material/CircularProgress';
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
 
 
 const Loading2 = styled(Loading)`
@@ -60,10 +60,11 @@ const Searchproblemsub:React.VFC<Props> = (props: Props) => {
     const [circular, setCircular] = useState(false);
     const [disable, setDisable] = useState(false);
     var real_url = ''
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const toProblem = (id: number) => {
-        navigate('/problems/'+String(id))
+        // navigate('/problems/'+String(id))
+        window.open('/problems/'+String(id),'_blank')
     }
     
     useEffect(() => {
