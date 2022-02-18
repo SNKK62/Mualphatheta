@@ -258,12 +258,21 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
         props.ifproblem ?  navigate('/problems/'+id+'/edit') : navigate('/solutions/'+id+'/edit')
     }
     const handledelete = () => {
-        axios.delete(url + '/problems/' + id).then(() => {
-            setModal(false)
-            navigate('/users/' + props.logged_in.id, { replace: true })
-        }).catch (e => {
-            console.log(e)
-        })
+        if (props.ifproblem) {
+            axios.delete(url + '/problems/' + id).then(() => {
+                setModal(false)
+                navigate('/users/' + props.logged_in.id, { replace: true })
+            }).catch(e => {
+                console.log(e)
+            })
+        } else {
+            axios.delete(url + '/solutions/' + id).then((resp) => {
+                setModal(false)
+                navigate('/problems/'+resp.data.problem_id , { replace: true })
+            }).catch(e => {
+                console.log(e)
+            })
+        }
     }
     const handlelike = () => {
         setLike(true)
