@@ -16,7 +16,7 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CircularProgress from '@mui/material/CircularProgress';
 import Wrapper from './Wrapper';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -119,7 +119,7 @@ const Feed: React.VFC<Props> = (props) => {
         setAnchorEl(null);
     }
     var real_url = ''
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
     useEffect(() => {
         var mount = true
@@ -143,7 +143,8 @@ const Feed: React.VFC<Props> = (props) => {
     }, [search_url,type]);
     
     const toProblem = (id: number) => {
-        navigate('/problems/'+String(id))
+        // navigate('/problems/'+String(id))
+        window.open('/problems/'+String(id),'_blank')
     }
     
     const handlescroll = () => {
