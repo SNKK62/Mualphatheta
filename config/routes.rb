@@ -23,6 +23,7 @@ Rails.application.routes.draw do
           post '/like', to: 'likes#problem_create'
           delete '/unlike', to: 'likes#problem_destroy'
           get '/iflike', to: 'likes#ifplike'
+          get '/ideal', to: 'solutions#ideal_solution'
           # post '/comments/' => 'comments#problem_create'
         end
         collection do

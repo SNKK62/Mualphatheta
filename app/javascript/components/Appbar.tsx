@@ -16,6 +16,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Sidebar from './Sidebar';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import InputBase from '@mui/material/InputBase';
 import MediaQuery from 'react-responsive';
 import Latex from 'react-latex-next';
@@ -55,10 +56,16 @@ function Appbar(props: Props) {
     const { pathname } = useLocation();
     const patharray: string[] = useMemo(() => {
         return ['/users/:id','/users/:id/solutions','/users/:id/followers','/users/:id/followings','/users/:id/edit','/problems/:id/solutions/new','/problems/:id/solutions','/problems/:id/edit','/problems/:id/comments/new','/solutions/:id','/solutions/:id/edit','/solutions/:id/comments/new','/comments/:id','/comments/:id/edit']
-    },[])
+    }, [])
     const match = useMemo(() => {
         return patharray.find((path) => !!matchPath(path, pathname));
     }, [pathname]);
+    const problem_path: string[] = useMemo(() => {
+        return ['/problems/:id']
+    }, [])
+    const problem_match = useMemo(() => {
+        return problem_path.find((path) => !!matchPath(path, pathname))
+    }, [pathname])
     const navigate = useNavigate();
     const ifsearch = useMatch('/search')
     const ifsearchprocess = useMatch('/searchprocess')
@@ -138,6 +145,18 @@ function Appbar(props: Props) {
                                         onClick={() => { navigate(-1) }}
                                     >
                                         <ArrowBackIcon />
+                                    </IconButton>
+                                }
+                                {problem_match &&
+                                    <IconButton
+                                        size="medium"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        color="inherit"
+                                        onClick={() => { window.close(); }}
+                                    >
+                                        <CloseRoundedIcon />
                                     </IconButton>
                                 }
                             <MediaQuery query='(max-width: 600px)'>

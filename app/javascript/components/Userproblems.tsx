@@ -9,7 +9,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Loadingwrapper = styled.div`
@@ -48,6 +48,9 @@ const Date = styled.div`
     padding-right: 15px;
     color: rgb(200,200,200);
 `
+const Redtext = styled.p`
+    color: red;
+`
 
 const Userproblems:React.VFC = () => {
     const { id } = useParams();
@@ -57,7 +60,7 @@ const Userproblems:React.VFC = () => {
     const [circular, setCircular] = useState(false);
     const [disable, setDisable] = useState(false);
     var real_url = ''
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     
     useEffect(() => {
         var mount = true
@@ -78,7 +81,8 @@ const Userproblems:React.VFC = () => {
     }, []);
     
     const toProblem = (id: number) => {
-        navigate('/problems/'+String(id))
+        // navigate('/problems/'+String(id))
+        window.open('/problems/'+String(id))
     }
     
     const handlescroll = () => {
@@ -110,12 +114,12 @@ const Userproblems:React.VFC = () => {
                         <Divider key='divider1'/>
                         {problems.map((val: any,index) => {
                             return (<div key={index}>
-                                <ListItemButton sx={{ padding: '0', minHeight: '90px' }} onClick={() => { toProblem(val.id) }} >
+                                <ListItemButton sx={{ padding: '0', minHeight: '150px' }} onClick={() => { toProblem(val.id) }} >
                                     <Listwrapper>
                                         <Date>{val.update_time_of_problem }</Date>
                                         <Title>{val.title }</Title>
                                         <Tag>#{ val.category}</Tag>
-                                        <Count>{val.solutions_count}解答　{ val.comments_count}コメント　{ val.plike_count}いいね</Count>
+                                        <Count>{val.ideal ? <Redtext>模範解答(想定解)有り</Redtext> : <Redtext>模範解答なし</Redtext>  }　{val.solutions_count}解答　{ val.comments_count}コメント　{ val.plike_count}いいね</Count>
                                     </Listwrapper>
                                 </ListItemButton>
                                 <Divider key={val.id.to_String+'divider2'}/>

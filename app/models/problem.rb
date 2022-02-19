@@ -38,10 +38,6 @@ class Problem < ApplicationRecord
         user.plike?(problem)
     end
 
-    def ideal
-        solutions.exists?('user_id = ?', user.id)
-    end
-
     def update_time_of_problem
         updated_at.strftime("%Y/%m/%d")
     end

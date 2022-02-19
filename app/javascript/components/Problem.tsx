@@ -15,6 +15,8 @@ import Button from '@mui/material/Button';
 import Comments from './Comments'
 import Latex from 'react-latex-next';
 import Modal from './Modal'
+import Idealsolutions from './Idealsolutions';
+import Solutions from './Solutions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 // import { CircularProgress } from '@material-ui/core';
@@ -176,6 +178,27 @@ const Title = styled.div`
     padding: 0 10px;
     white-space: pre-wrap;
     word-wrap: break-word;
+`
+const Tagtitle = styled.div`
+    width: calc(100% - 11px);
+    height: 30px;
+    text-align: left;
+    background-color: rgb(240,240,240);
+    padding-left: 10px;
+    padding-top: 5px;
+    border-top: 1px solid rgb(200,200,200);
+    border-right: 1px solid rgb(200,200,200);
+`
+const Tagtitle_red = styled.div`
+    width: calc(100% - 11px);
+    height: 30px;
+    text-align: left;
+    background-color: rgb(240,240,240);
+    padding-top: 5px;
+    padding-left: 10px;
+    border-top: 1px solid rgb(200,200,200);
+    border-right: 1px solid rgb(200,200,200);
+    color: red;
 `
 const initialState = {
     isLoading: true,
@@ -382,15 +405,26 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
                             <FavoriteBorderIcon />
                         </IconButton>}
                             </>}  </Iconwrapper> <Like id='count'>{count}いいね・{dataState.post.problem.comments_count}件のコメント{props.ifproblem && '・'+dataState.post.problem.solutions_count+'件の解答' }</Like>
-                </Buttonarea2>    
+                    </Buttonarea2>    
                 <Buttonarea>
                     {(props.ifproblem && !loadlike) &&<>
-                        <Button variant='text' onClick={() => { navigate('/problems/' + id + '/solutions') }} sx={{color: 'red'}}>解答を見る</Button>
+                        {/* <Button variant='text' onClick={() => { navigate('/problems/' + id + '/solutions') }} sx={{color: 'red'}}>解答を見る</Button> */}
                         <Button variant='text' onClick={() => { navigate('/problems/' + id + '/solutions/new') }}>解答する</Button>
                     </>}
                     <Button variant='text' onClick={() => {props.ifproblem ? navigate('/problems/'+id+'/comments/new') : navigate('/solutions/'+id+'/comments/new')}}>コメントする</Button>
                 </Buttonarea>
-                <Comments ifproblem={props.ifproblem}/>
+                {dataState.post.problem.ideal && <>
+                    <Tagtitle_red>模範解答(想定解)</Tagtitle_red>
+                    <Idealsolutions/>
+                </>}
+                {dataState.post.problem.comments_count > 0 && <>
+                    <Tagtitle>コメント</Tagtitle>    
+                    <Comments ifproblem={props.ifproblem}/>
+                </>}
+                {dataState.post.problem.solutions_count > 0 && <>
+                    <Tagtitle>解答</Tagtitle>
+                    <Solutions />
+                </>}    
             </Wrapper></>
             }
     </>)

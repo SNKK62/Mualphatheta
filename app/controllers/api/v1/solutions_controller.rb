@@ -27,6 +27,11 @@ class Api::V1::SolutionsController < ApplicationController
             @solution.image3.attach(solution_params[:image3])
         end
         if @solution.save
+            #update Ideal
+            problem = @solution.problem
+            if current_user.id == problem.user.id
+                problem.update(ideal: problem.solutions.exists?(user_id: problem.user.id))
+            end
             render json: {id: @solution.id}
         else
             render json: {error: @solution.errors}, status: 422
@@ -80,8 +85,12 @@ class Api::V1::SolutionsController < ApplicationController
     def destroy
         solution = Solution.find(params[:id])
         problem_id = solution.problem.id
+        problem = solution.problem
         if current_user.id == solution.user.id
             if solution.destroy
+                if current_user.id == problem.user.id
+                    problem.update(ideal: problem.solutions.exists?(user_id: problem.user.id))
+                end
                 render json: {message: '削除しました',problem_id: problem_id }
             else
                 render json: {error: solution.errors}, status: 422

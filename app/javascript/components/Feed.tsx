@@ -90,6 +90,9 @@ const Shadow = styled.div`
         left: 20vw;
     }
 `
+const Redtext = styled.p`
+    color: red;
+`
 interface Props {
     logged_in: {
         bool: boolean,
@@ -204,7 +207,7 @@ const Feed: React.VFC<Props> = (props) => {
                         {problems.map((val: any,index) => {
                             return (<div key={index}>
                                 <ListItemButton sx={{ padding: '0' }} onClick={() => {toProblem(val.id)}} >
-                                    <ListItem  key={val.id.to_String+'item'} sx={{ minHeight: '140px', padding: '0' }}>
+                                    <ListItem  key={val.id.to_String+'item'} sx={{ minHeight: '150px', padding: '0' }}>
                                         <Avatar key={val.id.to_String+'avatar'} alt={val.name} src={val.user_image} sx={{ height: '40px', width: '40px', marginLeft: '10px' }} />
                                         <List key={val.id.to_String+'list'} sx={{ width: '80%', paddingLeft: '10px', padding: '0 0 0 5px' }}>
                                             <Date>{val.update_time_of_problem }</Date>
@@ -212,7 +215,7 @@ const Feed: React.VFC<Props> = (props) => {
                                             <Divider key={val.id.to_String+'divider1'} />
                                             <Title>{ val.title}</Title>
                                             <ListItemText key={val.id.to_String+'item2'} primary={'#'+val.category } primaryTypographyProps={{ fontSize: '14px', paddingLeft: '30px', color: 'blue' }} />
-                                            <Count>{val.solutions_count }解答　{val.comments_count }コメント　{ val.plike_count}いいね</Count>
+                                            <Count>{val.ideal ? <Redtext>模範解答(想定解)有り</Redtext> : <Redtext>模範解答なし</Redtext>  }　{val.solutions_count }解答　{val.comments_count }コメント　{ val.plike_count}いいね</Count>
                                         </List>
                                     </ListItem>
                                 </ListItemButton>
