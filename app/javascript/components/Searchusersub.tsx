@@ -98,7 +98,7 @@ const Searchusersub:React.VFC<Props> = (props: Props) => {
                         {users.map((val: any,index) => {
                             return (<div key={index}>
                                 <ListItemButton  sx={{ padding: '0' }} onClick={() => {toUsers(val.id)}}>
-                                    <ListItem  key={val.id.to_String+'item'} sx={{ height: '90px', padding: '0' }}>
+                                    <ListItem  key={val.id.to_String+'item'} sx={{ minHeight: '90px', padding: '0' }}>
                                         <Avatar key={val.id.to_String+'avatar'} alt={val.name} src={val.image_url} sx={{ height: '40px', width: '40px', marginLeft: '10px' }} />
                                         <List key={val.id.to_String+'list'} sx={{ width: '80%', paddingLeft: '10px', padding: '0 0 0 5px' }}>
                                             <ListItemText  key={val.id.to_String+'item1'} primary={val.name} primaryTypographyProps={{ fontSize: '23px', paddingLeft: '10px', textAlign: 'center',paddingTop: '5px' }} />
