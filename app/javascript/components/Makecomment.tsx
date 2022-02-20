@@ -7,8 +7,9 @@ import { useNavigate, useParams, useMatch } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import 'katex/dist/katex';
-import Latex from 'react-latex-next';
+// import Latex from 'react-latex-next';
 import '../../assets/stylesheets/index.css';
+const  Latex = require('react-latex');
 
 const Textareawrapper = styled.div`
     margin: 20px auto 30px auto;

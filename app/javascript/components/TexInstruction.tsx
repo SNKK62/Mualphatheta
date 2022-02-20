@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Wrapper from './Wrapper';
-import Latex from 'react-latex-next';
+// import Latex from 'react-latex-next';
 import '../../assets/stylesheets/index.css';
 import MediaQuery from 'react-responsive';
 
+const  Latex = require('react-latex');
 
 const Title = styled.div`
     width: 90%;

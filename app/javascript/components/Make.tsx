@@ -12,11 +12,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import Latex from 'react-latex-next';
+// import Latex from 'react-latex';
 import TextField from '@mui/material/TextField';
 import '../../assets/stylesheets/index.css';
 
-
+const Latex = require('react-latex');
 const Textareawrapper = styled.div`
     margin: 40px auto 30px auto;
     width: 80%;

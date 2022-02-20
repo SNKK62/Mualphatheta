@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@mui/material/Button';
 import Comments from './Comments'
-import Latex from 'react-latex-next';
+// import Latex from 'react-latex-next';
 import Modal from './Modal'
 import Idealsolutions from './Idealsolutions';
 import Solutions from './Solutions';
@@ -22,7 +22,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 // import { CircularProgress } from '@material-ui/core';
 import '../../assets/stylesheets/index.css';
 
-
+const  Latex = require('react-latex');
 const Userwrapper = styled.div`
     display: grid;
     grid-template-columns: 50px 1fr;

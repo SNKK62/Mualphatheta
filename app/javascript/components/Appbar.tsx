@@ -19,7 +19,9 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import InputBase from '@mui/material/InputBase';
 import MediaQuery from 'react-responsive';
-import Latex from 'react-latex-next';
+// import Latex from 'react-latex-next';
+const  Latex = require('react-latex');
+
 
 const SearchInput = styled(InputBase)`
     width: 100%;

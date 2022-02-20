@@ -12,7 +12,9 @@ import Avatar from '@mui/material/Avatar'
 import ListItemButton from '@mui/material/ListItemButton';
 import styled from 'styled-components';
 import {useParams, useNavigate} from 'react-router-dom'
-import Latex from 'react-latex-next';
+// import Latex from 'react-latex-next';
+const  Latex = require('react-latex');
+
 
 
 const Textwrapper = styled.div`

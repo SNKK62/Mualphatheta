@@ -10,9 +10,10 @@ import { LoadingButton } from '@mui/lab';
 import Userproblems from './Userproblems'
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@mui/material/IconButton';
-import Latex from 'react-latex-next';
+// import Latex from 'react-latex-next';
 import Button from '@mui/material/Button';
 import '../../assets/stylesheets/index.css';
+const  Latex = require('react-latex');
 
 
 const Userwrapper = styled.div`

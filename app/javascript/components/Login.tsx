@@ -6,9 +6,10 @@ import React,{ useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { url } from './url';
 import Wrapper from './Wrapper';
-import Latex from 'react-latex-next';
+// import Latex from 'react-latex-next';
 import '../../assets/stylesheets/index.css';
 
+const  Latex = require('react-latex');
 
 const Text = styled(TextField)`
     width: 100%;

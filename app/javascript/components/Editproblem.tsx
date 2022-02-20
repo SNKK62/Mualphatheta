@@ -16,6 +16,7 @@ import InputBase from '@mui/material/InputBase';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import TextField from '@mui/material/TextField';
 import '../../assets/stylesheets/index.css';
+const Latex = require('react-latex');
 
 
 const Textareawrapper = styled.div`
@@ -113,6 +114,20 @@ const TitleError = styled.div`
     font-size: 14px
     width: 80%;
 `
+const Description = styled.div`
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(230,230,230,0.4);
+    margin: 20px auto;
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 30px 10px 30px 10px;
+`
+
 const initialState = {
     isLoading: true,
     isError: '',
@@ -319,6 +334,9 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                             defaultValue={dataState.post.problem.description}
                             />
                     </Textareawrapper>
+                        <Description>
+                            <Latex>{textarea }</Latex>
+                        </Description>  
                         {props.ifproblem && (<>
                     <Categorywrapper>
                         <Keyword>キーワード:</Keyword>

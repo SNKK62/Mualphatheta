@@ -73,7 +73,8 @@ const Searchproblem:React.VFC<Props> = (props: Props) => {
     }, [props.logged_in.bool,search_url]);
     
     const toProblem = (id: number) => {
-        navigate('/problems/'+String(id))
+        // navigate('/problems/'+String(id))
+        window.open('/problems/'+String(id))
     }
     
     const handlescroll = () => {

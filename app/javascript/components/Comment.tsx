@@ -12,11 +12,13 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@mui/material/Button';
-import Latex from 'react-latex-next';
+// import Latex from 'react-latex-next';
+
 import Modal from './Modal';
 import '../../assets/stylesheets/index.css';
 
 
+const  Latex = require('react-latex');
 
 
 const Userwrapper = styled.div`
