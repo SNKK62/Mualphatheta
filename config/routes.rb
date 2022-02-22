@@ -54,6 +54,8 @@ Rails.application.routes.draw do
       get '/problems/:id/solutions/:times' => 'solutions#search'
       get '/users/:id/problems/:times' => 'problems#user_problem'
 
+      get '/users/:id/notifications' => 'notifications#index'
+      patch '/users/:id/notifications' => 'notifications#update'
 
       post '/solutions/:id/comments' => 'comments#solution_create'
       get '/solutions/:id/comments/:times' => 'comments#search_from_solution'

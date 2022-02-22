@@ -1379,16 +1379,6 @@ const TexInstruction: React.VFC = () => {
                         {"$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$"}
                     </Td>
                 </Tr2>
-                <Tr1>
-                    <Desctd>
-                        <Latex>
-                            {"$$\\tag{1} x + y = 3\\,\\,$$"}
-                        </Latex>
-                    </Desctd>
-                    <Td>
-                        {"$$\\tag{1} x + y = 3$$"}
-                    </Td>
-                </Tr1>
             </Table>
             <Subtitle id='style'>文字のスタイル</Subtitle>
             <Table>

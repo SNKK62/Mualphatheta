@@ -44,6 +44,7 @@ RSpec.describe Api::V1::SolutionsController, type: :controller do
       problem = Problem.create!(title: 'test', category: 'test',user_id: user.id)
       solution = Solution.create!(description: 'it is a test', user_id: user.id, problem_id: problem.id)
       count = Solution.count
+      session[:user_id] = user.id
       delete :destroy, params: {id: solution.id}
       expect(Solution.count).to eq(count-1)
     end

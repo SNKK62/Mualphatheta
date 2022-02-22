@@ -26,6 +26,8 @@ skip_before_action :verify_authenticity_token
             @problem.image3.attach(problem_params[:image3])
         end
         if @problem.save
+            user = @problem.user
+            user.create_notification_problem!(current_user, @problem.id)
             render json: {id: @problem.id}
         else
             render json: {error: @problem.errors}, status: 422

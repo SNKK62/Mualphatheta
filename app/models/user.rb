@@ -22,6 +22,9 @@ class User < ApplicationRecord
     has_many :like_problem, through: :likes, source: :problem
     has_many :like_solution, through: :likes, source: :solution
 
+    has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+    has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
     def image_url
         # 紐づいている画像のURLを取得する
         image.attached? ? image.url : nil
@@ -89,5 +92,35 @@ class User < ApplicationRecord
 
     def sunlike(solution)
         like_solution.delete(solution)
+    end
+
+    def create_notification_follow!(current_user)
+        temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+        if temp.blank?
+            notification = current_user.active_notifications.new(
+            visited_id: id, 
+            action: 'follow'
+            )
+            notification.save if notification.valid?
+        end
+    end
+
+    def create_notification_problem!(current_user,problem_id)
+        temp_ids  = followers.select(:id).distinct
+        temp_ids.each do |temp_id|
+            save_notification_problem!(current_user, problem_id, temp_id.id)
+        end
+    end
+
+    def save_notification_problem!(current_user, problem_id, visited_id)
+        if current_user.id != visited_id
+            notification = current_user.active_notifications.new(
+                problem_id: problem_id,
+                visited_id: visited_id,
+                action: 'problem'
+            )
+            notification.save if notification.valid?
+        end
+
     end
 end

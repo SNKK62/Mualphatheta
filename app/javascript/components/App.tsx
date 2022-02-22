@@ -107,6 +107,7 @@ const App: React.VFC = () => {
   const [logged_in, setLogged_in] = useState(window.sessionStorage.getItem('bool')!=null ? {bool: true,id: parseInteger(window.sessionStorage.getItem('id')),image: String(window.sessionStorage.getItem('image')), name: String(window.sessionStorage.getItem('name')) } : {bool: false,id: -1,image: '',name: ''});
   const [load, setLoad] = useState(window.sessionStorage.getItem('view') ? false : true)
   const [loading, setLoading] = useState(false)
+  const [notification_show, setNotification_show] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     var mount = true
@@ -129,6 +130,7 @@ const App: React.VFC = () => {
   }, [])
   
   const handledelete = () => {
+    setNotification_show(false)
     setLoading(true)
     axios.delete(url + '/logout').then(() => {
       // console.log(resp)
@@ -147,7 +149,7 @@ const App: React.VFC = () => {
   return (
     <>
       {load ? <Logo/> : <>
-        <Appbar logged_in={logged_in} handledelete={handledelete} />
+        <Appbar logged_in={logged_in} handledelete={handledelete} notification_show={notification_show} setNotification_show={ setNotification_show}/>
         <Appwrapper className='box'>
         {match &&
           <Plusbutton/>
@@ -155,7 +157,7 @@ const App: React.VFC = () => {
         <Border id="boader"/>
         <MediaQuery query="(min-width: 600px)">
           <Whitespace id="white_space"/>    
-          <StaticSidebar logged_in={logged_in} handledelete={handledelete} />
+          <StaticSidebar setNotification_show={setNotification_show} logged_in={logged_in} handledelete={handledelete} />
         </MediaQuery>
           {loading && <Loadingwrapper2>
             <Loading />

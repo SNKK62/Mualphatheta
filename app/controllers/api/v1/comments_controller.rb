@@ -12,7 +12,9 @@ skip_before_action :verify_authenticity_token
     def problem_create
         @comment = current_user.comments.new(comment_params)
         @comment[:problem_id] = params[:id]
+        problem = @comment.problem
         if @comment.save
+            problem.create_notification_comment!(current_user, @comment.id)
             render json: {id: @comment.id}
         else
             puts @comment.errors.full_messages
@@ -23,7 +25,9 @@ skip_before_action :verify_authenticity_token
     def solution_create
         @comment = current_user.comments.new(comment_params)
         @comment[:solution_id] = params[:id]
+        solution = @comment.solution
         if @comment.save
+            solution.create_notification_comment!(current_user, @comment.id)
             render json: {id: @comment.id}
         else
             render json: {error: @comment.errors}, status: 422

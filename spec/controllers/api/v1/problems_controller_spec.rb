@@ -32,6 +32,7 @@ RSpec.describe Api::V1::ProblemsController, type: :controller do
       user = User.create!(name: 'test', password: 'password', password_confirmation: 'password')
       problem = Problem.create!(title: 'test', category: 'test',user_id: user.id)
       count = Problem.count
+      session[:user_id] = user.id
       delete :destroy, params: {id: problem.id}
       expect(Problem.count).to eq(count-1)
     end
@@ -79,9 +80,9 @@ RSpec.describe Api::V1::ProblemsController, type: :controller do
       init_id = User.first.id
       60.times do |n|
         problem = Problem.create!(title: 'test', category: 'test',user_id: user.id)
-        if n>0 
-          (n-1).times do |i|
-            User.find(init_id+i+1).plike(problem)
+        if n>=0 
+          (n+1).times do |i|
+            User.find(init_id+i).plike(problem)
           end
         end
       end

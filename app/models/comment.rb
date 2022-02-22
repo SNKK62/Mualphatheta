@@ -4,6 +4,9 @@ class Comment < ApplicationRecord
     belongs_to :problem, optional: true, counter_cache: true
     belongs_to :solution, optional: true, counter_cache: true
     validates :user_id, presence: true
+
+    has_many :notifications, dependent: :destroy
+
     
     def user_image
         user.image.attached? ? user.image.url : ''

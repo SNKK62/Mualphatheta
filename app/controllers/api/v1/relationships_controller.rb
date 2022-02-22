@@ -5,6 +5,7 @@ class Api::V1::RelationshipsController < ApplicationController
         user = User.find(params[:id])
         following = current_user.follow(user)
         if following.save
+            user.create_notification_follow!(current_user)
             render json: {message: 'success to follow'}
         else
             render json: {error: 'fail to follow'}

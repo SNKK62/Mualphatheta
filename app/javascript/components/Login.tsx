@@ -82,7 +82,7 @@ const  Login:React.VFC<Props> = (props: Props) => {
             axios.get(url + '/logged_in').then(resp => {
                 setLoad(false);
                 props.setLogged_in(resp.data)
-                navigate('/users/'+ id);
+                navigate('/users/'+ id, {replace: true});
             })
         }).catch((e) => {
             setError(true);

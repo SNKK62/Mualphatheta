@@ -275,7 +275,7 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
     }, [props.ifproblem,id, problem_url,props.logged_in.id,props.logged_in.bool])
     const toproblem = () => {
         dispatch({type: 'init', payload: ''})
-        navigate('/problems/'+dataState.post.problem.problem_id)
+        navigate('/problems/' + dataState.post.problem.problem_id, { state: { back: true }})
     }
     const toedit = () => {
         props.ifproblem ?  navigate('/problems/'+id+'/edit') : navigate('/solutions/'+id+'/edit')

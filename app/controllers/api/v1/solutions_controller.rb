@@ -32,6 +32,7 @@ class Api::V1::SolutionsController < ApplicationController
             if current_user.id == problem.user.id
                 problem.update(ideal: problem.solutions.exists?(user_id: problem.user.id))
             end
+            problem.create_notification_solution!(current_user, @solution.id)
             render json: {id: @solution.id}
         else
             render json: {error: @solution.errors}, status: 422

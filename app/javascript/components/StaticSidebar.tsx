@@ -36,11 +36,13 @@ interface Props {
       image: string,
       name: string
     }
-    handledelete: () => void
+    handledelete: () => void,
+    setNotification_show: React.Dispatch<React.SetStateAction<boolean>>
   }
 const StaticSidebar:React.VFC<Props> = (props: Props) => {
     const navigate = useNavigate();
   const toPage = (s: string) => {
+    props.setNotification_show(false)
     if (s === 'プロフィール') {
       navigate('/users/'+props.logged_in.id)
     } else if (s === 'いいねした問題') {

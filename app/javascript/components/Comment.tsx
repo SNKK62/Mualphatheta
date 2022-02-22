@@ -116,7 +116,7 @@ const Comment:React.VFC<Props> = (props: Props) => {
     const toproblem = () => {
         dispatch({ type: 'init', payload: '' })
         if (dataState.post.comment.problem_id) {
-            navigate('/problems/'+dataState.post.comment.problem_id)
+            navigate('/problems/'+dataState.post.comment.problem_id, {state:{back: true}})
         } else {
             navigate('/solutions/'+dataState.post.comment.solution_id)
         }

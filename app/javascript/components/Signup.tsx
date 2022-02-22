@@ -179,7 +179,7 @@ const Signup: React.FC<Props> = (props) => {
             const id = resp.data.user.id
             axios.get(url + '/logged_in').then(resp => {
                 props.setLogged_in(resp.data)
-                navigate('/users/' + id);
+                navigate('/users/' + id, {replace: true});
             }).catch(e => {
                 console.log(e)
             })

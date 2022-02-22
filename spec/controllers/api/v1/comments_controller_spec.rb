@@ -44,6 +44,7 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
       user = User.create!(name: 'test',password: 'password',password_confirmation: 'password')
       comment = Comment.create!(text: 'it is a test', user_id: user.id)
       count = Comment.count
+      session[:user_id] = user.id
       delete :destroy, params: {id: comment.id}
       expect(Comment.count).to eq(count-1)
     end
