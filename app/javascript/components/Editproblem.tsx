@@ -62,7 +62,6 @@ const Message = styled.div`
 `
 const Submitbutton = styled(LoadingButton)`
     width: 100px;
-    margin: 60px auto 0 auto;
 `
 const Categoryinput = styled(InputBase)`
     width: 200px;
@@ -78,6 +77,7 @@ const Categorywrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 `
 const Keyword = styled.div`
     margin-left: 30px;
@@ -87,7 +87,7 @@ const Errortext = styled.div`
     color: red;
     margin-left: 110px;
     font-size: 14px;
-
+    margin-bottom: 5px;
 `
 const Fab1 = styled.div`
     width: 12%;
@@ -141,6 +141,7 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
     const [error, setError] = useState('');
     const [titleerror, setTitleerror] = useState('');
     const [textarea, setTextarea] = useState('');
+    const [source, setSource] = useState('');
     const [keyword, setKeyword] = useState('');
     const [title, setTitle] = useState('')
     const [image1, setImage1] = useState('');
@@ -200,6 +201,7 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                
                 setTextarea(resp.data.problem.description);
                 setKeyword(resp.data.problem.category);
+                setSource(resp.data.problem.source);
                 setTitle(resp.data.problem.title)
                 dispatch({ type: 'success', payload: resp.data })
             }).catch(e => {
@@ -253,6 +255,7 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
             data.append('problem[title]', title);
             data.append('problem[description]', textarea);
             data.append('problem[category]', keyword);
+            data.append('problem[source]', source);
             data.append('problem[image1]', image1);
             data.append('problem[image2]', image2);
             data.append('problem[image3]', image3);
@@ -342,7 +345,12 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                         <Keyword>キーワード:</Keyword>
                         <Categoryinput onChange={e => {handlechangekeyword(e)}} error={error ? true: false} type='text' placeholder='12文字以下' defaultValue={dataState.post.problem.category} />
                     </Categorywrapper>
-                    {error && <Errortext>{error==='empty' ? 'キーワードを入力してください' : 'キーワードは12文字以下です'}</Errortext>}</>
+                    {error && <Errortext>{error === 'empty' ? 'キーワードを入力してください' : 'キーワードは12文字以下です'}</Errortext>}
+                    <Categorywrapper>
+                        <Keyword>出典・引用元:</Keyword>
+                        <Categoryinput onChange={e => {setSource(e.target.value) }} type='text' defaultValue={dataState.post.problem.source} />
+                    </Categorywrapper>
+                    </>
                 )}
                         
                         <File3wrapper><Fab1>
@@ -448,7 +456,7 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                         <Fileinput type='file' accept='images/*' id='1' onChange={(e) => { handlecircular(0); handlechange(e,1) }} />
                         <Fileinput type='file' accept='images/*' id='2' onChange={(e) => { handlecircular(1); handlechange(e,2) }} />
                         <Fileinput type='file' accept='images/*' id='3' onChange={(e) => { handlecircular(2); handlechange(e,3) }} />
-                        <Submitbutton loading={load} onClick={handle} variant='contained' sx={{ marginTop: '100px' }} >変更</Submitbutton>
+                        <Submitbutton loading={load} onClick={handle} variant='contained' sx={{ margin: '30px' }} >変更</Submitbutton>
                     </Wrapper>
                     }
             

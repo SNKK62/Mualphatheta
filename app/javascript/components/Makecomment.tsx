@@ -2,7 +2,7 @@ import axios from './axios';
 import { url } from './url';
 import styled from 'styled-components';
 import Wrapper from './Wrapper';
-import React,{useRef,  useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { useNavigate, useParams, useMatch } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
@@ -32,6 +32,20 @@ const Submitbutton = styled(LoadingButton)`
     width: 100px;
     margin: 40px auto 0 auto;
 `
+const Description = styled.div`
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(230,230,230,0.4);
+    margin: 20px auto;
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 30px 10px 30px 10px;
+`
+
 interface Props {
     logged_in: {
         bool: boolean,
@@ -42,7 +56,7 @@ interface Props {
 }
 
 const  Makecomment:React.VFC<Props> = (props: Props) => {
-    const textref = useRef(null);
+    const [text, setText] = useState('');
     const [load, setLoad] = useState(false);
     const navigate = useNavigate();
     const { id} = useParams();
@@ -62,15 +76,7 @@ const  Makecomment:React.VFC<Props> = (props: Props) => {
     const handle = () => {
         setLoad(true);
         const data = new FormData();
-        const text: any = textref.current;
-        if (text) {
-            const textarea = text.value;
-            data.append('comment[text]]', textarea);
-        } else {
-            const textarea = '';
-            data.append('comment[text]]', textarea);
-        }
-        
+        data.append('comment[text]]', text);
        
         match ? create_url = url + '/problems/'+id+'/comments/' : create_url = url+'/solutions/'+id+'/comments'
         
@@ -83,6 +89,10 @@ const  Makecomment:React.VFC<Props> = (props: Props) => {
             console.log(err.response)
         })
     };
+
+    const changetext = (e: any) => {
+        setText(e.target.value);
+    }
     
     return (
         <Wrapper className='box'>
@@ -96,9 +106,14 @@ const  Makecomment:React.VFC<Props> = (props: Props) => {
                 aria-label="minimum height"
                 minRows={5}
                 style={{ width: '80%' }}
-                ref={textref}
+                onChange={e => {changetext(e)}}
                 />
             </Textareawrapper>
+            <Description className='tetete'>
+                <Latex>
+                    {text}
+                </Latex>
+            </Description>
             <Submitbutton sx={{ marginTop: '50px' }} loading={load} onClick={handle} variant='outlined'>投稿</Submitbutton>
         </Wrapper>
     )

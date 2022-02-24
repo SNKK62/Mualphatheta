@@ -130,7 +130,7 @@ skip_before_action :verify_authenticity_token
 
     private
         def problem_params
-            params.require(:problem).permit(:title, :image1, :image2, :image3, :description, :category)
+            params.require(:problem).permit(:title, :image1, :image2, :image3, :description, :category, :source)
         end
 
         def id_of_following?(id,ids)

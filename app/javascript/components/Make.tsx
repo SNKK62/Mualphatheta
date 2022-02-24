@@ -79,6 +79,7 @@ const Categorywrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 `
 const Keyword = styled.div`
     margin-left: 5px;
@@ -92,6 +93,7 @@ const Errortext = styled.div`
     color: red;
     margin-left: 65px;
     font-size: 14px;
+    margin-bottom: 5px;
 `
 const Fab1 = styled.div`
     width: 12%;
@@ -134,6 +136,7 @@ const Description = styled.div`
 
 
 const  Make:React.VFC<Props> = (props: Props) => {
+    const [source, setSource] = useState('');
     const [text, setText] = useState('');
     const [image1, setImage1] = useState('');
     const [image2, setImage2] = useState('');
@@ -205,6 +208,7 @@ const  Make:React.VFC<Props> = (props: Props) => {
             const keyword: any = keywordref.current;
             const title: any = titleref.current;
             data.append('problem[description]', text);
+            data.append('problem[source]', source);
             data.append('problem[category]', keyword.childNodes[0].value);
             data.append('problem[title]', title.childNodes[1].childNodes[0].value);
             data.append('problem[image1]', image1);
@@ -306,7 +310,12 @@ const  Make:React.VFC<Props> = (props: Props) => {
                         <Keyword>キーワード:</Keyword>
                         <Categoryinput ref={keywordref} error={error ? true: false} type='text' placeholder='12文字以下'/>
                     </Categorywrapper>
-                    {error && <Errortext>{error==='empty' ? 'キーワードを入力してください' : 'キーワードは12文字以下です'}</Errortext>}</>
+                    {error && <Errortext>{error === 'empty' ? 'キーワードを入力してください' : 'キーワードは12文字以下です'}</Errortext>}
+                    <Categorywrapper>
+                        <Keyword>出典・引用元:</Keyword>
+                        <Categoryinput onChange={(e) => {setSource(e.target.value)}} type='text'/>
+                    </Categorywrapper>
+                </>
                 )}
                 <Filediv>
                     <Button variant='outlined' sx={{  paddingLeft: 0, paddingRight: 0, paddingTop: 0, paddingBottom: 0, width: '150px', height: '40px', }}>

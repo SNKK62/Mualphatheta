@@ -13,6 +13,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import styled from 'styled-components';
 import {useParams, useNavigate} from 'react-router-dom'
 // import Latex from 'react-latex-next';
+import '../../assets/stylesheets/index.css';
 const  Latex = require('react-latex');
 
 
@@ -102,7 +103,7 @@ const Comments:React.VFC<Props> = (props: Props) => {
                                         <List key={val.id.to_String+'list'} sx={{ width: '80%', paddingLeft: '10px', padding: '0 0 0 5px' }}>
                                             <ListItemText  key={val.id.to_String+'item1'} primary={val.user_name} primaryTypographyProps={{ fontSize: '18px', paddingLeft: '25px',paddingTop: '5px' }} />
                                             <Divider key={val.id.to_String + 'divider1'} />
-                                            <Textwrapper>
+                                            <Textwrapper className='tetete'>
                                                 <Latex>
                                                     {val.text}
                                                 </Latex>

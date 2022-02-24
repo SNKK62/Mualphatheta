@@ -200,6 +200,13 @@ const Tagtitle_red = styled.div`
     border-right: 1px solid rgb(200,200,200);
     color: red;
 `
+
+const Source = styled.div`
+    padding: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+`
+
 const initialState = {
     isLoading: true,
     isError: '',
@@ -360,6 +367,13 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
             </Tagdiv>        
             {dataState.post.problem.description.length > 0 &&
             <Description id='tex' className='tetete' ><Latex>{dataState.post.problem.description}</Latex></Description>
+            }
+            {(props.ifproblem && dataState.post.problem.source) &&
+                <>
+                    {dataState.post.problem.source.length > 0 &&
+                            <Source>出典・引用元:　{ dataState.post.problem.source} </Source>
+                    }
+                </>
             }
                 <Slidewrapper>
                     {!(!dataState.post.problem.image1_url && !dataState.post.problem.image2_url && !dataState.post.problem.image3_url && !dataState.post.problem.image1s_url && !dataState.post.problem.image2s_url && !dataState.post.problem.image3s_url) &&

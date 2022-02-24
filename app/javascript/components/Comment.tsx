@@ -62,12 +62,15 @@ const Imagewrapper = styled.div`
 const Description = styled.div`
     white-space: pre-wrap;
     word-wrap: break-word;
-    width: 80%;
-    margin: 0 auto;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(230,230,230,0.4);
+    margin: 10px auto;
     text-align: left;
     font-size: 18px;
-    margin-bottom: 40px;
-    padding: 0px 15px 0 15px;
+    margin-bottom: 10px;
+    padding: 30px 10px 30px 10px;
 `
 const Buttonwrapper = styled.div`
     width: 30%;
@@ -127,7 +130,11 @@ const Comment:React.VFC<Props> = (props: Props) => {
     const handledelete = () => {
         axios.delete(url + '/comments/' + id).then(() => {
             setModal(false)
-            navigate('/users/' + props.logged_in.id, { replace: true })
+            if (dataState.post.comment.problem_id) {
+                navigate('/problems/'+dataState.post.comment.problem_id, {state:{back: true}, replace: true})
+            } else {
+                navigate('/solutions/'+dataState.post.comment.solution_id, {replace: true})
+            }
         }).catch(e => {
             console.log(e)
         })
@@ -165,7 +172,7 @@ const Comment:React.VFC<Props> = (props: Props) => {
                         </IconButton>
                     </Buttonwrapper>}
                 </Bigwrapper>
-            <Description><Latex>{dataState.post.comment.text}</Latex></Description>
+            <Description className='tetete'><Latex>{dataState.post.comment.text}</Latex></Description>
         </Wrapper>
             }
     </>)
