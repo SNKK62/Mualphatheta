@@ -37,6 +37,7 @@ skip_before_action :verify_authenticity_token
     def update
         @problem = Problem.find(params[:id])
         if @problem.update(problem_params.except(:image1,:image2,:image3))
+            @problem.update(source: problem_params[:source])
             if problem_params[:image1] == '' && @problem.image1.attached? 
                 @problem.image1.purge 
             elsif problem_params[:image1] != ''
