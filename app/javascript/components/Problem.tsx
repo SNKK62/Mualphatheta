@@ -365,13 +365,27 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
                     </IconButton>    
                 </Buttonwrapper>}
             </Tagdiv>        
+            {(props.ifproblem && dataState.post.problem.level) &&
+                <>
+                    {dataState.post.problem.level.length > 0 &&
+                        <Source>範囲:　{ dataState.post.problem.level }</Source>
+                    }
+                </>            
+            }
+            {(props.ifproblem && dataState.post.problem.unit) &&
+                <>
+                    {dataState.post.problem.unit.length > 0 &&
+                        <Source>単元:　{ dataState.post.problem.unit }</Source>
+                    }
+                </>            
+            }
             {dataState.post.problem.description.length > 0 &&
             <Description id='tex' className='tetete' ><Latex>{dataState.post.problem.description}</Latex></Description>
             }
             {(props.ifproblem && dataState.post.problem.source) &&
                 <>
                     {dataState.post.problem.source.length > 0 &&
-                            <Source>出典・引用元:　{ dataState.post.problem.source} </Source>
+                        <Source>出典・引用元:　{ dataState.post.problem.source} </Source>
                     }
                 </>
             }

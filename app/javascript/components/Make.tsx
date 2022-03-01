@@ -14,6 +14,7 @@ import InputBase from '@mui/material/InputBase';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 // import Latex from 'react-latex';
 import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 import '../../assets/stylesheets/index.css';
 
 const Latex = require('react-latex');
@@ -40,7 +41,7 @@ const Fileinput = styled.input`
 const Filediv = styled.div`
     width: 100%;
     text-align: center;
-    margin: 40px auto 40px auto;
+    margin: 20px auto 40px auto;
 `
 const Filewrapper = styled.label`
     width: 150px;
@@ -51,7 +52,7 @@ const Filewrapper = styled.label`
 `
 const File3wrapper = styled.div`
     width: 100%;
-    margin: 15px auto 60px auto;
+    margin: 15px auto 0px auto;
     display: flex;
     justify-content: space-around;
 `
@@ -63,7 +64,7 @@ const Message = styled.div`
 `
 const Submitbutton = styled(LoadingButton)`
     width: 100px;
-    margin: 60px auto 0 auto;
+    margin: 30px auto 0 auto;
     `
 const Categoryinput = styled(InputBase)`
     width: 160px;
@@ -79,14 +80,19 @@ const Categorywrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-top: 10px;
+`
+const Categorywrapper2 = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
 `
 const Keyword = styled.div`
     margin-left: 5px;
 `
 const Buttonwrapper = styled.div`
-    margin-top: 80px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 100px;
 `
 const Errortext = styled.div`
     text-align: left;
@@ -94,6 +100,22 @@ const Errortext = styled.div`
     margin-left: 65px;
     font-size: 14px;
     margin-bottom: 5px;
+`
+const Errortext2 = styled.div`
+    text-align: left;
+    color: red;
+    margin-left: 65px;
+    font-size: 14px;
+    margin-top: 12px;
+    height: 20px;
+`
+const Errortext2empty = styled.div`
+    text-align: left;
+    color: red;
+    margin-left: 110px;
+    font-size: 14px;
+    margin-top: 12px;
+    height: 5px;
 `
 const Fab1 = styled.div`
     width: 12%;
@@ -135,8 +157,10 @@ const Description = styled.div`
 `
 
 
-const  Make:React.VFC<Props> = (props: Props) => {
+const Make: React.VFC<Props> = (props: Props) => {
     const [source, setSource] = useState('');
+    const [level, setLevel] = useState('未選択')
+    const [unit, setUnit] = useState('未選択')
     const [text, setText] = useState('');
     const [image1, setImage1] = useState('');
     const [image2, setImage2] = useState('');
@@ -145,13 +169,111 @@ const  Make:React.VFC<Props> = (props: Props) => {
     const titleref = useRef(null);
     const [load, setLoad] = useState(false);
     const [error, setError] = useState('');
-    const [titleerror, setTitleerror] = useState('')
-    const [circleloading, setCircleloading] = useState([false,false,false]);
+    const [titleerror, setTitleerror] = useState('');
+    const [level_error, setLevel_error] = useState(false);
+    const [unit_error, setUnit_error] = useState(false);
+    const [circleloading, setCircleloading] = useState([false, false, false]);
     const [success, setSuccess] = useState([false, false, false]);
     const [inputid, setInputid] = useState('1');
     const timer = useRef<number>();
     const navigate = useNavigate();
     const { id } = useParams();
+    const level_currencies = [
+        {
+            value: '未選択',
+            label: '未選択',
+        }, {
+            value: '数I・A',
+            lavel: '数I・A',
+        }, {
+            value: '数Ⅱ・B',
+            label: '数Ⅱ・B',
+        }, {
+            value: '数Ⅲ',
+            label: '数Ⅲ',
+        }, {
+            value: '大学数学',
+            label: '大学数学',
+        }, {
+            value: '中学数学',
+            label: '中学数学',
+        },{
+            value: '算数',
+            label: '算数',
+        }, {
+            value: 'その他',
+            label: 'その他',
+        }
+    ];
+    const unit_currencies = [
+        {
+            value: '未選択',
+            label: '未選択',
+        }, {
+            value: '積分',
+            label: '積分',
+        }, {
+            value: '微分',
+            label: '微分',
+        }, {
+            value: '極限',
+            label: '極限',
+        }, {
+            value: '数列',
+            label: '数列',
+        }, {
+            value: '複素数',
+            label: '複素数',
+        }, {
+            value: 'ベクトル',
+            label: 'ベクトル',
+        }, {
+            value: '整数',
+            label: '整数',
+        }, {
+            value: '幾何',
+            label: '幾何',
+        }, {
+            value: '式・計算',
+            label: '式・計算',
+        }, {
+            value: '因数分解',
+            label: '因数分解',
+        }, {
+            value: '集合・論理',
+            label: '集合・論理',
+        }, {
+            value: '二次関数',
+            label: '二次関数',
+        }, {
+            value: '統計',
+            label: '統計',
+        }, {
+            value: '場合の数',
+            label: '場合の数',
+        }, {
+            value: '確率',
+            label: '確率', 
+        }, {
+            value: '三角関数',
+            label: '三角関数',
+        }, {
+            value: '指数',
+            label: '指数',
+        }, {
+            value: '対数',
+            label: '対数',
+        }, {
+            value: '関数',
+            label: '関数',
+        }, {
+            value: '二次曲線',
+            label: '二次曲線',
+        }, {
+            value: 'その他',
+            label: 'その他',
+        }
+    ];
     useEffect(() => {
         var mount = true
         if (mount) {
@@ -178,11 +300,17 @@ const  Make:React.VFC<Props> = (props: Props) => {
     const handle = () => {
         setLoad(true);
         setError('');
+        setTitleerror('');
+        setLevel_error(false);
+        setUnit_error(false);
+        setError('');
         if (props.ifproblem) {
             const keyword: any = keywordref.current;
             const title: any = titleref.current;
             var kerror = false
             var terror = false
+            var lerror = false
+            var uerror = false
             if (!keyword || !keyword.childNodes[0].value) {
                 setError('empty')
                 kerror = true
@@ -197,7 +325,17 @@ const  Make:React.VFC<Props> = (props: Props) => {
                 setTitleerror('empty')
                 setLoad(false)
             }
-            if (kerror || terror) {
+            if (unit === '未選択') {
+                uerror = true
+                setUnit_error(true)
+                setLoad(false)
+            }
+            if (level === '未選択') {
+                lerror = true
+                setLevel_error(true)
+                setLoad(false)
+            }
+            if (kerror || terror || lerror || uerror) {
                 return 
             }
         }
@@ -209,6 +347,8 @@ const  Make:React.VFC<Props> = (props: Props) => {
             const title: any = titleref.current;
             data.append('problem[description]', text);
             data.append('problem[source]', source);
+            data.append('problem[level]', level);
+            data.append('problem[unit]', unit);
             data.append('problem[category]', keyword.childNodes[0].value);
             data.append('problem[title]', title.childNodes[1].childNodes[0].value);
             data.append('problem[image1]', image1);
@@ -315,10 +455,58 @@ const  Make:React.VFC<Props> = (props: Props) => {
                         <Keyword>出典・引用元:</Keyword>
                         <Categoryinput onChange={(e) => {setSource(e.target.value)}} type='text'/>
                     </Categorywrapper>
+                    <Categorywrapper>
+                        <Keyword>履修範囲:　</Keyword>
+                        <TextField
+                            id="outlined-select-currency"
+                            select
+                            InputProps={{
+                                style: {
+                                    height: 32,
+                                    width: 150,
+                                    padding: 5,
+                                }
+                            }}
+                            value={level}
+                            onChange={e => {setLevel(e.target.value)}}
+                            sx={{height: '15px', width: '150px', padding: '5px'}}
+                            >
+                            {level_currencies.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Categorywrapper>
+                    {level_error ? <Errortext2>履修範囲を選択してください</Errortext2> : <Errortext2empty/>}
+                    <Categorywrapper2>
+                        <Keyword>単元:　</Keyword>
+                        <TextField
+                            id="outlined-select-currency"
+                            select
+                            value={unit}
+                            InputProps={{
+                                style: {
+                                    height: 32,
+                                    width: 150,
+                                    padding: 5,
+                                }
+                            }}
+                            onChange={e => {setUnit(e.target.value)}}
+                            sx={{height: '15px', width: '150px', padding: '5px'}}
+                            >
+                            {unit_currencies.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Categorywrapper2>
+                    {unit_error ? <Errortext2>単元を選択してください</Errortext2> : <Errortext2empty/>}
                 </>
                 )}
                 <Filediv>
-                    <Button variant='outlined' sx={{  paddingLeft: 0, paddingRight: 0, paddingTop: 0, paddingBottom: 0, width: '150px', height: '40px', }}>
+                    <Button variant='outlined' sx={{ marginTop: '20px', paddingLeft: 0, paddingRight: 0, paddingTop: 0, paddingBottom: 0, width: '150px', height: '40px', }}>
                         <Filewrapper htmlFor={inputid}>
                             画像を追加する
                         </Filewrapper>

@@ -128,10 +128,23 @@ skip_before_action :verify_authenticity_token
         render json: {problem: @problems[50*times,50], ifend: ifend}, methods: [ :user_image, :user_name, :update_time_of_problem]
     end
 
+    def level_problem
+        times = params[:times].to_i
+        @problems = Problem.where(level: params[:level]).or(Problem.where('category LIKE ?', '%'+params[:level]+'%')).or(Problem.where('title LIKE ?', '%'+params[:level]+'%')).order(updated_at: :DESC)
+        ifend = @problems.length < 50*times+50
+        render json: {problem: @problems.limit(50).offset(50*times), ifend: ifend}, methods: [:user_image, :user_name, :update_time_of_problem]
+    end
 
+    def unit_problem
+        times = params[:times].to_i
+        @problems = Problem.where(unit: params[:unit]).or(Problem.where('category LIKE ?', '%'+params[:unit]+'%')).or(Problem.where('title LIKE ?', '%'+params[:unit]+'%')).order(updated_at: :DESC)
+        ifend = @problems.length < 50*times+50
+        render json: {problem: @problems.limit(50).offset(50*times), ifend: ifend}, methods: [:user_image, :user_name, :update_time_of_problem]
+    end
+    
     private
         def problem_params
-            params.require(:problem).permit(:title, :image1, :image2, :image3, :description, :category, :source)
+            params.require(:problem).permit(:title, :image1, :image2, :image3, :description, :category, :source, :level, :unit)
         end
 
         def id_of_following?(id,ids)

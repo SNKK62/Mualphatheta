@@ -31,6 +31,8 @@ Rails.application.routes.draw do
           get '/search/:times' => 'problems#search_none'
           get '/rank/:times' => 'problems#rank_problem'
           get '/recommend/:times' => 'problems#recommend_problem'
+          get '/level/:times/:level' => 'problems#level_problem'
+          get '/unit/:times/:unit' => 'problems#unit_problem'
         end
       end
       resources :solutions, except: [:create] do 

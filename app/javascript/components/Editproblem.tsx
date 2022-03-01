@@ -15,6 +15,7 @@ import dataFetch from './DataFetch';
 import InputBase from '@mui/material/InputBase';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 import '../../assets/stylesheets/index.css';
 const Latex = require('react-latex');
 
@@ -77,7 +78,12 @@ const Categorywrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-top: 10px;
+`
+const Categorywrapper2 = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
 `
 const Keyword = styled.div`
     margin-left: 30px;
@@ -88,6 +94,22 @@ const Errortext = styled.div`
     margin-left: 110px;
     font-size: 14px;
     margin-bottom: 5px;
+`
+const Errortext2 = styled.div`
+    text-align: left;
+    color: red;
+    margin-left: 110px;
+    font-size: 14px;
+    margin-top: 12px;
+    height: 20px;
+`
+const Errortext2empty = styled.div`
+    text-align: left;
+    color: red;
+    margin-left: 110px;
+    font-size: 14px;
+    margin-top: 12px;
+    height: 5px;
 `
 const Fab1 = styled.div`
     width: 12%;
@@ -127,6 +149,9 @@ const Description = styled.div`
     margin-bottom: 10px;
     padding: 30px 10px 30px 10px;
 `
+const Submitbuttonwrapper = styled.div`
+    margin-bottom: 100px;
+`
 
 const initialState = {
     isLoading: true,
@@ -138,8 +163,12 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
     const { id } = useParams()
     const get_url = props.ifproblem ? url + '/problems/' + id : url + '/solutions/' + id; 
     const [dataState, dispatch] = useReducer(dataFetch, initialState);
+    const [level, setLevel] = useState('');
+    const [unit, setUnit] = useState('');
     const [error, setError] = useState('');
     const [titleerror, setTitleerror] = useState('');
+    const [level_error, setLevel_error] = useState(false);
+    const [unit_error, setUnit_error] = useState(false);
     const [textarea, setTextarea] = useState('');
     const [source, setSource] = useState('');
     const [keyword, setKeyword] = useState('');
@@ -152,6 +181,104 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
     const [success, setSuccess] = useState([false, false, false]);
     const timer = useRef<number>();
     const navigate = useNavigate();
+
+    const level_currencies = [
+        {
+            value: '未選択',
+            label: '未選択',
+        }, {
+            value: '数I・A',
+            lavel: '数I・A',
+        }, {
+            value: '数Ⅱ・B',
+            label: '数Ⅱ・B',
+        }, {
+            value: '数Ⅲ',
+            label: '数Ⅲ',
+        }, {
+            value: '大学数学',
+            label: '大学数学',
+        }, {
+            value: '中学数学',
+            label: '中学数学',
+        },{
+            value: '算数',
+            label: '算数',
+        }, {
+            value: 'その他',
+            label: 'その他',
+        }
+    ];
+    const unit_currencies = [
+        {
+            value: '未選択',
+            label: '未選択',
+        }, {
+            value: '積分',
+            label: '積分',
+        }, {
+            value: '微分',
+            label: '微分',
+        }, {
+            value: '極限',
+            label: '極限',
+        }, {
+            value: '数列',
+            label: '数列',
+        }, {
+            value: '複素数',
+            label: '複素数',
+        }, {
+            value: 'ベクトル',
+            label: 'ベクトル',
+        }, {
+            value: '整数',
+            label: '整数',
+        }, {
+            value: '幾何',
+            label: '幾何',
+        }, {
+            value: '式・計算',
+            label: '式・計算',
+        }, {
+            value: '因数分解',
+            label: '因数分解',
+        }, {
+            value: '集合・論理',
+            label: '集合・論理',
+        }, {
+            value: '二次関数',
+            label: '二次関数',
+        }, {
+            value: '統計',
+            label: '統計',
+        }, {
+            value: '場合の数',
+            label: '場合の数',
+        }, {
+            value: '確率',
+            label: '確率', 
+        }, {
+            value: '三角関数',
+            label: '三角関数',
+        }, {
+            value: '指数',
+            label: '指数',
+        }, {
+            value: '対数',
+            label: '対数',
+        }, {
+            value: '関数',
+            label: '関数',
+        }, {
+            value: '二次曲線',
+            label: '二次曲線',
+        }, {
+            value: 'その他',
+            label: 'その他',
+        }
+    ];
+
     useEffect(() => {
         var mount = true
         if (mount) {
@@ -202,6 +329,8 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                 setTextarea(resp.data.problem.description);
                 setKeyword(resp.data.problem.category);
                 setSource(resp.data.problem.source);
+                setLevel(resp.data.problem.level);
+                setUnit(resp.data.problem.unit);
                 setTitle(resp.data.problem.title)
                 dispatch({ type: 'success', payload: resp.data })
             }).catch(e => {
@@ -227,8 +356,14 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
     };
     const handle = () => {
         setLoad(true);
+        setError('');
+        setTitleerror('');
+        setLevel_error(false);
+        setUnit_error(false);
         var kerror = false;
-        var terror = false
+        var terror = false;
+        var lerror = false;
+        var uerror = false;
         if (props.ifproblem) {
             if (!keyword) {
                 kerror = true
@@ -244,7 +379,17 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                 setTitleerror('empty')
                 setLoad(false)
             } 
-            if (terror || kerror) {
+            if (unit === '未選択') {
+                uerror = true
+                setUnit_error(true)
+                setLoad(false)
+            }
+            if (level === '未選択') {
+                lerror = true
+                setLevel_error(true)
+                setLoad(false)
+            }
+            if (terror || kerror || lerror || uerror) {
                 return 
             }
         }
@@ -256,6 +401,8 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
             data.append('problem[description]', textarea);
             data.append('problem[category]', keyword);
             data.append('problem[source]', source);
+            data.append('problem[level]', level);
+            data.append('problem[unit]', unit);
             data.append('problem[image1]', image1);
             data.append('problem[image2]', image2);
             data.append('problem[image3]', image3);
@@ -350,6 +497,56 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                         <Keyword>出典・引用元:</Keyword>
                         <Categoryinput onChange={e => {setSource(e.target.value) }} type='text' defaultValue={dataState.post.problem.source} />
                     </Categorywrapper>
+                    <Categorywrapper>
+                        <Keyword>履修範囲:　</Keyword>
+                        <TextField
+                            id="outlined-select-currency"
+                            select
+                            InputProps={{
+                                style: {
+                                    height: 32,
+                                    width: 150,
+                                    padding: 5,
+                                }
+                            }}
+                            value={level}
+                            defaultValue={dataState.post.problem.level}
+                            onChange={e => {setLevel(e.target.value)}}
+                            sx={{height: '15px', width: '150px', padding: '5px'}}
+                            >
+                            {level_currencies.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Categorywrapper>
+                    {level_error ? <Errortext2>履修範囲を選択してください</Errortext2> : <Errortext2empty/>}
+                    <Categorywrapper2>
+                        <Keyword>単元:　</Keyword>
+                        <TextField
+                            id="outlined-select-currency"
+                            select
+                            InputProps={{
+                                style: {
+                                    height: 32,
+                                    width: 150,
+                                    padding: 5,
+                                }
+                            }}
+                            value={unit}
+                            defaultValue={dataState.post.problem.unit}
+                            onChange={e => {setUnit(e.target.value)}}
+                            sx={{height: '15px', width: '150px', padding: '5px'}}
+                            >
+                            {unit_currencies.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Categorywrapper2>
+                    {unit_error ? <Errortext2>単元を選択してください</Errortext2> : <Errortext2empty/>}
                     </>
                 )}
                         
@@ -456,7 +653,9 @@ const Editproblem:React.VFC<Props> = (props: Props) => {
                         <Fileinput type='file' accept='images/*' id='1' onChange={(e) => { handlecircular(0); handlechange(e,1) }} />
                         <Fileinput type='file' accept='images/*' id='2' onChange={(e) => { handlecircular(1); handlechange(e,2) }} />
                         <Fileinput type='file' accept='images/*' id='3' onChange={(e) => { handlecircular(2); handlechange(e,3) }} />
-                        <Submitbutton loading={load} onClick={handle} variant='contained' sx={{ margin: '30px' }} >変更</Submitbutton>
+                        <Submitbuttonwrapper>
+                            <Submitbutton loading={load} onClick={handle} variant='contained' sx={{ margin: '30px' }} >変更</Submitbutton>
+                        </Submitbuttonwrapper>
                     </Wrapper>
                     }
             

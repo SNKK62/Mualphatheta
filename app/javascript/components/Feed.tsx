@@ -130,17 +130,43 @@ const Feed: React.VFC<Props> = (props) => {
             // setLoad(true)
             // window.scroll({ top: 0, behavior: "auto" })
             setTimes(0)
-            axios.get(search_url + type + '/' + 0 + '/').then(resp => {
-                // console.log(resp.data.problem)
-                setProblems([...resp.data.problem]);
-                setLoad(false)
-                if (resp.data.ifend) {
-                    setDisable(true)
-                }
-            }).catch(e => {
-                console.log(e)
-                setTimes(0)
-            })
+            if (type === 'recommend' || type === 'rank' || type === 'search') {
+                axios.get(search_url + type + '/' + 0 + '/').then(resp => {
+                    // console.log(resp.data.problem)
+                    setProblems([...resp.data.problem]);
+                    setLoad(false)
+                    if (resp.data.ifend) {
+                        setDisable(true)
+                    }
+                }).catch(e => {
+                    console.log(e)
+                    setTimes(0)
+                })
+            } else if (type === '数I・A' || type === '数Ⅱ・B' || type === '数Ⅲ' || type === '大学数学' || type === '中学数学' || type === '算数') { 
+                axios.get(search_url + 'level/' + 0 + '/'+type).then(resp => {
+                    // console.log(resp.data.problem)
+                    setProblems([...resp.data.problem]);
+                    setLoad(false)
+                    if (resp.data.ifend) {
+                        setDisable(true)
+                    }
+                }).catch(e => {
+                    console.log(e)
+                    setTimes(0)
+                })
+            } else {
+                axios.get(search_url + 'unit/' + 0 + '/'+type).then(resp => {
+                    // console.log(resp.data.problem)
+                    setProblems([...resp.data.problem]);
+                    setLoad(false)
+                    if (resp.data.ifend) {
+                        setDisable(true)
+                    }
+                }).catch(e => {
+                    console.log(e)
+                    setTimes(0)
+                })
+            }
         }
         return () => {mount=false}
     }, [search_url,type]);
@@ -170,9 +196,10 @@ const Feed: React.VFC<Props> = (props) => {
         <>
             <Shadow/>
             <Menubutton>
-                    {type == 'recommend' && 'おすすめ'}
-                    {type == 'rank' && '人気順'}
-                    {type == 'search' && '新着順'}
+                    {type === 'recommend' && 'おすすめ'}
+                    {type === 'rank' && '人気順'}
+                    {type === 'search' && '新着順'}
+                    {(type !== 'recommend' && type !== 'rank' && type !== 'search' ) && type }
                     <IconButton
                         id="basic-button"
                         aria-controls={open ? 'basic-menu' : undefined}
@@ -194,6 +221,33 @@ const Feed: React.VFC<Props> = (props) => {
                             {props.logged_in.bool && <MenuItem onClick={() => { handleClose('recommend') }}>おすすめ</MenuItem>}
                             <MenuItem onClick={() => { handleClose('rank') }}>人気順</MenuItem>
                             <MenuItem onClick={() => { handleClose('search')}}>新着順</MenuItem>
+                            <MenuItem onClick={() => { handleClose('数I・A')}}>数I・A</MenuItem>
+                            <MenuItem onClick={() => { handleClose('数Ⅱ・B')}}>数Ⅱ・B</MenuItem>
+                            <MenuItem onClick={() => { handleClose('数Ⅲ')}}>数Ⅲ</MenuItem>
+                            <MenuItem onClick={() => { handleClose('大学数学')}}>大学数学</MenuItem>
+                            <MenuItem onClick={() => { handleClose('中学数学')}}>中学数学</MenuItem>
+                            <MenuItem onClick={() => { handleClose('算数')}}>算数</MenuItem>
+                            <MenuItem onClick={() => { handleClose('積分')}}>積分</MenuItem>
+                            <MenuItem onClick={() => { handleClose('微分')}}>微分</MenuItem>
+                            <MenuItem onClick={() => { handleClose('極限')}}>極限</MenuItem>
+                            <MenuItem onClick={() => { handleClose('数列')}}>数列</MenuItem>
+                            <MenuItem onClick={() => { handleClose('複素数')}}>複素数</MenuItem>
+                            <MenuItem onClick={() => { handleClose('ベクトル')}}>ベクトル</MenuItem>
+                            <MenuItem onClick={() => { handleClose('整数')}}>整数</MenuItem>
+                            <MenuItem onClick={() => { handleClose('幾何')}}>幾何</MenuItem>
+                            <MenuItem onClick={() => { handleClose('式・計算')}}>式・計算</MenuItem>
+                            <MenuItem onClick={() => { handleClose('因数分解')}}>因数分解</MenuItem>
+                            <MenuItem onClick={() => { handleClose('集合・論理')}}>集合・論理</MenuItem>
+                            <MenuItem onClick={() => { handleClose('二次関数')}}>二次関数</MenuItem>
+                            <MenuItem onClick={() => { handleClose('統計')}}>統計</MenuItem>
+                            <MenuItem onClick={() => { handleClose('場合の数')}}>場合の数</MenuItem>
+                            <MenuItem onClick={() => { handleClose('確率')}}>確率</MenuItem>
+                            <MenuItem onClick={() => { handleClose('三角関数')}}>三角関数</MenuItem>
+                            <MenuItem onClick={() => { handleClose('指数')}}>指数</MenuItem>
+                            <MenuItem onClick={() => { handleClose('対数')}}>対数</MenuItem>
+                            <MenuItem onClick={() => { handleClose('関数')}}>関数</MenuItem>
+                            <MenuItem onClick={() => { handleClose('二次曲線')}}>二次曲線</MenuItem>
+                            <MenuItem onClick={() => { handleClose('その他')}}>その他</MenuItem>
                     </Menu>
                 </Menubutton>
             {load ? 
