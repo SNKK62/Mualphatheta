@@ -130,6 +130,7 @@ const Feed: React.VFC<Props> = (props) => {
             // setLoad(true)
             // window.scroll({ top: 0, behavior: "auto" })
             setTimes(0)
+            setDisable(false)
             if (type === 'recommend' || type === 'rank' || type === 'search') {
                 axios.get(search_url + type + '/' + 0 + '/').then(resp => {
                     // console.log(resp.data.problem)
