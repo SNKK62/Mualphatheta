@@ -10,7 +10,7 @@ import {useNavigate} from 'react-router-dom'
 // import Latex from 'react-latex-next';
 import '../../assets/stylesheets/index.css';
 // const  Latex = require('react-latex');
-
+import Wrapper from './Wrapper';
 
 
 const Textwrapper = styled.div`
