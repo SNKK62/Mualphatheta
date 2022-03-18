@@ -63,7 +63,7 @@ const Forms:React.VFC<Props> = (props: Props) => {
     
     
     return (
-        <>
+        <><Wrapper>
             {load ? 
                 <Loadingwrapper>
                     <CircularProgress/>
@@ -83,7 +83,7 @@ const Forms:React.VFC<Props> = (props: Props) => {
                             )
                         })}
             </List>
-                }  
+                }  </Wrapper>
         </>
     )
 }
