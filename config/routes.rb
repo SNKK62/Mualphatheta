@@ -43,7 +43,7 @@ Rails.application.routes.draw do
         end
       end
       resources :comments, except: [:create]
-
+      resources :forms, only: [:create, :index]
 
       resources :relationships, only: [:create, :destroy]
       post '/login', to: 'sessions#create'
@@ -65,6 +65,8 @@ Rails.application.routes.draw do
 
     end
   end
+
+  get '/about', to: 'sites#about'
 
   get '/' , to: 'sites#index'
   get '/top' , to: 'sites#index'
@@ -93,4 +95,6 @@ Rails.application.routes.draw do
   get '/search' , to: 'sites#index'
   get '/searchprocess' , to: 'sites#index'
   get '/katex', to: 'sites#index'
+  get '/form' , to: 'sites#index'
+  get '/forms', to: 'sites#index'
 end

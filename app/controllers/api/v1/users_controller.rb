@@ -78,8 +78,8 @@ class Api::V1::UsersController < ApplicationController
   def logged_in
     @iflog = logged_in? ? true : false
     current_id = @iflog ? current_user.id : -1
-    user_image = @iflog ? url_for(current_user.image) : ''
-    # user_image = ''
+    # user_image = @iflog ? url_for(current_user.image) : ''
+    user_image = ''
     user_name = @iflog ? current_user.name : ''
     render json: {bool: @iflog, id: current_id, image: user_image,name: user_name}
   end

@@ -384,7 +384,7 @@ const Problem:React.VFC<Propsstate> = (props: Propsstate) => {
             }
             {(props.ifproblem && dataState.post.problem.source) &&
                 <>
-                    {dataState.post.problem.source.length > 0 &&
+                    {(dataState.post.problem.source.length > 0 && dataState.post.problem.source !== 'null') &&
                         <Source>出典・引用元:　{ dataState.post.problem.source} </Source>
                     }
                 </>

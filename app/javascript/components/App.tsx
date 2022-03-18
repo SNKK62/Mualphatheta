@@ -38,6 +38,8 @@ import Feed from './Feed';
 import Usersolutions from './Usersolutions';
 import Plusbutton from './Plusbutton';
 import TexInstruction from './TexInstruction';
+import Form from './Form';
+import Forms from './Forms';
 
 const Appwrapper = styled.div`
   width: 100vw;
@@ -192,6 +194,8 @@ const App: React.VFC = () => {
               <Route path="/search" element={<SearchTab value={value} setValue={setValue}/>} />
               <Route path="/searchprocess" element={<Searchprocess />} />
               <Route path="/katex" element={<TexInstruction/>} />
+              <Route path="/form" element={<Form logged_in={logged_in} />} />
+              <Route path="/forms" element={<Forms logged_in={logged_in} />} />
             </Routes>
           <MediaQuery query='(min-width:1025px)'>
           <SearchTabtest/>

@@ -21,7 +21,7 @@ const Loadingwrapper = styled.div`
 const Count = styled.div`
     width: 100%;
     text-align: right;
-    font-size: 12px;
+    font-size: 11px;
     padding-right: 10px;
     height: 12px;
 `

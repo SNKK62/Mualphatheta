@@ -61,6 +61,8 @@ const StaticSidebar:React.VFC<Props> = (props: Props) => {
       navigate('/')
     } else if (s === 'KaTexの書き方') {
       navigate('/katex')
+    } else if (s === 'お問い合わせ') {
+      navigate('/form')
     }
   }
     return (
@@ -77,7 +79,7 @@ const StaticSidebar:React.VFC<Props> = (props: Props) => {
       <Divider /></>}
       {props.logged_in.bool ? <>
         <List>
-            {['トップ', 'プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿','KaTexの書き方'].map((text, index) => (
+            {['トップ', 'プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿','KaTexの書き方', 'お問い合わせ'].map((text, index) => (
               <ListItem button key={index} onClick={() => { toPage(text) }}  >
                 <ListItemText primary={text} sx={{ marginLeft: '20px' }} />
               </ListItem>
@@ -111,7 +113,7 @@ const StaticSidebar:React.VFC<Props> = (props: Props) => {
       <Divider /></>}
       {props.logged_in.bool ? <>
         <List>
-          {['トップ','プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿','KaTexの書き方'].map((text, index) => (
+          {['トップ','プロフィール', 'いいねした問題', 'いいねした解答', '問題投稿','KaTexの書き方', 'お問い合わせ'].map((text, index) => (
             <ListItem button key={index} onClick={() => { toPage(text) }}  >
               <ListItemText primary={text} sx={{ marginLeft: '20px' }} />
             </ListItem>
