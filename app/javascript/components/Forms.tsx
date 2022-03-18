@@ -75,7 +75,7 @@ const Forms:React.VFC<Props> = (props: Props) => {
                             return (<div key={index}>
                                     <ListItem  key={val.id.to_String+'item'} sx={{ padding: '0' }}>
                                         <Textwrapper>
-                                            {val.text}
+                                            {val.description}
                                         </Textwrapper>
                                     </ListItem>
                                 <Divider key={val.id.to_String+'divider2'}/>
