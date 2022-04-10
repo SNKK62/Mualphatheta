@@ -26,7 +26,7 @@ const Title = styled.div`
 `
 const Menu = styled.div`
     @media(max-width: 600px){
-        margin: 10px 16px 15px 16px;
+        margin: 10px 14px 15px 14px;
     }
     @media(min-width: 601px){
         margin: 0px 16px 15px 16px;
